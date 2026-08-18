@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Building2, Sliders, Headphones, Activity, ShieldCheck, CheckCircle2, Zap, Gamepad2, TrendingUp } from 'lucide-react';
+import { 
+  ArrowRight, Building2, Sliders, Headphones, Activity, 
+  ShieldCheck, CheckCircle2, Zap, Gamepad2, TrendingUp, 
+  ChevronLeft, ChevronRight, Sparkles 
+} from 'lucide-react';
 
 /* ─── prefers-reduced-motion hook ───────────────────────────────── */
 function usePrefersReducedMotion() {
@@ -491,9 +495,64 @@ function PaymentNetwork({ reduced }) {
   );
 }
 
+/* ─── Hero Promo Banners (Gaming & Trading Platforms) ───────────── */
+const HERO_SLIDES = [
+  {
+    id: 'gaming',
+    tag: '🎮 Gaming & Esports Payment Gateway',
+    icon: Gamepad2,
+    badgeBg: 'bg-orange-500/10 border-orange-500/30 text-[#FF5500]',
+    accentColor: '#FF5500',
+    title: 'Dedicated High-Risk MIDs for Real-Money Gaming & Fantasy Esports',
+    desc: 'Process high-velocity player deposits & instant payouts with sub-80ms authorization, direct Tier-1 sponsor banks, and zero aggregator freezes.',
+    metric: '95.4% Auth Rate',
+    ctaText: 'Get Gaming MIDs',
+    gradient: 'from-[#0B192C] via-[#0f243e] to-[#143257]',
+    borderGlow: 'border-orange-500/30 shadow-orange-500/10'
+  },
+  {
+    id: 'trading',
+    tag: '📈 Forex & Crypto Trading Direct Rails',
+    icon: TrendingUp,
+    badgeBg: 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400',
+    accentColor: '#0284C7',
+    title: 'Multi-Currency Tier-1 Clearing (INR, USD, EUR, GBP) for Trading Platforms',
+    desc: 'Built for high-volume margin funding with high monthly MTOT limits (₹50 Cr+), T+1 daily batch settlements, and IMPS/NEFT automated rails.',
+    metric: '₹50 Cr+ Volume Caps',
+    ctaText: 'Get Trading Rails',
+    gradient: 'from-[#071a2b] via-[#092b47] to-[#0d3f66]',
+    borderGlow: 'border-cyan-500/30 shadow-cyan-500/10'
+  },
+  {
+    id: 'defense',
+    tag: '⚡ Smart Acquirer Cascading & RDR Shield',
+    icon: ShieldCheck,
+    badgeBg: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400',
+    accentColor: '#10B981',
+    title: 'Auto-Salvage Soft Declines & Deflect 90% Chargebacks in Real Time',
+    desc: 'Ethoca & Verifi RDR automated dispute interception keeps your chargeback ratio safely at 0.24% with frictionless 3DS 2.2 cascading.',
+    metric: '0.24% Clean Ratio',
+    ctaText: 'Explore Gateway Defense',
+    gradient: 'from-[#061e1a] via-[#093229] to-[#0c4437]',
+    borderGlow: 'border-emerald-500/30 shadow-emerald-500/10'
+  }
+];
+
 /* ─── Hero ───────────────────────────────────────────────────────── */
 export default function HeroSection({ onOpenApplication }) {
   const reduced = usePrefersReducedMotion();
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isHovered]);
+
+  const currentSlide = HERO_SLIDES[activeSlide];
 
   return (
     <section
@@ -534,9 +593,94 @@ export default function HeroSection({ onOpenApplication }) {
         style={{ maxWidth: '1400px', margin: '0 auto' }}
       >
 
+        {/* ════ TOP HERO DYNAMIC BANNER SLIDER (GAMING & TRADING) ════ */}
+        <div 
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="w-full pt-3 sm:pt-4 pb-1 relative z-20"
+        >
+          <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-r ${currentSlide.gradient} border ${currentSlide.borderGlow} p-3 sm:p-4 shadow-lg transition-all duration-500`}>
+            {/* Ambient Radial Accent */}
+            <div 
+              className="absolute -right-10 -top-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none"
+              style={{ backgroundColor: currentSlide.accentColor }}
+            />
+
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-3">
+              {/* Left Slide Info */}
+              <div className="space-y-1 min-w-0 flex-1">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider border ${currentSlide.badgeBg}`}>
+                    <currentSlide.icon className="w-3 h-3" />
+                    <span>{currentSlide.tag}</span>
+                  </span>
+                  <span className="text-[10px] text-emerald-400 font-mono font-semibold hidden xs:inline-flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    {currentSlide.metric}
+                  </span>
+                </div>
+
+                <h2 className="text-xs sm:text-sm md:text-base font-bold text-white tracking-tight leading-snug">
+                  {currentSlide.title}
+                </h2>
+
+                <p className="text-[11px] sm:text-xs text-slate-300 line-clamp-2 md:line-clamp-1 max-w-2xl leading-relaxed">
+                  {currentSlide.desc}
+                </p>
+              </div>
+
+              {/* Right CTA & Slide Navigation */}
+              <div className="flex items-center justify-between md:justify-end gap-2.5 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-white/10">
+                <button
+                  onClick={onOpenApplication}
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-white font-bold text-[11px] sm:text-xs shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+                  style={{ backgroundColor: currentSlide.accentColor }}
+                >
+                  <span>{currentSlide.ctaText}</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
+
+                {/* Prev / Next Arrows */}
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => setActiveSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1))}
+                    className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+                    aria-label="Previous banner slide"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={() => setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length)}
+                    className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+                    aria-label="Next banner slide"
+                  >
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Slider Dots Progress Bar */}
+            <div className="flex items-center gap-1.5 mt-2 pt-1.5 border-t border-white/10">
+              {HERO_SLIDES.map((slide, idx) => (
+                <button
+                  key={slide.id}
+                  onClick={() => setActiveSlide(idx)}
+                  className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${
+                    activeSlide === idx
+                      ? 'w-6 bg-white'
+                      : 'w-2 bg-white/30 hover:bg-white/50'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* ════ HERO MAIN GRID ═══════════════════════════════════ */}
         <div
-          className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)] items-center flex-1 py-4 sm:py-6 lg:py-8"
+          className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)] items-center flex-1 py-3 sm:py-5 lg:py-6"
           style={{
             columnGap: 'clamp(24px, 3vw, 48px)',
           }}
