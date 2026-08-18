@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Building2, Sliders, Headphones, Activity, ShieldCheck, CheckCircle2, Zap } from 'lucide-react';
+import { ArrowRight, Building2, Sliders, Headphones, Activity, ShieldCheck, CheckCircle2, Zap, Gamepad2, TrendingUp } from 'lucide-react';
 
 /* ─── prefers-reduced-motion hook ───────────────────────────────── */
 function usePrefersReducedMotion() {
@@ -607,16 +607,27 @@ export default function HeroSection({ onOpenApplication }) {
             </p>
 
             {/* Quick Industry Feature Badges */}
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-5 sm:mb-6">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FCFBF8] border border-[#E7E3DA] text-[11.5px] font-semibold text-[#0B192C] shadow-2xs">
-                <span>🎮</span> iGaming &amp; Esports MIDs
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FCFBF8] border border-[#E7E3DA] text-[11.5px] font-semibold text-[#0B192C] shadow-2xs">
-                <span>📈</span> Forex &amp; Crypto Trading Rails
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-[11.5px] font-bold text-[#10B981]">
-                <span>⚡</span> Sub-80ms Live Deposits
-              </span>
+            <div className="flex flex-wrap items-center gap-2 mb-5 sm:mb-6 w-full">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white border border-[#E7E3DA] text-[11px] sm:text-xs font-semibold text-[#0B192C] shadow-2xs">
+                <span className="w-5 h-5 rounded-lg bg-orange-50 border border-orange-200/80 flex items-center justify-center text-[#FF5500] shrink-0">
+                  <Gamepad2 className="w-3.5 h-3.5" />
+                </span>
+                <span>iGaming &amp; Esports MIDs</span>
+              </div>
+
+              <div className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white border border-[#E7E3DA] text-[11px] sm:text-xs font-semibold text-[#0B192C] shadow-2xs">
+                <span className="w-5 h-5 rounded-lg bg-blue-50 border border-blue-200/80 flex items-center justify-center text-blue-600 shrink-0">
+                  <TrendingUp className="w-3.5 h-3.5" />
+                </span>
+                <span>Forex &amp; Crypto Rails</span>
+              </div>
+
+              <div className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-emerald-50/90 border border-emerald-200 text-[11px] sm:text-xs font-bold text-[#10B981] shadow-2xs">
+                <span className="w-5 h-5 rounded-lg bg-emerald-100/90 border border-emerald-300/80 flex items-center justify-center text-[#10B981] shrink-0">
+                  <Zap className="w-3.5 h-3.5" />
+                </span>
+                <span>Sub-80ms Live Deposits</span>
+              </div>
             </div>
 
             {/* CTA Buttons - Full Width on Mobile */}
