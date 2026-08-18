@@ -4,6 +4,9 @@ import {
   ShieldCheck, CheckCircle2, Zap, Gamepad2, TrendingUp, 
   ChevronLeft, ChevronRight, Sparkles 
 } from 'lucide-react';
+import banner01Img from '../assets/Banner01.png';
+import banner02Img from '../assets/Banner02.png';
+import banner03Img from '../assets/Banner03.png';
 
 /* ─── prefers-reduced-motion hook ───────────────────────────────── */
 function usePrefersReducedMotion() {
@@ -495,46 +498,34 @@ function PaymentNetwork({ reduced }) {
   );
 }
 
-/* ─── Hero Promo Banners (Gaming & Trading Platforms) ───────────── */
+/* ─── Hero Promo Banners (Gaming, Trading & Dispute Shield) ──────── */
 const HERO_SLIDES = [
   {
     id: 'gaming',
+    image: banner01Img,
     tag: '🎮 Gaming & Esports Payment Gateway',
-    icon: Gamepad2,
-    badgeBg: 'bg-orange-500/10 border-orange-500/30 text-[#FF5500]',
-    accentColor: '#FF5500',
-    title: 'Dedicated High-Risk MIDs for Real-Money Gaming & Fantasy Esports',
-    desc: 'Process high-velocity player deposits & instant payouts with sub-80ms authorization, direct Tier-1 sponsor banks, and zero aggregator freezes.',
-    metric: '95.4% Auth Rate',
+    title: 'Gaming & Esports Payment Gateway — Dedicated High-Risk MIDs',
+    shortLabel: 'Gaming & Esports',
     ctaText: 'Get Gaming MIDs',
-    gradient: 'from-[#0B192C] via-[#0f243e] to-[#143257]',
-    borderGlow: 'border-orange-500/30 shadow-orange-500/10'
+    accentColor: '#FF5500',
   },
   {
     id: 'trading',
-    tag: '📈 Forex & Crypto Trading Direct Rails',
-    icon: TrendingUp,
-    badgeBg: 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400',
-    accentColor: '#0284C7',
-    title: 'Multi-Currency Tier-1 Clearing (INR, USD, EUR, GBP) for Trading Platforms',
-    desc: 'Built for high-volume margin funding with high monthly MTOT limits (₹50 Cr+), T+1 daily batch settlements, and IMPS/NEFT automated rails.',
-    metric: '₹50 Cr+ Volume Caps',
+    image: banner02Img,
+    tag: '📈 Forex & Crypto Trading Rails',
+    title: 'Forex & Crypto Trading Payment Gateway — Direct Bank Rails',
+    shortLabel: 'Forex & Crypto',
     ctaText: 'Get Trading Rails',
-    gradient: 'from-[#071a2b] via-[#092b47] to-[#0d3f66]',
-    borderGlow: 'border-cyan-500/30 shadow-cyan-500/10'
+    accentColor: '#0284C7',
   },
   {
     id: 'defense',
-    tag: '⚡ Smart Acquirer Cascading & RDR Shield',
-    icon: ShieldCheck,
-    badgeBg: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400',
+    image: banner03Img,
+    tag: '⚡ Smart Cascading & RDR Dispute Shield',
+    title: 'Smart Acquirer Cascading & RDR Shield — Deflect 90% Chargebacks',
+    shortLabel: 'Dispute & RDR Shield',
+    ctaText: 'Protect Your Business',
     accentColor: '#10B981',
-    title: 'Auto-Salvage Soft Declines & Deflect 90% Chargebacks in Real Time',
-    desc: 'Ethoca & Verifi RDR automated dispute interception keeps your chargeback ratio safely at 0.24% with frictionless 3DS 2.2 cascading.',
-    metric: '0.24% Clean Ratio',
-    ctaText: 'Explore Gateway Defense',
-    gradient: 'from-[#061e1a] via-[#093229] to-[#0c4437]',
-    borderGlow: 'border-emerald-500/30 shadow-emerald-500/10'
   }
 ];
 
@@ -548,7 +539,7 @@ export default function HeroSection({ onOpenApplication }) {
     if (isHovered) return;
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 5000);
+    }, 5500);
     return () => clearInterval(timer);
   }, [isHovered]);
 
@@ -593,87 +584,94 @@ export default function HeroSection({ onOpenApplication }) {
         style={{ maxWidth: '1400px', margin: '0 auto' }}
       >
 
-        {/* ════ TOP HERO DYNAMIC BANNER SLIDER (GAMING & TRADING) ════ */}
+        {/* ════ TOP HERO DYNAMIC BANNER SLIDER (BANNER01, BANNER02, BANNER03) ════ */}
         <div 
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="w-full pt-3 sm:pt-4 pb-1 relative z-20"
+          className="w-full pt-3 sm:pt-4 pb-2 relative z-20"
         >
-          <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-r ${currentSlide.gradient} border ${currentSlide.borderGlow} p-3 sm:p-4 shadow-lg transition-all duration-500`}>
-            {/* Ambient Radial Accent */}
+          {/* Banner Outer Card */}
+          <div className="relative group overflow-hidden rounded-2xl sm:rounded-3xl border border-[#E7E3DA] bg-white shadow-lg shadow-slate-900/5 transition-all duration-300">
+            {/* Clickable Banner Canvas (Enhanced Medium Height) */}
             <div 
-              className="absolute -right-10 -top-10 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none"
-              style={{ backgroundColor: currentSlide.accentColor }}
-            />
-
-            <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-3">
-              {/* Left Slide Info */}
-              <div className="space-y-1 min-w-0 flex-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider border ${currentSlide.badgeBg}`}>
-                    <currentSlide.icon className="w-3 h-3" />
-                    <span>{currentSlide.tag}</span>
-                  </span>
-                  <span className="text-[10px] text-emerald-400 font-mono font-semibold hidden xs:inline-flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    {currentSlide.metric}
-                  </span>
-                </div>
-
-                <h2 className="text-xs sm:text-sm md:text-base font-bold text-white tracking-tight leading-snug">
-                  {currentSlide.title}
-                </h2>
-
-                <p className="text-[11px] sm:text-xs text-slate-300 line-clamp-2 md:line-clamp-1 max-w-2xl leading-relaxed">
-                  {currentSlide.desc}
-                </p>
-              </div>
-
-              {/* Right CTA & Slide Navigation */}
-              <div className="flex items-center justify-between md:justify-end gap-2.5 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-white/10">
-                <button
-                  onClick={onOpenApplication}
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-white font-bold text-[11px] sm:text-xs shadow-md transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
-                  style={{ backgroundColor: currentSlide.accentColor }}
+              onClick={() => onOpenApplication && onOpenApplication()}
+              className="relative w-full cursor-pointer overflow-hidden block h-[190px] sm:h-[245px] md:h-[285px] bg-slate-950"
+              title="Click to apply or talk to an underwriting specialist"
+            >
+              {HERO_SLIDES.map((slide, idx) => (
+                <div
+                  key={slide.id}
+                  className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                    activeSlide === idx ? 'opacity-100 z-10 scale-100' : 'opacity-0 z-0 pointer-events-none scale-[1.006]'
+                  }`}
                 >
-                  <span>{currentSlide.ctaText}</span>
-                  <ArrowRight className="w-3 h-3" />
-                </button>
-
-                {/* Prev / Next Arrows */}
-                <div className="flex items-center gap-1">
-                  <button
-                    onClick={() => setActiveSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1))}
-                    className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
-                    aria-label="Previous banner slide"
-                  >
-                    <ChevronLeft className="w-3.5 h-3.5" />
-                  </button>
-                  <button
-                    onClick={() => setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length)}
-                    className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
-                    aria-label="Next banner slide"
-                  >
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.012]"
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                  />
                 </div>
-              </div>
+              ))}
+
+              {/* Subtle Gradient Bottom Vignette */}
+              <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/45 via-black/15 to-transparent pointer-events-none z-15" />
             </div>
 
-            {/* Slider Dots Progress Bar */}
-            <div className="flex items-center gap-1.5 mt-2 pt-1.5 border-t border-white/10">
+            {/* Left Chevron Button */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1));
+              }}
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/45 hover:bg-[#FF5500] text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg cursor-pointer opacity-85 group-hover:opacity-100"
+              aria-label="Previous banner slide"
+            >
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+            </button>
+
+            {/* Right Chevron Button */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+              }}
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/45 hover:bg-[#FF5500] text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg cursor-pointer opacity-85 group-hover:opacity-100"
+              aria-label="Next banner slide"
+            >
+              <ChevronRight className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
+            </button>
+
+            {/* Bottom Floating Selector Pills */}
+            <div className="absolute bottom-2 sm:bottom-3.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-black/55 backdrop-blur-md border border-white/15 shadow-md">
               {HERO_SLIDES.map((slide, idx) => (
                 <button
                   key={slide.id}
-                  onClick={() => setActiveSlide(idx)}
-                  className={`h-1 rounded-full transition-all duration-300 cursor-pointer ${
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveSlide(idx);
+                  }}
+                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold transition-all duration-200 cursor-pointer ${
                     activeSlide === idx
-                      ? 'w-6 bg-white'
-                      : 'w-2 bg-white/30 hover:bg-white/50'
+                      ? 'bg-white text-[#0B192C] shadow-sm'
+                      : 'text-white/75 hover:text-white hover:bg-white/15'
                   }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
+                  aria-label={`Go to slide ${idx + 1}: ${slide.shortLabel}`}
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full transition-colors ${activeSlide === idx ? 'bg-[#FF5500]' : 'bg-white/40'}`} />
+                  <span className="hidden xs:inline">{slide.shortLabel}</span>
+                  <span className="xs:hidden">{idx + 1}</span>
+                </button>
               ))}
+            </div>
+
+            {/* Top-Right Badge: Live Carousel Tracker */}
+            <div className="absolute top-2.5 right-3 z-20 hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/15 text-[10px] text-white/90 font-medium tracking-wide">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>{activeSlide + 1} / {HERO_SLIDES.length}</span>
             </div>
           </div>
         </div>
