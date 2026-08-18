@@ -552,9 +552,9 @@ export default function HeroSection({ onOpenApplication }) {
               justifyContent: 'center',
             }}
           >
-            {/* Eyebrow with refined pill */}
+            {/* Eyebrow with refined pill (Hidden on Mobile View) */}
             <div
-              className="inline-flex items-center gap-1.5 sm:gap-2 bg-orange-50/90 border border-orange-200/80 px-3.5 py-1.5 rounded-full shadow-xs backdrop-blur-sm mb-4 sm:mb-5"
+              className="hidden sm:inline-flex items-center gap-1.5 sm:gap-2 bg-orange-50/90 border border-orange-200/80 px-3.5 py-1.5 rounded-full shadow-xs backdrop-blur-sm mb-4 sm:mb-5"
             >
               <span className="w-2 h-2 rounded-full bg-[#FF5500] shrink-0 animate-pulse" />
               <span className="text-[10px] sm:text-[11px] font-bold tracking-wider uppercase text-slate-800">
