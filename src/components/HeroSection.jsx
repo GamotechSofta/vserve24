@@ -4,9 +4,9 @@ import {
   ShieldCheck, CheckCircle2, Zap, Gamepad2, TrendingUp, 
   ChevronLeft, ChevronRight, Sparkles 
 } from 'lucide-react';
-import banner01Img from '../assets/Banner01.png';
-import banner02Img from '../assets/Banner02.png';
-import banner03Img from '../assets/Banner03.png';
+import banner01Img from '../assets/desktopbanner01.png';
+import banner02Img from '../assets/desktopbanner02.png';
+import banner03Img from '../assets/desktopbanner03.png';
 
 /* ─── prefers-reduced-motion hook ───────────────────────────────── */
 function usePrefersReducedMotion() {
@@ -628,14 +628,14 @@ export default function HeroSection({ onOpenApplication }) {
           className="w-full pt-3 sm:pt-4 pb-2 relative z-20"
         >
           {/* Banner Outer Card */}
-          <div className="relative group overflow-hidden rounded-xl sm:rounded-3xl border-0 bg-transparent sm:bg-white shadow-none sm:shadow-lg shadow-slate-900/5 transition-all duration-300 select-none">
+          <div className="relative group overflow-hidden rounded-2xl sm:rounded-3xl border border-[#E7E3DA] bg-white shadow-lg shadow-slate-900/5 transition-all duration-300 select-none">
             {/* Clickable Banner Canvas with Touch Swipe */}
             <div 
               onClick={handleBannerClick}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
-              className="relative w-full cursor-pointer overflow-hidden block h-[180px] sm:h-[245px] md:h-[285px] bg-transparent touch-pan-y"
+              className="relative w-full cursor-pointer overflow-hidden block h-[190px] sm:h-[245px] md:h-[285px] bg-slate-950 touch-pan-y"
               title="Click to apply or talk to an underwriting specialist"
             >
               {HERO_SLIDES.map((slide, idx) => (
@@ -658,32 +658,6 @@ export default function HeroSection({ onOpenApplication }) {
               {/* Subtle Gradient Bottom Vignette (Desktop only) */}
               <div className="hidden sm:block absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/45 via-black/15 to-transparent pointer-events-none z-15" />
             </div>
-
-            {/* Left Chevron Button (Desktop only - Hidden on Mobile) */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setActiveSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1));
-              }}
-              className="hidden sm:flex absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/45 hover:bg-[#FF5500] text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg cursor-pointer opacity-85 group-hover:opacity-100"
-              aria-label="Previous banner slide"
-            >
-              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
-
-            {/* Right Chevron Button (Desktop only - Hidden on Mobile) */}
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-              }}
-              className="hidden sm:flex absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/45 hover:bg-[#FF5500] text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg cursor-pointer opacity-85 group-hover:opacity-100"
-              aria-label="Next banner slide"
-            >
-              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
 
             {/* Bottom Floating Selector Pills (Desktop only - Hidden on Mobile) */}
             <div className="hidden sm:flex absolute bottom-2 sm:bottom-3.5 left-1/2 -translate-x-1/2 z-20 items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-black/55 backdrop-blur-md border border-white/15 shadow-md">
