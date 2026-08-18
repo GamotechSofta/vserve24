@@ -102,6 +102,65 @@ export default function VirtualTerminalDemo({ onOpenApplication }) {
               </span>
             </div>
 
+            {/* Quick Test Scenarios */}
+            <div className="space-y-1.5">
+              <label className="text-[11px] font-bold text-[#707887] uppercase tracking-wider">
+                ⚡ Quick Fill Test Simulation
+              </label>
+              <div className="grid grid-cols-3 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setFormData({
+                    amount: '25,000.00',
+                    currency: 'INR',
+                    cardNumber: '4532 •••• •••• 8841',
+                    expiry: '11/28',
+                    cvv: '819',
+                    cardholderName: 'Apex eSports Gaming Guild Ltd',
+                    midRail: 'mid_tier1_inr_direct',
+                    threeDsOption: 'frictionless_2_2'
+                  })}
+                  className="px-2 py-1.5 rounded-lg text-left bg-white border border-[#E7E3DA] hover:border-[#FF5500] text-[11px] font-bold text-[#0B192C] transition-all cursor-pointer truncate"
+                >
+                  🎮 iGaming Top-Up
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setFormData({
+                    amount: '1,50,000.00',
+                    currency: 'INR',
+                    cardNumber: '5424 •••• •••• 9210',
+                    expiry: '09/27',
+                    cvv: '452',
+                    cardholderName: 'Quantum Alpha Forex Brokerage',
+                    midRail: 'mid_tier1_inr_direct',
+                    threeDsOption: 'frictionless_2_2'
+                  })}
+                  className="px-2 py-1.5 rounded-lg text-left bg-white border border-[#E7E3DA] hover:border-[#FF5500] text-[11px] font-bold text-[#0B192C] transition-all cursor-pointer truncate"
+                >
+                  📈 Forex Funding
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setFormData({
+                    amount: '75,000.00',
+                    currency: 'INR',
+                    cardNumber: '4111 •••• •••• 3319',
+                    expiry: '04/29',
+                    cvv: '671',
+                    cardholderName: 'Nexus Global Crypto Liquidity',
+                    midRail: 'mid_offshore_discrete',
+                    threeDsOption: 'frictionless_2_2'
+                  })}
+                  className="px-2 py-1.5 rounded-lg text-left bg-white border border-[#E7E3DA] hover:border-[#FF5500] text-[11px] font-bold text-[#0B192C] transition-all cursor-pointer truncate"
+                >
+                  ⚡ Crypto On-Ramp
+                </button>
+              </div>
+            </div>
+
             <form onSubmit={handleCharge} className="space-y-4">
               
               {/* Amount & Currency */}

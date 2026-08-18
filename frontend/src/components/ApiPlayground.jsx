@@ -15,22 +15,22 @@ export default function ApiPlayground({ onOpenApplication }) {
     {
       id: 'authorize',
       method: 'POST',
-      path: '/v1/charges/direct-acquirer',
-      title: 'Direct Acquirer Charge',
-      desc: 'Tokenized frictionless auth with 3DS 2.2 biometric filter'
+      path: '/v1/gaming-trading/direct-charge',
+      title: '🎮 Gaming & Trading Direct Auth',
+      desc: 'Sub-80ms player/trader direct auth with frictionless 3DS 2.2'
     },
     {
       id: 'failover',
       method: 'POST',
-      path: '/v1/routing/cascading-salvage',
-      title: 'Cascading Failover Route',
+      path: '/v1/trading/cascading-salvage',
+      title: '📈 Forex & High-Velocity Failover',
       desc: 'Smart retry across secondary sponsor bank MIDs on soft decline'
     },
     {
       id: 'rdr',
       method: 'POST',
       path: '/v1/webhooks/rdr-pre-dispute',
-      title: 'RDR Pre-Dispute Intercept',
+      title: '🛡️ Chargeback Shield & RDR Webhook',
       desc: 'Ethoca & Verifi instant auto-refund to shield merchant ratio'
     }
   ];

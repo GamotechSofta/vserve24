@@ -111,6 +111,67 @@ export default function FeeCalculator({ onOpenApplication }) {
             
             <div className="space-y-6">
               
+              {/* Gaming & Trading Quick Presets */}
+              <div className="space-y-2">
+                <label className="text-[11px] font-bold uppercase tracking-wider text-[#707887] flex items-center justify-between">
+                  <span>⚡ Quick Model Presets</span>
+                  <span className="text-[#FF5500] font-semibold text-[10.5px]">1-Click Modeling</span>
+                </label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => { setIndustryTier('gaming'); setMonthlyVolume(5000000); setAvgTicket(1500); }}
+                    className={`px-2.5 py-2 rounded-xl text-left border text-xs font-bold transition-all cursor-pointer ${
+                      industryTier === 'gaming' && monthlyVolume === 5000000
+                        ? 'bg-[#FF5500] text-white border-[#FF5500] shadow-xs'
+                        : 'bg-white text-[#0B192C] border-[#E7E3DA] hover:border-[#FF5500]/50'
+                    }`}
+                  >
+                    <div className="truncate">🎮 iGaming</div>
+                    <div className={`text-[10px] font-normal ${industryTier === 'gaming' && monthlyVolume === 5000000 ? 'text-white/80' : 'text-[#707887]'}`}>₹50L • ₹1.5k AOV</div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => { setIndustryTier('trading'); setMonthlyVolume(15000000); setAvgTicket(15000); }}
+                    className={`px-2.5 py-2 rounded-xl text-left border text-xs font-bold transition-all cursor-pointer ${
+                      industryTier === 'trading' && monthlyVolume === 15000000
+                        ? 'bg-[#FF5500] text-white border-[#FF5500] shadow-xs'
+                        : 'bg-white text-[#0B192C] border-[#E7E3DA] hover:border-[#FF5500]/50'
+                    }`}
+                  >
+                    <div className="truncate">📈 Forex Trading</div>
+                    <div className={`text-[10px] font-normal ${industryTier === 'trading' && monthlyVolume === 15000000 ? 'text-white/80' : 'text-[#707887]'}`}>₹1.5 Cr • ₹15k AOV</div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => { setIndustryTier('trading'); setMonthlyVolume(8000000); setAvgTicket(8000); }}
+                    className={`px-2.5 py-2 rounded-xl text-left border text-xs font-bold transition-all cursor-pointer ${
+                      industryTier === 'trading' && monthlyVolume === 8000000
+                        ? 'bg-[#FF5500] text-white border-[#FF5500] shadow-xs'
+                        : 'bg-white text-[#0B192C] border-[#E7E3DA] hover:border-[#FF5500]/50'
+                    }`}
+                  >
+                    <div className="truncate">⚡ Crypto Rail</div>
+                    <div className={`text-[10px] font-normal ${industryTier === 'trading' && monthlyVolume === 8000000 ? 'text-white/80' : 'text-[#707887]'}`}>₹80L • ₹8k AOV</div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => { setIndustryTier('gaming'); setMonthlyVolume(2500000); setAvgTicket(2500); }}
+                    className={`px-2.5 py-2 rounded-xl text-left border text-xs font-bold transition-all cursor-pointer ${
+                      industryTier === 'gaming' && monthlyVolume === 2500000
+                        ? 'bg-[#FF5500] text-white border-[#FF5500] shadow-xs'
+                        : 'bg-white text-[#0B192C] border-[#E7E3DA] hover:border-[#FF5500]/50'
+                    }`}
+                  >
+                    <div className="truncate">🏆 Esports League</div>
+                    <div className={`text-[10px] font-normal ${industryTier === 'gaming' && monthlyVolume === 2500000 ? 'text-white/80' : 'text-[#707887]'}`}>₹25L • ₹2.5k AOV</div>
+                  </button>
+                </div>
+              </div>
+
               {/* 1. Industry Risk Vertical Select */}
               <div className="space-y-2">
                 <label className="text-xs font-bold uppercase tracking-wider text-[#707887] flex items-center justify-between">

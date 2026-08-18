@@ -71,6 +71,23 @@ const TX_B = 'M 68,250 L 264,250 C 336,250 382,368 450,368 C 514,368 558,302 592
 
 function PaymentNetwork({ reduced }) {
   const [hoveredNode, setHoveredNode] = useState(null);
+  const [txIndex, setTxIndex] = useState(0);
+
+  const liveEvents = [
+    { label: '🎮 iGaming Instant Deposit:', amount: '₹25,000.00', speed: '✓ 58ms AUTH', rail: 'Direct Domestic MID' },
+    { label: '📈 Forex Trader Margin Fund:', amount: '₹1,50,000.00', speed: '✓ 74ms SETTLED', rail: 'IMPS/NEFT Rail' },
+    { label: '⚡ Crypto Platform On-Ramp:', amount: '₹85,000.00', speed: '✓ 61ms AUTH', rail: '3DS 2.2 Frictionless' },
+    { label: '🏆 Esports Tournament Payout:', amount: '₹45,000.00', speed: '✓ 52ms BATCH', rail: 'Instant Player Credit' },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTxIndex((prev) => (prev + 1) % liveEvents.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, []);
+
+  const currentTx = liveEvents[txIndex];
 
   return (
     <div className="relative w-full flex flex-col items-center justify-center h-full select-none">
@@ -447,21 +464,24 @@ function PaymentNetwork({ reduced }) {
           <span className="font-semibold text-slate-600">Sub-80ms Routing</span>
         </div>
 
-        <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3 py-1.5 flex items-center justify-between text-[11px] overflow-hidden">
+        <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3 py-1.5 flex items-center justify-between text-[11px] overflow-hidden min-h-[34px]">
           {hoveredNode ? (
             <div className="font-medium text-slate-700 transition-all animate-in fade-in">
               <span className="text-[#FF5500] font-bold">NODE: </span>
               {NODES.find(n => n.id === hoveredNode)?.detail}
             </div>
           ) : (
-            <div className="flex items-center justify-between w-full font-semibold text-slate-700 animate-pulse">
+            <div key={txIndex} className="flex items-center justify-between w-full font-semibold text-slate-700 transition-all duration-300 animate-in fade-in slide-in-from-bottom-1">
               <span className="flex items-center gap-1.5 text-[#0B192C]">
-                <span>🎮 iGaming Instant Deposit:</span>
-                <span className="text-[#FF5500]">₹25,000.00</span>
+                <span>{currentTx.label}</span>
+                <span className="text-[#FF5500] font-bold">{currentTx.amount}</span>
               </span>
-              <span className="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-mono">
-                ✓ 62ms AUTH
-              </span>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[9.5px] text-slate-500 hidden sm:inline">{currentTx.rail}</span>
+                <span className="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-mono font-bold">
+                  {currentTx.speed}
+                </span>
+              </div>
             </div>
           )}
         </div>
