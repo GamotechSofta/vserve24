@@ -628,14 +628,14 @@ export default function HeroSection({ onOpenApplication }) {
           className="w-full pt-3 sm:pt-4 pb-2 relative z-20"
         >
           {/* Banner Outer Card */}
-          <div className="relative group overflow-hidden rounded-2xl sm:rounded-3xl bg-white shadow-lg shadow-slate-900/5 transition-all duration-300 select-none">
+          <div className="relative group overflow-hidden rounded-xl sm:rounded-3xl border-0 bg-transparent sm:bg-white shadow-none sm:shadow-lg shadow-slate-900/5 transition-all duration-300 select-none">
             {/* Clickable Banner Canvas with Touch Swipe */}
             <div 
               onClick={handleBannerClick}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
-              className="relative w-full cursor-pointer overflow-hidden block h-[190px] sm:h-[245px] md:h-[285px] bg-slate-950 touch-pan-y"
+              className="relative w-full cursor-pointer overflow-hidden block h-[180px] sm:h-[245px] md:h-[285px] bg-transparent touch-pan-y"
               title="Click to apply or talk to an underwriting specialist"
             >
               {HERO_SLIDES.map((slide, idx) => (
