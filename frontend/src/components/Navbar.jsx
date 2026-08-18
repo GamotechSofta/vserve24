@@ -64,12 +64,11 @@ export default function Navbar({ onOpenApplication, onOpenPortal }) {
     },
     {
       label: 'Company',
-      href: '#onboarding',
+      href: '#services',
       hasDropdown: true,
       items: [
-        { name: 'How Onboarding Works', desc: '3-step operational timeline', href: '#onboarding', icon: CheckCircle2 },
-        { name: 'Frequently Asked Questions', desc: 'Clear answers on underwriting & fees', href: '#faq', icon: HelpCircle },
-        { name: 'Direct Underwriting Desk', desc: '24h risk review & live MIDs', href: '#onboarding', icon: Phone },
+        { name: 'Direct Underwriting Desk', desc: '24h risk review & live MIDs', href: '#services', icon: Phone },
+        { name: 'Global Processing Pipeline', desc: 'Direct sponsor acquiring rails', href: '#intelligence', icon: CheckCircle2 },
       ]
     }
   ];

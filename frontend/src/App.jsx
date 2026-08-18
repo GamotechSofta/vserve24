@@ -10,8 +10,6 @@ import ApiPlayground from './components/ApiPlayground';
 import PaymentIntelligence from './components/PaymentIntelligence';
 import ResourcesSection from './components/ResourcesSection';
 import Testimonials from './components/Testimonials';
-import FAQSection from './components/FAQSection';
-import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 import ApplicationModal from './components/ApplicationModal';
 import MerchantPortalModal from './components/MerchantPortalModal';
@@ -85,12 +83,6 @@ export default function App() {
 
           {/* 08 — Verified Merchant Testimonials Carousel */}
           <Testimonials />
-
-          {/* 09 — Frequently Asked Questions Accordion */}
-          <FAQSection />
-
-          {/* 10 — Final High-Conversion Concluding CTA */}
-          <FinalCTA onOpenApplication={() => handleOpenApplication()} />
         </div>
 
       </main>
