@@ -628,7 +628,7 @@ export default function HeroSection({ onOpenApplication }) {
           className="w-full pt-3 sm:pt-4 pb-2 relative z-20"
         >
           {/* Banner Outer Card */}
-          <div className="relative group overflow-hidden rounded-2xl sm:rounded-3xl border border-[#E7E3DA] bg-white shadow-lg shadow-slate-900/5 transition-all duration-300 select-none">
+          <div className="relative group overflow-hidden rounded-2xl sm:rounded-3xl bg-white shadow-lg shadow-slate-900/5 transition-all duration-300 select-none">
             {/* Clickable Banner Canvas with Touch Swipe */}
             <div 
               onClick={handleBannerClick}
