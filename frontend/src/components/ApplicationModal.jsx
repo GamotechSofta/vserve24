@@ -48,18 +48,22 @@ export default function ApplicationModal({ isOpen, onClose, initialParams }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/45 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto">
+    <div 
+      onClick={onClose}
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm p-3 sm:p-6 flex min-h-full items-start sm:items-center justify-center animate-in fade-in duration-200"
+    >
       <div 
         className="bg-[#FFFFFF] border border-[#E7E3DA] rounded-3xl max-w-xl w-full p-5 sm:p-7 md:p-9 relative shadow-2xl text-[#0B192C] my-4 sm:my-6"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
+        {/* Prominent High-Visibility Close Button */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-[#0B192C] hover:bg-[#F7F4ED] transition-colors cursor-pointer"
+          className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F7F4ED] hover:bg-[#E7E3DA] border border-[#E7E3DA] text-[#0B192C] flex items-center justify-center shadow-md transition-all cursor-pointer z-30"
           aria-label="Close modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5" strokeWidth={2.5} />
         </button>
 
         {!submitted ? (
@@ -196,8 +200,8 @@ export default function ApplicationModal({ isOpen, onClose, initialParams }) {
               <span className="text-[10px] text-[#10B981] font-bold bg-emerald-50 px-2 py-0.5 rounded">0% Fee</span>
             </div>
 
-            {/* Submit Action Button */}
-            <div className="pt-2">
+            {/* Submit Action Button & Cancel Button */}
+            <div className="pt-2 space-y-2">
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -211,6 +215,14 @@ export default function ApplicationModal({ isOpen, onClose, initialParams }) {
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
+              </button>
+
+              <button
+                type="button"
+                onClick={onClose}
+                className="w-full py-2.5 rounded-xl text-xs font-bold text-[#707887] hover:text-[#0B192C] hover:bg-[#F7F4ED] transition-colors text-center cursor-pointer border border-[#E7E3DA] bg-white"
+              >
+                ✕ Cancel &amp; Close Form
               </button>
             </div>
 

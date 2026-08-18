@@ -517,7 +517,7 @@ export default function IndustriesSection({ onOpenApplication }) {
                         <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
                         {config.speed}
                       </span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#FF5500] transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#FF5500] transition-transform group-hover:translate-x-1" />
                     </div>
                   </div>
                 </div>
@@ -530,9 +530,12 @@ export default function IndustriesSection({ onOpenApplication }) {
 
       {/* Comprehensive Industry Underwriting Light Modal */}
       {activeModalIndustry && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
+        <div 
+          onClick={() => setActiveModalIndustry(null)} 
+          className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm p-3 sm:p-6 flex min-h-full items-start sm:items-center justify-center animate-in fade-in duration-200"
+        >
           <div 
-            className="bg-[#FFFFFF] border border-[#E7E3DA] rounded-3xl max-w-xl w-full overflow-hidden relative shadow-2xl space-y-0 text-[#0B192C]"
+            className="bg-[#FFFFFF] border border-[#E7E3DA] rounded-3xl max-w-xl w-full overflow-hidden relative shadow-2xl space-y-0 text-[#0B192C] my-4 sm:my-6"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal 3D Image Header Banner */}
@@ -542,17 +545,20 @@ export default function IndustriesSection({ onOpenApplication }) {
                 alt={activeModalIndustry.name}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
               
+              {/* Prominent Circular Close Button */}
               <button 
+                type="button"
                 onClick={() => setActiveModalIndustry(null)}
-                className="absolute top-3.5 right-3.5 bg-black/40 hover:bg-black/70 text-white p-1.5 rounded-full transition-colors cursor-pointer"
+                className="absolute top-3.5 right-3.5 bg-black/60 hover:bg-black/90 text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors cursor-pointer z-30 shadow-md border border-white/20"
+                aria-label="Close modal"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" strokeWidth={2.5} />
               </button>
 
               <div className="absolute bottom-3 left-4 right-4 text-white">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-[#FF5500] bg-black/40 backdrop-blur-md px-2 py-0.5 rounded inline-block mb-1">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-[#FF5500] bg-black/50 backdrop-blur-md px-2.5 py-0.5 rounded inline-block mb-1 border border-white/10">
                   {activeModalIndustry.category} • {INDUSTRY_CONFIG[activeModalIndustry.id]?.mcc}
                 </div>
                 <h3 className="text-xl font-bold text-white drop-shadow-sm">
@@ -561,7 +567,7 @@ export default function IndustriesSection({ onOpenApplication }) {
               </div>
             </div>
 
-            <div className="p-6 sm:p-7 space-y-5">
+            <div className="p-5 sm:p-7 space-y-5">
               <p className="text-[#475569] text-xs sm:text-sm leading-relaxed">
                 {activeModalIndustry.desc}
               </p>
@@ -574,7 +580,7 @@ export default function IndustriesSection({ onOpenApplication }) {
                 </div>
                 <div className="p-3 rounded-xl bg-[#F7F4ED] border border-[#E7E3DA]">
                   <div className="text-[#707887]">Monthly Volume Cap</div>
-                  <div className="text-sm font-bold text-[#0B192C] mt-0.5">{INDUSTRY_CONFIG[activeModalIndustry.id]?.cap || 'Up to $5.0M/mo'}</div>
+                  <div className="text-sm font-bold text-[#0B192C] mt-0.5">{INDUSTRY_CONFIG[activeModalIndustry.id]?.cap || '₹12 Cr – ₹80 Cr/mo'}</div>
                 </div>
                 <div className="p-3 rounded-xl bg-[#F7F4ED] border border-[#E7E3DA]">
                   <div className="text-[#707887]">Rolling Reserve</div>
@@ -582,7 +588,7 @@ export default function IndustriesSection({ onOpenApplication }) {
                 </div>
                 <div className="p-3 rounded-xl bg-[#F7F4ED] border border-[#E7E3DA]">
                   <div className="text-[#707887]">Currencies</div>
-                  <div className="text-sm font-bold text-[#0B192C] mt-0.5">USD, EUR, GBP, CAD+</div>
+                  <div className="text-sm font-bold text-[#0B192C] mt-0.5">INR, USD, EUR, GBP+</div>
                 </div>
               </div>
 
@@ -605,19 +611,26 @@ export default function IndustriesSection({ onOpenApplication }) {
                 </div>
               </div>
 
-              {/* Action Footer */}
-              <div className="pt-2 flex items-center justify-end gap-3">
+              {/* Modal Actions */}
+              <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
                 <button
-                  onClick={() => setActiveModalIndustry(null)}
-                  className="px-4 py-2.5 rounded-xl border border-[#E7E3DA] text-xs text-[#475569] hover:text-[#0B192C] hover:bg-[#F7F4ED] transition-colors cursor-pointer"
+                  type="button"
+                  onClick={() => {
+                    const ind = activeModalIndustry;
+                    setActiveModalIndustry(null);
+                    onOpenApplication?.({ industry: ind.name, volume: INDUSTRY_CONFIG[ind.id]?.cap });
+                  }}
+                  className="flex-1 py-3.5 px-5 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white text-xs font-bold tracking-wide transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-orange-500/20"
                 >
-                  Close
+                  <span>Apply for {activeModalIndustry.name} MID</span>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
                 <button
-                  onClick={() => { setActiveModalIndustry(null); onOpenApplication?.(); }}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white text-xs font-bold tracking-wide transition-all shadow-md shadow-orange-500/20 hover:-translate-y-0.5 cursor-pointer"
+                  type="button"
+                  onClick={() => setActiveModalIndustry(null)}
+                  className="py-3 px-4 rounded-xl border border-[#E7E3DA] text-xs font-bold text-[#707887] hover:text-[#0B192C] hover:bg-[#F7F4ED] transition-colors cursor-pointer text-center"
                 >
-                  Apply for {activeModalIndustry.name} Account <ArrowRight className="w-3.5 h-3.5" />
+                  Close Window
                 </button>
               </div>
             </div>

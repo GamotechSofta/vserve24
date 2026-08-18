@@ -38,18 +38,22 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto">
+    <div 
+      onClick={onClose}
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm p-3 sm:p-6 flex min-h-full items-start sm:items-center justify-center animate-in fade-in duration-200"
+    >
       <div 
-        className="bg-[#0B192C] text-white border border-slate-800 rounded-3xl max-w-5xl w-full p-4 sm:p-6 md:p-8 relative shadow-2xl my-4 sm:my-6 flex flex-col max-h-[92vh] overflow-y-auto"
+        className="bg-[#0B192C] text-white border border-slate-800 rounded-3xl max-w-5xl w-full p-5 sm:p-7 md:p-8 relative shadow-2xl my-4 sm:my-6 flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Close Button */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+          className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-white flex items-center justify-center transition-colors cursor-pointer z-30 shadow-md"
           aria-label="Close portal modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5" strokeWidth={2.5} />
         </button>
 
         {/* Portal Header */}
