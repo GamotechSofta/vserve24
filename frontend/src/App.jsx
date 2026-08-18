@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import MerchantPositioning from './components/MerchantPositioning';
-import Capabilities from './components/Capabilities';
 import FeeCalculator from './components/FeeCalculator';
 import ServicesSection from './components/ServicesSection';
 import IndustriesSection from './components/IndustriesSection';
@@ -60,9 +59,6 @@ export default function App() {
 
         {/* 02 — Merchant Positioning: Built for merchants traditional processors reject */}
         <MerchantPositioning onOpenApplication={() => handleOpenApplication()} />
-
-        {/* 03 — Core Capabilities: Multi-channel, Subscription ready, Dispute controls */}
-        <Capabilities />
 
         {/* [TOOL 1] — Interactive Interchange & Revenue Recovery Calculator */}
         <FeeCalculator onOpenApplication={handleOpenApplication} />
