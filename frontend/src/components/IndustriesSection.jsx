@@ -140,8 +140,8 @@ export default function IndustriesSection({ onOpenApplication }) {
             </p>
           </div>
 
-          {/* Interactive Layout View Switcher */}
-          <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-[#FFFFFF] border border-[#E7E3DA] shadow-xs overflow-x-auto scrollbar-none w-full sm:w-auto self-start lg:self-auto">
+          {/* Interactive Layout View Switcher (Desktop/Tablet Only) */}
+          <div className="hidden sm:flex items-center gap-1.5 p-1.5 rounded-2xl bg-[#FFFFFF] border border-[#E7E3DA] shadow-xs overflow-x-auto scrollbar-none w-full sm:w-auto self-start lg:self-auto">
             <button
               onClick={() => setViewMode('circular')}
               className={`flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
@@ -180,8 +180,8 @@ export default function IndustriesSection({ onOpenApplication }) {
           </div>
         </div>
 
-        {/* Filter Controls & Search */}
-        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mb-8 pb-5 border-b border-[#E7E3DA]">
+        {/* Filter Controls & Search (Desktop/Tablet Only) */}
+        <div className="hidden sm:flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mb-8 pb-5 border-b border-[#E7E3DA]">
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
             {categories.map((cat) => (
               <button
@@ -244,11 +244,41 @@ export default function IndustriesSection({ onOpenApplication }) {
               </button>
             </div>
 
-            {/* Orbit Layout: Split into Central Interactive Showcase (Left) + Circular Orbit Matrix (Right) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[580px]">
+            {/* Orbit Layout: Split into Central Interactive Showcase (Left) + Circular Orbit Matrix (Right on Desktop) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
               
-              {/* LEFT: Central Live Underwriting Inspector (5 cols) */}
-              <div className="lg:col-span-5 space-y-5 bg-[#F7F4ED] border border-[#E7E3DA] p-6 sm:p-7 rounded-3xl relative shadow-md">
+              {/* MOBILE ONLY: Clean Horizontal Industry Quick Selector */}
+              <div className="lg:hidden w-full space-y-2">
+                <span className="text-[11px] font-bold text-[#707887] uppercase tracking-wider">
+                  Select Industry Vertical
+                </span>
+                <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+                  {filteredIndustries.map((ind) => {
+                    const isActive = (activeHoverId === ind.id);
+                    const config = INDUSTRY_CONFIG[ind.id] || INDUSTRY_CONFIG['ind-1'];
+                    const Icon = config.icon;
+
+                    return (
+                      <button
+                        key={ind.id}
+                        type="button"
+                        onClick={() => setActiveHoverId(ind.id)}
+                        className={`px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer shrink-0 border ${
+                          isActive
+                            ? 'bg-[#FF5500] text-white border-[#FF5500] shadow-sm'
+                            : 'bg-white text-[#0B192C] border-[#E7E3DA]'
+                        }`}
+                      >
+                        <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#FF5500]'}`} />
+                        <span>{ind.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* LEFT: Central Live Underwriting Inspector (Full width on mobile, 5 cols on desktop) */}
+              <div className="w-full lg:col-span-5 space-y-5 bg-[#F7F4ED] border border-[#E7E3DA] p-5 sm:p-7 rounded-3xl relative shadow-md">
                 
                 {/* 3D Visual Header for Active Vertical with Smooth Crossfade */}
                 <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-[#E7E3DA] shadow-md bg-white">
@@ -278,7 +308,7 @@ export default function IndustriesSection({ onOpenApplication }) {
                     <Radio className="w-3 h-3 animate-pulse" />
                     <span>LIVE UNDERWRITING DOSSIER</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-[#0B192C] mt-2">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#0B192C] mt-2">
                     {activeIndustry.name}
                   </h3>
                   <p className="text-xs text-[#475569] mt-1.5 leading-relaxed">
@@ -321,9 +351,9 @@ export default function IndustriesSection({ onOpenApplication }) {
 
               </div>
 
-              {/* RIGHT: Circular 360° Orbital Galaxy (Visible on Mobile & Desktop - 100% Bug-Free 3-Ring Layout) */}
+              {/* DESKTOP ONLY RIGHT: Circular 360° Orbital Galaxy of 24 High-Risk Nodes (7 cols) */}
               <div 
-                className="lg:col-span-7 relative flex items-center justify-center min-h-[380px] xs:min-h-[460px] sm:min-h-[560px] select-none scale-[0.60] xs:scale-[0.74] sm:scale-90 lg:scale-100 origin-center my-0 overflow-visible"
+                className="hidden lg:flex lg:col-span-7 relative items-center justify-center min-h-[560px] select-none origin-center my-0"
                 onMouseEnter={() => setIsRotating(false)}
                 onMouseLeave={() => setIsRotating(true)}
               >
@@ -336,33 +366,26 @@ export default function IndustriesSection({ onOpenApplication }) {
                   }}
                 />
 
-                {/* 3 Concentric Orbit Guideline Dashed Rings */}
+                {/* Orbit Guideline Dashed Rings */}
                 <div className="absolute w-[460px] h-[460px] rounded-full border border-dashed border-[#E7E3DA] pointer-events-none opacity-80" />
-                <div className="absolute w-[310px] h-[310px] rounded-full border border-dashed border-[#FF5500]/25 pointer-events-none opacity-60" />
-                <div className="absolute w-[176px] h-[176px] rounded-full border border-dashed border-[#E7E3DA] pointer-events-none opacity-60" />
+                <div className="absolute w-[310px] h-[310px] rounded-full border border-dashed border-[#FF5500]/30 pointer-events-none opacity-60" />
+                <div className="absolute w-[160px] h-[160px] rounded-full border border-[#E7E3DA] pointer-events-none" />
 
-                {/* Central Vserve24 Core Banking Hub */}
-                <div className="relative z-20 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-[#0B192C] to-[#1A283E] border-4 border-white shadow-2xl flex flex-col items-center justify-center text-white text-center p-2">
-                  <span className="w-2 h-2 rounded-full bg-[#FF5500] animate-ping mb-0.5" />
-                  <span className="text-[11px] sm:text-[12px] font-bold tracking-wider text-[#FF5500]">VSERVE24</span>
-                  <span className="text-[8px] sm:text-[9px] text-slate-300">BANKING HUB</span>
-                  <span className="text-[7.5px] sm:text-[8px] text-[#10B981] mt-0.5 font-medium">● 24 MIDs ONLINE</span>
+                {/* Central Vserve24 Core Hub */}
+                <div className="relative z-20 w-32 h-32 rounded-full bg-gradient-to-br from-[#0B192C] to-[#1A283E] border-4 border-white shadow-2xl flex flex-col items-center justify-center text-white text-center p-3">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#FF5500] animate-ping mb-1" />
+                  <span className="text-[12px] font-bold tracking-wider text-[#FF5500]">VSERVE24</span>
+                  <span className="text-[9px] text-slate-300">BANKING HUB</span>
+                  <span className="text-[8px] text-[#10B981] mt-0.5">● 24 MIDs ONLINE</span>
                 </div>
 
-                {/* 24 Orbiting Interactive Nodes distributed across 3 non-overlapping rings */}
+                {/* 24 Orbiting Interactive Nodes positioned along outer & inner radii */}
                 {filteredIndustries.map((ind, idx) => {
-                  // Distribute 24 items evenly across 3 concentric rings (8 per ring)
-                  const ring = idx % 3; // 0 = outer (8), 1 = middle (8), 2 = inner (8)
-                  const ringIndex = Math.floor(idx / 3); // 0 to 7
-                  const ringTotal = 8;
-                  
-                  // Radii for 3 distinct orbits
-                  const radius = ring === 0 ? 230 : (ring === 1 ? 155 : 88);
-                  
-                  // Angular offset between rings to prevent radial clustering
-                  const ringOffset = ring === 0 ? 0 : (ring === 1 ? 22.5 : 11.25);
-                  const angle = ((ringIndex * (360 / ringTotal)) + ringOffset + rotationAngle) * (Math.PI / 180);
-                  
+                  const total = filteredIndustries.length;
+                  // Split into outer and inner orbit tracks for perfect visual distribution
+                  const isOuter = idx % 2 === 0;
+                  const radius = isOuter ? 225 : 155;
+                  const angle = (idx * (360 / total) + rotationAngle) * (Math.PI / 180);
                   const x = Math.cos(angle) * radius;
                   const y = Math.sin(angle) * radius;
 
@@ -374,26 +397,23 @@ export default function IndustriesSection({ onOpenApplication }) {
                     <div
                       key={ind.id}
                       onMouseEnter={() => setActiveHoverId(ind.id)}
-                      onClick={() => {
-                        setActiveHoverId(ind.id);
-                        setActiveModalIndustry(ind);
-                      }}
+                      onClick={() => setActiveModalIndustry(ind)}
                       style={{
                         transform: `translate(${x}px, ${y}px)`,
-                        transition: 'transform 0.08s linear'
+                        transition: 'transform 0.1s linear'
                       }}
                       className="absolute z-30 group cursor-pointer flex items-center justify-center"
                     >
-                      <div className={`transition-all duration-300 flex items-center gap-1.5 shadow-md ${
+                      <div className={`p-2.5 rounded-2xl border transition-all duration-300 flex items-center gap-2 shadow-md ${
                         isActive
-                          ? 'bg-[#0B192C] text-white border-2 border-[#FF5500] scale-120 shadow-2xl shadow-orange-500/30 z-40 p-2 sm:p-2.5 rounded-2xl'
-                          : 'bg-[#FFFFFF] text-[#0B192C] border border-[#E7E3DA] hover:border-[#FF5500] hover:scale-110 p-1.5 sm:p-2 rounded-xl'
+                          ? 'bg-[#0B192C] text-white border-[#FF5500] scale-125 shadow-2xl shadow-orange-500/30 z-40'
+                          : 'bg-[#FFFFFF] text-[#0B192C] border-[#E7E3DA] hover:border-[#FF5500] hover:scale-115'
                       }`}>
-                        <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg ${isActive ? 'bg-[#FF5500] text-white' : config.bg} flex items-center justify-center shadow-2xs shrink-0`}>
+                        <div className={`w-7 h-7 rounded-lg ${isActive ? 'bg-[#FF5500] text-white' : config.bg} flex items-center justify-center shadow-xs`}>
                           <Icon className="w-3.5 h-3.5" style={{ color: isActive ? '#FFFFFF' : config.color }} />
                         </div>
                         
-                        <span className={`text-[9.5px] sm:text-[10px] font-bold whitespace-nowrap pr-1 ${ring === 2 && !isActive ? 'hidden sm:inline' : 'inline'}`}>
+                        <span className="text-[10px] font-bold whitespace-nowrap pr-1">
                           {ind.name}
                         </span>
                       </div>
