@@ -4,9 +4,9 @@ import {
   RefreshCw, ShieldCheck, Zap, Layers, Check, Lock, ShieldAlert
 } from 'lucide-react';
 
+import imgGaming from '../assets/gaming_payments_3d.jpg';
+import imgTrading from '../assets/trading_forex_crypto_3d.jpg';
 import imgDisputeShield from '../assets/chargeback_shield_3d.jpg';
-import imgSubscription from '../assets/subscription_recovery_3d.jpg';
-import imgMultiChannel from '../assets/multichannel_payments_3d.jpg';
 
 export default function MerchantPositioning({ onOpenApplication }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -14,48 +14,48 @@ export default function MerchantPositioning({ onOpenApplication }) {
   const pillars = [
     {
       id: 0,
-      badge: '01 • CHARGEBACKS',
-      mobileLabel: '01 Chargebacks',
-      title: 'Stop chargebacks before they happen',
-      summary: 'Real-time Ethoca & Verifi alerts give you 24–48 hours to resolve disputes before bank filing.',
-      image: imgDisputeShield,
+      badge: '01 • iGAMING & ESPORTS',
+      mobileLabel: '01 iGaming',
+      title: 'Sub-80ms live deposit rails for iGaming & Esports',
+      summary: 'High-frequency player deposits, instant direct payouts, zero aggregator freeze risks, and multi-MID load balancing.',
+      image: imgGaming,
       highlights: [
-        'Ethoca & Verifi RDR automatic deflection',
-        '24–48 hour pre-dispute resolution grace window',
-        'Automated refund logic to keep ratio below 0.65%',
-        'Direct Tier-1 bank relationship protection'
+        'Instant sub-80ms player wallet top-ups & deposits',
+        'Direct Tier-1 bank MIDs (Zero pooled aggregator freeze)',
+        'Automated Verifi & Ethoca chargeback shield',
+        '24/7 dedicated high-volume transaction routing'
       ],
-      tag: 'Pre-Dispute Defense'
+      tag: 'Gaming Processing Engine'
     },
     {
       id: 1,
-      badge: '02 • SUBSCRIPTIONS',
-      mobileLabel: '02 Subscriptions',
-      title: 'Protect recurring revenue',
-      summary: 'Automatically update expired cards and recover failed rebills with zero customer friction.',
-      image: imgSubscription,
+      badge: '02 • FOREX & CRYPTO TRADING',
+      mobileLabel: '02 Forex & Trading',
+      title: 'High-velocity trader funding & multi-currency settlement',
+      summary: 'Institutional-grade payment rails engineered for Forex brokerages, CFD trading, and crypto platforms with instant T+1 batch funding.',
+      image: imgTrading,
       highlights: [
-        'Automated Visa & Mastercard account updater',
-        'Cascading smart retries on customer paydays',
-        'Automated dunning notifications',
-        '+34% average involuntary churn recovered'
+        'High-limit trader deposits (up to ₹50 Lakhs / transaction)',
+        'Real-time automated cascading fallback on soft declines',
+        'Multi-currency FX settlement across 135+ global pairs',
+        'Direct corporate MID registered in your licensed entity'
       ],
-      tag: 'Subscription Continuity'
+      tag: 'Trading & Brokerage Rails'
     },
     {
       id: 2,
-      badge: '03 • CHANNELS',
-      mobileLabel: '03 Channels',
-      title: 'Accept payments everywhere',
-      summary: 'Web checkout, virtual terminal, and phone orders in one single high-risk merchant account.',
-      image: imgMultiChannel,
+      badge: '03 • CHARGEBACK SHIELD & MOTO',
+      mobileLabel: '03 Dispute Shield',
+      title: 'Automated pre-dispute defense & virtual terminal',
+      summary: 'Intercept cardholder disputes within 2 seconds before they hit your MID, plus full MOTO terminal for high-ticket transactions.',
+      image: imgDisputeShield,
       highlights: [
-        'Hosted web & mobile checkout',
-        'Virtual terminal for phone & MOTO orders',
-        'Direct server-to-server API',
-        '20+ global currencies supported'
+        'Ethoca & Verifi RDR automatic dispute interception',
+        'Maintains merchant dispute ratio safely below 0.65%',
+        'Secure MOTO virtual terminal with hosted tokenization',
+        'Full PCI-DSS Level 1 compliant token vault'
       ],
-      tag: 'Multi-Channel Ingestion'
+      tag: 'Pre-Dispute Defense'
     }
   ];
 

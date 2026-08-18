@@ -12,6 +12,8 @@ import {
   Eye, TrendingUp, Download, Cpu, Play, Pause, Orbit, Grid, Radio
 } from 'lucide-react';
 
+import imgGaming from '../assets/gaming_payments_3d.jpg';
+import imgTrading from '../assets/trading_forex_crypto_3d.jpg';
 import imgEcosystem from '../assets/industries_ecosystem_3d.jpg';
 import imgRetail from '../assets/ecommerce_retail_3d.jpg';
 import imgDigital from '../assets/digital_media_saas_3d.jpg';
@@ -33,11 +35,11 @@ const INDUSTRY_CONFIG = {
   'ind-5': { image: imgRetail, icon: Wind, color: '#6366F1', bg: 'bg-indigo-50', border: 'border-indigo-200', mcc: 'MCC 5993', cap: '₹10 Cr/mo', speed: '48h Approval', reserve: '0% - 5%' },
   'ind-6': { image: imgShield, icon: Award, color: '#0B192C', bg: 'bg-slate-100', border: 'border-slate-300', mcc: 'MCC 5968', cap: '₹40 Cr/mo', speed: '24h Approval', reserve: '0% Rolling' },
   'ind-7': { image: imgShield, icon: Target, color: '#0B192C', bg: 'bg-slate-100', border: 'border-slate-300', mcc: 'MCC 5941', cap: '₹8 Cr/mo', speed: '48h Approval', reserve: '0% Rolling' },
-  'ind-8': { image: imgDigital, icon: Trophy, color: '#F59E0B', bg: 'bg-amber-50', border: 'border-amber-200', mcc: 'MCC 7999', cap: '₹25 Cr/mo', speed: '24h Approval', reserve: '0% Rolling' },
+  'ind-8': { image: imgGaming, icon: Trophy, color: '#FF5500', bg: 'bg-orange-50', border: 'border-orange-200', mcc: 'MCC 7999', cap: '₹50 Cr/mo', speed: '24h Approval', reserve: '0% Rolling' },
   'ind-9': { image: imgAcquirer, icon: GraduationCap, color: '#FF5500', bg: 'bg-orange-50', border: 'border-orange-200', mcc: 'MCC 8299', cap: '₹15 Cr/mo', speed: '24h Approval', reserve: '0% Rolling' },
   'ind-10': { image: imgJewelry, icon: Gem, color: '#06B6D4', bg: 'bg-cyan-50', border: 'border-cyan-200', mcc: 'MCC 5944', cap: '₹30 Cr/mo', speed: '24h Approval', reserve: '0% Rolling' },
   'ind-11': { image: imgTravel, icon: Landmark, color: '#0B192C', bg: 'bg-slate-100', border: 'border-slate-300', mcc: 'MCC 5045', cap: '₹80 Cr/mo', speed: '24h Approval', reserve: '0% Rolling' },
-  'ind-12': { image: imgTravel, icon: BadgeDollarSign, color: '#10B981', bg: 'bg-emerald-50', border: 'border-emerald-200', mcc: 'MCC 6012', cap: '₹25 Cr/mo', speed: '48h Approval', reserve: '0% - 5%' },
+  'ind-12': { image: imgTrading, icon: BadgeDollarSign, color: '#10B981', bg: 'bg-emerald-50', border: 'border-emerald-200', mcc: 'MCC 6211', cap: '₹60 Cr/mo', speed: '24h Approval', reserve: '0% Rolling' },
   'ind-13': { image: imgTravel, icon: Truck, color: '#FF5500', bg: 'bg-orange-50', border: 'border-orange-200', mcc: 'MCC 4214', cap: '₹20 Cr/mo', speed: '24h Approval', reserve: '0% Rolling' },
   'ind-14': { image: imgMultichannel, icon: Users, color: '#8B5CF6', bg: 'bg-purple-50', border: 'border-purple-200', mcc: 'MCC 5960', cap: '₹35 Cr/mo', speed: '48h Approval', reserve: '0% - 5%' },
   'ind-15': { image: imgHealth, icon: Pill, color: '#10B981', bg: 'bg-emerald-50', border: 'border-emerald-200', mcc: 'MCC 5912', cap: '₹40 Cr/mo', speed: '24h Approval', reserve: '0% Rolling' },
@@ -56,7 +58,7 @@ export default function IndustriesSection({ onOpenApplication }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeModalIndustry, setActiveModalIndustry] = useState(null);
-  const [activeHoverId, setActiveHoverId] = useState('ind-3'); // CBD
+  const [activeHoverId, setActiveHoverId] = useState('ind-8'); // iGaming & Esports Default
   const [viewMode, setViewMode] = useState('circular'); // 'circular' | 'hex' | 'grid'
   const [isRotating, setIsRotating] = useState(true);
   const [rotationAngle, setRotationAngle] = useState(0);

@@ -437,18 +437,34 @@ function PaymentNetwork({ reduced }) {
         </>)}
       </svg>
 
-      {/* ── Interactive Node Details Footer Ticker ── */}
-      <div className="h-6 mt-1 flex items-center justify-center text-center">
-        {hoveredNode ? (
-          <div className="text-[11px] font-medium text-slate-700 bg-orange-50/80 border border-orange-200/80 px-3 py-0.5 rounded-full transition-all animate-in fade-in zoom-in-95">
-            <span className="text-[#FF5500] font-bold">INFO: </span>
-            {NODES.find(n => n.id === hoveredNode)?.detail}
-          </div>
-        ) : (
-          <div className="text-[10px] text-slate-400 tracking-wider font-medium">
-            HOVER OVER NODES TO INSPECT INFRASTRUCTURE ARCHITECTURE
-          </div>
-        )}
+      {/* ── Interactive Node Details & Live Gaming/Trading Telemetry ── */}
+      <div className="mt-2 w-full pt-2 border-t border-[#E7E3DA] flex flex-col gap-1.5">
+        <div className="flex items-center justify-between text-[10px] text-slate-500 font-medium">
+          <span className="flex items-center gap-1 text-emerald-600 font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+            LIVE TELEMETRY STREAM:
+          </span>
+          <span className="font-semibold text-slate-600">Sub-80ms Routing</span>
+        </div>
+
+        <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3 py-1.5 flex items-center justify-between text-[11px] overflow-hidden">
+          {hoveredNode ? (
+            <div className="font-medium text-slate-700 transition-all animate-in fade-in">
+              <span className="text-[#FF5500] font-bold">NODE: </span>
+              {NODES.find(n => n.id === hoveredNode)?.detail}
+            </div>
+          ) : (
+            <div className="flex items-center justify-between w-full font-semibold text-slate-700 animate-pulse">
+              <span className="flex items-center gap-1.5 text-[#0B192C]">
+                <span>🎮 iGaming Instant Deposit:</span>
+                <span className="text-[#FF5500]">₹25,000.00</span>
+              </span>
+              <span className="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-mono">
+                ✓ 62ms AUTH
+              </span>
+            </div>
+          )}
+        </div>
       </div>
 
     </div>
