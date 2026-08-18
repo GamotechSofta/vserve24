@@ -3,10 +3,10 @@ import Logo from './Logo';
 import { 
   ChevronDown, Phone, ArrowRight, Menu, X, 
   CreditCard, Building2, Cpu, Network, TrendingUp, ShieldAlert,
-  ShieldCheck, Globe, HelpCircle, Layers, CheckCircle2
+  ShieldCheck, Globe, HelpCircle, Layers, CheckCircle2, Zap
 } from 'lucide-react';
 
-export default function Navbar({ onOpenApplication }) {
+export default function Navbar({ onOpenApplication, onOpenPortal }) {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -32,44 +32,43 @@ export default function Navbar({ onOpenApplication }) {
       ]
     },
     {
+      label: 'Tools',
+      href: '#calculator',
+      hasDropdown: true,
+      items: [
+        { name: 'Fee & ROI Calculator', desc: 'Estimate recovered revenue & rates', href: '#calculator', icon: TrendingUp },
+        { name: 'MOTO Virtual Terminal', desc: 'Test telephone & invoice payments', href: '#virtual-terminal', icon: CreditCard },
+        { name: 'Developer REST API', desc: 'Sandbox & interactive webhook tester', href: '#api', icon: Network },
+      ]
+    },
+    {
       label: 'Industries',
       href: '#industries',
       hasDropdown: true,
       items: [
+        { name: 'iGaming & Esports', desc: 'Instant player deposits & payouts', href: '#industries', icon: Zap },
+        { name: 'Forex & Crypto Trading', desc: 'High-velocity trader funding rails', href: '#industries', icon: TrendingUp },
         { name: 'CBD & Nutraceuticals', desc: 'Compliant health & wellness MIDs', href: '#industries', icon: ShieldCheck },
-        { name: 'E-Commerce & Retail', desc: 'High-volume discrete fulfillment', href: '#industries', icon: Globe },
-        { name: 'Digital Media & SaaS', desc: 'Recurring subscription billing', href: '#industries', icon: Layers },
-        { name: 'Specialized High-Risk', desc: 'Custom sponsor bank placement', href: '#industries', icon: ShieldAlert },
+        { name: 'E-Commerce & Digital Media', desc: 'High-volume discrete fulfillment', href: '#industries', icon: Globe },
       ]
     },
     {
-      label: 'Integrations',
-      href: '#capabilities',
+      label: 'Developers',
+      href: '#api',
       hasDropdown: true,
       items: [
-        { name: 'Shopify & WooCommerce', desc: '1-click checkout connectors', href: '#capabilities', icon: Network },
-        { name: 'Direct REST API', desc: 'Developer sandboxes & webhooks', href: '#capabilities', icon: Cpu },
+        { name: 'REST API Sandbox', desc: 'Interactive developer live testing', href: '#api', icon: Cpu },
+        { name: 'Direct Acquirer Routing', desc: 'Shopify, WooCommerce connectors', href: '#capabilities', icon: Network },
         { name: 'Cascading Failover', desc: 'Zero-downtime multi-MID routing', href: '#capabilities', icon: TrendingUp },
       ]
     },
     {
-      label: 'Resources',
-      href: '#positioning',
-      hasDropdown: true,
-      items: [
-        { name: 'Merchant Positioning', desc: 'Built for merchants banks reject', href: '#positioning', icon: ShieldCheck },
-        { name: 'Dispute Prevention', desc: 'Ethoca & Verifi RDR defense', href: '#positioning', icon: ShieldAlert },
-        { name: 'Subscription Continuity', desc: 'Automated card updater rules', href: '#positioning', icon: TrendingUp },
-      ]
-    },
-    {
       label: 'Company',
-      href: '#onboarding',
+      href: '#services',
       hasDropdown: true,
       items: [
-        { name: 'How Onboarding Works', desc: '3-step operational timeline', href: '#onboarding', icon: CheckCircle2 },
-        { name: 'Frequently Asked Questions', desc: 'Clear answers on underwriting & fees', href: '#faq', icon: HelpCircle },
-        { name: 'Direct Underwriting Desk', desc: '24h risk review & live MIDs', href: '#onboarding', icon: Phone },
+        { name: 'Direct Underwriting Desk', desc: '24h risk review & live MIDs', href: '#services', icon: Phone },
+        { name: 'Global Processing Pipeline', desc: 'Direct sponsor acquiring rails', href: '#intelligence', icon: CheckCircle2 },
       ]
     }
   ];
@@ -108,9 +107,11 @@ export default function Navbar({ onOpenApplication }) {
                 className="flex items-center gap-1.5 text-[13.5px] xl:text-[14px] font-medium text-[#0B192C] hover:text-[#FF5500] py-2 transition-colors cursor-pointer group"
               >
                 <span>{item.label}</span>
-                <ChevronDown className={`w-3.5 h-3.5 text-[#707887] transition-transform duration-200 group-hover:text-[#FF5500] ${
-                  activeDropdown === idx ? 'rotate-180 text-[#FF5500]' : ''
-                }`} />
+                {item.hasDropdown && (
+                  <ChevronDown className={`w-3.5 h-3.5 text-[#707887] transition-transform duration-200 group-hover:text-[#FF5500] ${
+                    activeDropdown === idx ? 'rotate-180 text-[#FF5500]' : ''
+                  }`} />
+                )}
               </a>
 
               {/* Flyout Dropdown Menu */}
@@ -147,9 +148,18 @@ export default function Navbar({ onOpenApplication }) {
           ))}
         </nav>
 
-        {/* RIGHT: Separator, Circular Phone Button with Online Pulse & Amber/Gold 'Get Started ->' Button */}
+        {/* RIGHT: Separator, Live Portal Demo Button, Circular Phone Button & 'Get Started ->' Button */}
         <div className="hidden sm:flex items-center">
           
+          {/* Live Console Demo Pill Button */}
+          <button
+            onClick={onOpenPortal}
+            className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-xs mr-4 cursor-pointer"
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Gateway Console</span>
+          </button>
+
           {/* Vertical Separator */}
           <div className="hidden lg:block h-7 w-[1px] bg-[#E7E3DA] mr-5 xl:mr-6" />
 
@@ -167,7 +177,7 @@ export default function Navbar({ onOpenApplication }) {
           {/* Warm Golden/Amber 'Get Started ->' Button as in Image */}
           <button 
             onClick={onOpenApplication}
-            className="flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-2.5 rounded-xl bg-gradient-to-r from-[#DF9F1C] via-[#E5A824] to-[#D89417] hover:from-[#D49312] hover:to-[#CA890D] text-[#0B192C] text-xs sm:text-[13px] font-bold font-['Plus_Jakarta_Sans',sans-serif] tracking-wide transition-all shadow-md shadow-amber-500/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-500/30 cursor-pointer shrink-0"
+            className="flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-2.5 rounded-xl bg-gradient-to-r from-[#DF9F1C] via-[#E5A824] to-[#D89417] hover:from-[#D49312] hover:to-[#CA890D] text-[#0B192C] text-xs sm:text-[13px] font-bold tracking-wide transition-all shadow-md shadow-amber-500/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-amber-500/30 cursor-pointer shrink-0"
           >
             <span>Get Started</span>
             <ArrowRight className="w-4 h-4 stroke-[2.5]" />
@@ -197,27 +207,64 @@ export default function Navbar({ onOpenApplication }) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#FFFFFF] border-b border-[#E7E3DA] px-6 py-5 space-y-4 shadow-xl animate-in fade-in slide-in-from-top-2">
+        <div className="lg:hidden bg-[#FFFFFF] border-b border-[#E7E3DA] px-5 py-4 space-y-4 shadow-xl animate-in fade-in slide-in-from-top-2 max-h-[80vh] overflow-y-auto">
           <div className="space-y-1">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-orange-50/80 text-[#0B192C] font-semibold text-sm transition-colors"
-              >
-                <span>{item.label}</span>
-                <ChevronDown className="w-4 h-4 text-slate-400" />
-              </a>
+            {navItems.map((item, idx) => (
+              <div key={item.label} className="border-b border-[#E7E3DA]/50 last:border-0 pb-1">
+                {item.hasDropdown ? (
+                  <div>
+                    <button
+                      onClick={() => setActiveDropdown(activeDropdown === idx ? null : idx)}
+                      className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50/80 text-[#0B192C] font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${activeDropdown === idx ? 'rotate-180 text-[#FF5500]' : ''}`} />
+                    </button>
+
+                    {activeDropdown === idx && item.items && (
+                      <div className="pl-3 pr-1 py-1 space-y-1 bg-[#FCFBF8] rounded-xl my-1 border border-[#E7E3DA]/60">
+                        {item.items.map((sub, sIdx) => (
+                          <a
+                            key={sIdx}
+                            href={sub.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold text-[#0B192C] hover:text-[#FF5500] hover:bg-white transition-colors"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500]" />
+                            <span>{sub.name}</span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-orange-50/80 text-[#0B192C] font-bold text-xs uppercase tracking-wider transition-colors"
+                  >
+                    <span>{item.label}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-slate-300" />
+                  </a>
+                )}
+              </div>
             ))}
           </div>
 
-          <div className="pt-3 border-t border-[#E7E3DA] space-y-2">
+          <div className="pt-2 border-t border-[#E7E3DA] space-y-2">
+            <button 
+              onClick={() => { setMobileMenuOpen(false); onOpenPortal?.(); }}
+              className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs tracking-wide transition-colors flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Open Live Gateway Console</span>
+            </button>
+
             <button 
               onClick={() => { setMobileMenuOpen(false); onOpenApplication?.(); }}
-              className="w-full py-3.5 rounded-xl bg-[#E5A824] hover:bg-[#D89417] text-[#0B192C] font-bold text-xs font-sans tracking-wide transition-colors flex items-center justify-center gap-2 shadow-md"
+              className="w-full py-3 rounded-xl bg-[#E5A824] hover:bg-[#D89417] text-[#0B192C] font-bold text-xs tracking-wide transition-colors flex items-center justify-center gap-2 shadow-md cursor-pointer"
             >
-              <span>Get Started</span>
+              <span>Get Started & Apply</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

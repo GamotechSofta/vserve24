@@ -24,7 +24,7 @@ export default function ResourcesSection({ onOpenApplication }) {
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-12">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#E7E3DA] text-xs font-mono tracking-widest text-[#475569] uppercase font-bold">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#E7E3DA] text-xs tracking-widest text-[#475569] uppercase font-bold">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500]" />
               <span>08 • Knowledge Base & Underwriting Guides</span>
             </div>
@@ -36,7 +36,7 @@ export default function ResourcesSection({ onOpenApplication }) {
             </p>
           </div>
 
-          <div className="text-xs font-mono text-[#707887] uppercase tracking-widest">
+          <div className="text-xs text-[#707887] uppercase tracking-widest font-semibold">
             {resources.length} TECHNICAL PUBLICATIONS
           </div>
         </div>
@@ -67,10 +67,10 @@ export default function ResourcesSection({ onOpenApplication }) {
 
                 <div className="space-y-2 max-w-3xl">
                   <div className="flex items-center gap-2.5">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#FF5500] bg-orange-50 border border-orange-200/80 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#FF5500] bg-orange-50 border border-orange-200/80 px-2 py-0.5 rounded">
                       {item.category}
                     </span>
-                    <span className="text-xs font-mono text-[#707887] flex items-center gap-1">
+                    <span className="text-xs text-[#707887] flex items-center gap-1 font-medium">
                       <Clock className="w-3 h-3 text-[#FF5500]" />
                       {item.readTime}
                     </span>
@@ -85,7 +85,7 @@ export default function ResourcesSection({ onOpenApplication }) {
                   </p>
                 </div>
 
-                <div className="shrink-0 flex items-center gap-1.5 text-xs font-mono font-bold text-[#0B192C] group-hover:text-[#FF5500] transition-colors">
+                <div className="shrink-0 flex items-center gap-1.5 text-xs font-bold text-[#0B192C] group-hover:text-[#FF5500] transition-colors">
                   <span>Read Guide</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </div>

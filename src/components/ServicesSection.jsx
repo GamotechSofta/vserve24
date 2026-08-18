@@ -165,26 +165,26 @@ export default function ServicesSection({ onOpenApplication }) {
         }}
       />
 
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Top Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
-          <div className="max-w-2xl space-y-2.5 sm:space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[11px] font-mono tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-5 mb-7 sm:mb-10">
+          <div className="max-w-2xl space-y-2 sm:space-y-2.5">
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[10.5px] tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500] animate-pulse" />
               <span>05 • Core Payment Services</span>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-bold text-[#0B192C] tracking-tight leading-[1.12]">
+            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-bold text-[#0B192C] tracking-tight leading-[1.14]">
               Payment infrastructure built around <span className="text-[#FF5500]">your business.</span>
             </h2>
 
-            <p className="text-[#475569] text-sm sm:text-base lg:text-lg leading-relaxed">
+            <p className="text-[#475569] text-xs sm:text-sm lg:text-[15px] leading-relaxed">
               Select any payment service below to understand how it works and how it protects your revenue.
             </p>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-[#0B192C] bg-[#FFFFFF] border border-[#E7E3DA] px-4 py-2 rounded-xl shadow-xs self-start lg:self-auto">
+          <div className="hidden sm:flex items-center gap-2 text-xs text-[#0B192C] bg-[#FFFFFF] border border-[#E7E3DA] px-4 py-2 rounded-xl shadow-xs self-start lg:self-auto font-semibold">
             <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
             <span className="font-bold">6 Purpose-Built Payment Rails</span>
           </div>
@@ -200,7 +200,7 @@ export default function ServicesSection({ onOpenApplication }) {
               <button
                 key={item.id}
                 onClick={() => setActiveService(idx)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer shrink-0 border ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer shrink-0 border ${
                   isActive
                     ? 'bg-[#FF5500] text-white border-[#FF5500] shadow-md shadow-orange-500/20'
                     : 'bg-[#FFFFFF] text-[#475569] border-[#E7E3DA] hover:border-slate-300'
@@ -247,7 +247,7 @@ export default function ServicesSection({ onOpenApplication }) {
 
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className={`text-[10px] font-mono font-bold ${
+                        <span className={`text-[10px] font-bold ${
                           isActive ? 'text-[#FF5500]' : 'text-slate-400'
                         }`}>
                           {item.num}
@@ -277,17 +277,17 @@ export default function ServicesSection({ onOpenApplication }) {
             <div>
               <div className="flex flex-wrap items-center justify-between gap-3 pb-3.5 border-b border-[#E7E3DA]">
                 <div className="flex items-center gap-2">
-                  <span className="text-[10.5px] font-mono font-bold text-[#FF5500] bg-orange-50 border border-orange-200/80 px-2.5 py-0.5 rounded-md uppercase">
+                  <span className="text-[10.5px] font-bold text-[#FF5500] bg-orange-50 border border-orange-200/80 px-2.5 py-0.5 rounded-md uppercase">
                     SERVICE {current.num} OF 06
                   </span>
-                  <span className="text-[11px] font-mono font-bold text-[#10B981] bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-md">
+                  <span className="text-[11px] font-bold text-[#10B981] bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-md">
                     {current.highlightPill}
                   </span>
                 </div>
 
                 <button 
                   onClick={onOpenApplication}
-                  className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white text-xs font-bold font-mono tracking-wide transition-all shadow-md shadow-orange-500/20 hover:-translate-y-0.5 cursor-pointer"
+                  className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white text-xs font-bold tracking-wide transition-all shadow-md shadow-orange-500/20 hover:-translate-y-0.5 cursor-pointer"
                 >
                   <span>REQUEST SERVICE</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -305,7 +305,7 @@ export default function ServicesSection({ onOpenApplication }) {
 
             {/* 2. Clear Visual Step-by-Step Flow ("How it works") */}
             <div className="bg-[#FCFBF8] border border-[#E7E3DA] rounded-2xl p-4 sm:p-5">
-              <div className="text-[10px] sm:text-[10.5px] font-mono font-bold text-[#707887] uppercase tracking-wider mb-2.5 sm:mb-3">
+              <div className="text-[10px] sm:text-[10.5px] font-bold text-[#707887] uppercase tracking-wider mb-2.5 sm:mb-3">
                 HOW THIS WORKS IN PRACTICE:
               </div>
 
@@ -316,7 +316,7 @@ export default function ServicesSection({ onOpenApplication }) {
                     className="bg-[#FFFFFF] border border-[#E7E3DA] p-2.5 sm:p-3 rounded-xl flex flex-col justify-between min-h-[76px] sm:min-h-[82px] shadow-2xs"
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-orange-50 border border-orange-200 text-[#FF5500] font-mono font-bold text-[9px] sm:text-[10px] flex items-center justify-center">
+                      <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-orange-50 border border-orange-200 text-[#FF5500] font-bold text-[9px] sm:text-[10px] flex items-center justify-center">
                         {st.num}
                       </span>
                       {i < 3 && (
@@ -327,7 +327,7 @@ export default function ServicesSection({ onOpenApplication }) {
                       <div className="text-[11px] sm:text-xs font-bold text-[#0B192C] leading-snug">
                         {st.title}
                       </div>
-                      <div className="text-[9.5px] sm:text-[10px] font-mono text-[#707887] mt-0.5 leading-tight">
+                      <div className="text-[9.5px] sm:text-[10px] text-[#707887] mt-0.5 leading-tight font-medium">
                         {st.desc}
                       </div>
                     </div>
@@ -338,13 +338,13 @@ export default function ServicesSection({ onOpenApplication }) {
 
             {/* 3. Merchant Benefits (Plain English Checklist) */}
             <div className="pt-2 border-t border-[#E7E3DA]">
-              <div className="text-[10px] sm:text-[10.5px] font-mono font-bold text-[#707887] uppercase tracking-wider mb-2">
+              <div className="text-[10px] sm:text-[10.5px] font-bold text-[#707887] uppercase tracking-wider mb-2">
                 WHAT YOUR BUSINESS GETS:
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {current.benefits.map((benefit, i) => (
-                  <div key={i} className="flex items-center gap-2 text-xs font-mono text-[#0B192C]">
+                  <div key={i} className="flex items-center gap-2 text-xs font-medium text-[#0B192C]">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#FF5500] shrink-0" />
                     <span>{benefit}</span>
                   </div>

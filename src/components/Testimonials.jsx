@@ -33,7 +33,7 @@ export default function Testimonials() {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-xs font-mono tracking-widest text-[#FF5500] uppercase font-bold">
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-xs tracking-widest text-[#FF5500] uppercase font-bold">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500]" />
               <span>08 • Verified Merchant Experiences</span>
             </div>
@@ -69,7 +69,7 @@ export default function Testimonials() {
 
           <div className="max-w-4xl space-y-6 relative z-10">
             
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#E7E3DA] text-xs font-mono font-bold text-[#FF5500]">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#E7E3DA] text-xs font-bold text-[#FF5500]">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#FF5500]" />
               <span>{current.highlight}</span>
             </div>
@@ -78,7 +78,7 @@ export default function Testimonials() {
               "{current.quote}"
             </blockquote>
 
-            <div className="pt-5 border-t border-[#E7E3DA] flex flex-wrap items-center gap-3 text-xs sm:text-sm font-mono">
+            <div className="pt-5 border-t border-[#E7E3DA] flex flex-wrap items-center gap-3 text-xs sm:text-sm">
               <span className="font-bold text-[#0B192C]">{current.type}</span>
               <span className="text-[#707887]">•</span>
               <span className="text-[#475569] font-semibold">{current.vertical}</span>

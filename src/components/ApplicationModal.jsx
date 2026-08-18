@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   X, CheckCircle2, ArrowRight, ShieldCheck, Lock, 
   Building2, User, Mail, Phone, Globe, DollarSign, 
@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { vserveData } from '../data/vserveData';
 
-export default function ApplicationModal({ isOpen, onClose }) {
+export default function ApplicationModal({ isOpen, onClose, initialParams }) {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -15,11 +15,21 @@ export default function ApplicationModal({ isOpen, onClose }) {
     email: '',
     phone: '',
     website: '',
-    monthlyVolume: '$50,000 – $150,000',
-    industry: 'Nutraceutical',
+    monthlyVolume: '₹25 Lakhs – ₹1 Crore / mo',
+    industry: 'iGaming & Esports',
     needDisputeDefense: true,
     needRecurring: false
   });
+
+  useEffect(() => {
+    if (initialParams) {
+      setFormData(prev => ({
+        ...prev,
+        monthlyVolume: initialParams.volume || prev.monthlyVolume,
+        industry: initialParams.industry || prev.industry
+      }));
+    }
+  }, [initialParams, isOpen]);
 
   if (!isOpen) return null;
 
@@ -38,18 +48,22 @@ export default function ApplicationModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/45 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto">
+    <div 
+      onClick={onClose}
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm p-3 sm:p-6 flex min-h-full items-start sm:items-center justify-center animate-in fade-in duration-200"
+    >
       <div 
-        className="bg-[#FFFFFF] border border-[#E7E3DA] rounded-3xl max-w-xl w-full p-6 sm:p-8 lg:p-10 relative shadow-2xl text-[#0B192C] my-6"
+        className="bg-[#FFFFFF] border border-[#E7E3DA] rounded-3xl max-w-xl w-full p-5 sm:p-7 md:p-9 relative shadow-2xl text-[#0B192C] my-4 sm:my-6"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
+        {/* Prominent High-Visibility Close Button */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-[#0B192C] hover:bg-[#F7F4ED] transition-colors cursor-pointer"
+          className="absolute top-3.5 right-3.5 sm:top-5 sm:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F7F4ED] hover:bg-[#E7E3DA] border border-[#E7E3DA] text-[#0B192C] flex items-center justify-center shadow-md transition-all cursor-pointer z-30"
           aria-label="Close modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5" strokeWidth={2.5} />
         </button>
 
         {!submitted ? (
@@ -57,7 +71,7 @@ export default function ApplicationModal({ isOpen, onClose }) {
             
             {/* Modal Header */}
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[10.5px] font-mono font-bold text-[#FF5500] uppercase tracking-widest mb-2.5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[10.5px] font-bold text-[#FF5500] uppercase tracking-widest mb-2.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500] animate-pulse" />
                 <span>24-Hour Underwriting Intake</span>
               </div>
@@ -75,7 +89,7 @@ export default function ApplicationModal({ isOpen, onClose }) {
               {/* Row 1: Business Name & Contact Name */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div className="space-y-1">
-                  <label className="text-xs font-mono text-[#0B192C] font-semibold flex items-center gap-1.5">
+                  <label className="text-xs text-[#0B192C] font-semibold flex items-center gap-1.5">
                     <Building2 className="w-3.5 h-3.5 text-[#FF5500]" />
                     <span>Legal Business Name</span>
                   </label>
@@ -90,7 +104,7 @@ export default function ApplicationModal({ isOpen, onClose }) {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-mono text-[#0B192C] font-semibold flex items-center gap-1.5">
+                  <label className="text-xs text-[#0B192C] font-semibold flex items-center gap-1.5">
                     <User className="w-3.5 h-3.5 text-[#FF5500]" />
                     <span>Primary Contact Name</span>
                   </label>
@@ -108,7 +122,7 @@ export default function ApplicationModal({ isOpen, onClose }) {
               {/* Row 2: Work Email & Phone Number */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div className="space-y-1">
-                  <label className="text-xs font-mono text-[#0B192C] font-semibold flex items-center gap-1.5">
+                  <label className="text-xs text-[#0B192C] font-semibold flex items-center gap-1.5">
                     <Mail className="w-3.5 h-3.5 text-[#FF5500]" />
                     <span>Work Email Address</span>
                   </label>
@@ -123,7 +137,7 @@ export default function ApplicationModal({ isOpen, onClose }) {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-mono text-[#0B192C] font-semibold flex items-center gap-1.5">
+                  <label className="text-xs text-[#0B192C] font-semibold flex items-center gap-1.5">
                     <Phone className="w-3.5 h-3.5 text-[#FF5500]" />
                     <span>Phone Number</span>
                   </label>
@@ -141,7 +155,7 @@ export default function ApplicationModal({ isOpen, onClose }) {
               {/* Row 3: Monthly Volume & Merchant Industry Category */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div className="space-y-1">
-                  <label className="text-xs font-mono text-[#0B192C] font-semibold flex items-center gap-1.5">
+                  <label className="text-xs text-[#0B192C] font-semibold flex items-center gap-1.5">
                     <DollarSign className="w-3.5 h-3.5 text-[#FF5500]" />
                     <span>Monthly Processing Volume</span>
                   </label>
@@ -150,16 +164,16 @@ export default function ApplicationModal({ isOpen, onClose }) {
                     onChange={(e) => setFormData({ ...formData, monthlyVolume: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-[#FCFBF8] hover:bg-white focus:bg-white border border-[#E7E3DA] text-xs sm:text-sm text-[#0B192C] focus:outline-none focus:border-[#FF5500] focus:ring-3 focus:ring-orange-500/10 transition-all shadow-xs cursor-pointer"
                   >
-                    <option>$10,000 – $50,000 / mo</option>
-                    <option>$50,000 – $150,000 / mo</option>
-                    <option>$150,000 – $500,000 / mo</option>
-                    <option>$500,000 – $2,000,000 / mo</option>
-                    <option>$2,000,000+ / mo (Enterprise Scale)</option>
+                    <option>₹5 Lakhs – ₹25 Lakhs / mo</option>
+                    <option>₹25 Lakhs – ₹1 Crore / mo</option>
+                    <option>₹1 Crore – ₹5 Crores / mo</option>
+                    <option>₹5 Crores – ₹20 Crores / mo</option>
+                    <option>₹20 Crores+ / mo (Enterprise Scale)</option>
                   </select>
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-mono text-[#0B192C] font-semibold flex items-center gap-1.5">
+                  <label className="text-xs text-[#0B192C] font-semibold flex items-center gap-1.5">
                     <Layers className="w-3.5 h-3.5 text-[#FF5500]" />
                     <span>Merchant Industry Category</span>
                   </label>
@@ -178,7 +192,7 @@ export default function ApplicationModal({ isOpen, onClose }) {
             </div>
 
             {/* Included Underwriting Protections */}
-            <div className="p-3.5 rounded-xl bg-[#FCFBF8] border border-[#E7E3DA] flex items-center justify-between text-xs font-mono text-[#475569]">
+            <div className="p-3.5 rounded-xl bg-[#FCFBF8] border border-[#E7E3DA] flex items-center justify-between text-xs text-[#475569]">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
                 <span className="text-[11px] font-semibold text-[#0B192C]">Ethoca & Verifi RDR Pre-Dispute Protection Included</span>
@@ -186,12 +200,12 @@ export default function ApplicationModal({ isOpen, onClose }) {
               <span className="text-[10px] text-[#10B981] font-bold bg-emerald-50 px-2 py-0.5 rounded">0% Fee</span>
             </div>
 
-            {/* Submit Action Button */}
-            <div className="pt-2">
+            {/* Submit Action Button & Cancel Button */}
+            <div className="pt-2 space-y-2">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2 py-3.5 sm:py-4 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white font-bold text-xs sm:text-sm font-mono tracking-wide transition-all shadow-lg shadow-orange-500/25 hover:-translate-y-0.5 cursor-pointer disabled:opacity-75"
+                className="w-full flex items-center justify-center gap-2 py-3.5 sm:py-4 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white font-bold text-xs sm:text-sm tracking-wide transition-all shadow-lg shadow-orange-500/25 hover:-translate-y-0.5 cursor-pointer disabled:opacity-75"
               >
                 {isSubmitting ? (
                   <span>Encrypting & Routing to Risk Desk...</span>
@@ -202,10 +216,18 @@ export default function ApplicationModal({ isOpen, onClose }) {
                   </>
                 )}
               </button>
+
+              <button
+                type="button"
+                onClick={onClose}
+                className="w-full py-2.5 rounded-xl text-xs font-bold text-[#707887] hover:text-[#0B192C] hover:bg-[#F7F4ED] transition-colors text-center cursor-pointer border border-[#E7E3DA] bg-white"
+              >
+                ✕ Cancel &amp; Close Form
+              </button>
             </div>
 
             {/* Bottom Security Guarantee */}
-            <div className="flex items-center justify-center gap-2 text-[11px] font-mono text-[#707887]">
+            <div className="flex items-center justify-center gap-2 text-[11px] text-[#707887]">
               <Lock className="w-3.5 h-3.5 text-[#FF5500]" />
               <span>TLS 1.3 256-Bit Encrypted Form Submission • No Impact on Credit</span>
             </div>
@@ -219,7 +241,7 @@ export default function ApplicationModal({ isOpen, onClose }) {
             </div>
 
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[10.5px] font-mono font-bold text-[#10B981] uppercase tracking-widest mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[10.5px] font-bold text-[#10B981] uppercase tracking-widest mb-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-ping" />
                 <span>Underwriting Intake Received</span>
               </div>
@@ -232,7 +254,7 @@ export default function ApplicationModal({ isOpen, onClose }) {
             </div>
 
             {/* Reference Ticket Card */}
-            <div className="p-4 rounded-2xl bg-[#FCFBF8] border border-[#E7E3DA] max-w-sm mx-auto text-left space-y-2 text-xs font-mono">
+            <div className="p-4 rounded-2xl bg-[#FCFBF8] border border-[#E7E3DA] max-w-sm mx-auto text-left space-y-2 text-xs">
               <div className="flex items-center justify-between text-[#707887]">
                 <span>Reference Ticket:</span>
                 <span className="font-bold text-[#0B192C]">#VS-8924</span>
@@ -249,7 +271,7 @@ export default function ApplicationModal({ isOpen, onClose }) {
 
             <button
               onClick={handleReset}
-              className="px-8 py-3 rounded-xl bg-[#0B192C] hover:bg-[#1A283E] text-white text-xs font-mono font-bold tracking-wide transition-all shadow-md cursor-pointer"
+              className="px-8 py-3 rounded-xl bg-[#0B192C] hover:bg-[#1A283E] text-white text-xs font-bold tracking-wide transition-all shadow-md cursor-pointer"
             >
               Return to Website
             </button>

@@ -4,9 +4,9 @@ import {
   RefreshCw, ShieldCheck, Zap, Layers, Check, Lock, ShieldAlert
 } from 'lucide-react';
 
+import imgGaming from '../assets/gaming_payments_3d.jpg';
+import imgTrading from '../assets/trading_forex_crypto_3d.jpg';
 import imgDisputeShield from '../assets/chargeback_shield_3d.jpg';
-import imgSubscription from '../assets/subscription_recovery_3d.jpg';
-import imgMultiChannel from '../assets/multichannel_payments_3d.jpg';
 
 export default function MerchantPositioning({ onOpenApplication }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -14,48 +14,48 @@ export default function MerchantPositioning({ onOpenApplication }) {
   const pillars = [
     {
       id: 0,
-      badge: '01 • CHARGEBACKS',
-      mobileLabel: '01 Chargebacks',
-      title: 'Stop chargebacks before they happen',
-      summary: 'Real-time Ethoca & Verifi alerts give you 24–48 hours to resolve disputes before bank filing.',
-      image: imgDisputeShield,
+      badge: '01 • iGAMING & ESPORTS',
+      mobileLabel: '01 iGaming',
+      title: 'Sub-80ms live deposit rails for iGaming & Esports',
+      summary: 'High-frequency player deposits, instant direct payouts, zero aggregator freeze risks, and multi-MID load balancing.',
+      image: imgGaming,
       highlights: [
-        'Ethoca & Verifi RDR automatic deflection',
-        '24–48 hour pre-dispute resolution grace window',
-        'Automated refund logic to keep ratio below 0.65%',
-        'Direct Tier-1 bank relationship protection'
+        'Instant sub-80ms player wallet top-ups & deposits',
+        'Direct Tier-1 bank MIDs (Zero pooled aggregator freeze)',
+        'Automated Verifi & Ethoca chargeback shield',
+        '24/7 dedicated high-volume transaction routing'
       ],
-      tag: 'Pre-Dispute Defense'
+      tag: 'Gaming Processing Engine'
     },
     {
       id: 1,
-      badge: '02 • SUBSCRIPTIONS',
-      mobileLabel: '02 Subscriptions',
-      title: 'Protect recurring revenue',
-      summary: 'Automatically update expired cards and recover failed rebills with zero customer friction.',
-      image: imgSubscription,
+      badge: '02 • FOREX & CRYPTO TRADING',
+      mobileLabel: '02 Forex & Trading',
+      title: 'High-velocity trader funding & multi-currency settlement',
+      summary: 'Institutional-grade payment rails engineered for Forex brokerages, CFD trading, and crypto platforms with instant T+1 batch funding.',
+      image: imgTrading,
       highlights: [
-        'Automated Visa & Mastercard account updater',
-        'Cascading smart retries on customer paydays',
-        'Automated dunning notifications',
-        '+34% average involuntary churn recovered'
+        'High-limit trader deposits (up to ₹50 Lakhs / transaction)',
+        'Real-time automated cascading fallback on soft declines',
+        'Multi-currency FX settlement across 135+ global pairs',
+        'Direct corporate MID registered in your licensed entity'
       ],
-      tag: 'Subscription Continuity'
+      tag: 'Trading & Brokerage Rails'
     },
     {
       id: 2,
-      badge: '03 • CHANNELS',
-      mobileLabel: '03 Channels',
-      title: 'Accept payments everywhere',
-      summary: 'Web checkout, virtual terminal, and phone orders in one single high-risk merchant account.',
-      image: imgMultiChannel,
+      badge: '03 • CHARGEBACK SHIELD & MOTO',
+      mobileLabel: '03 Dispute Shield',
+      title: 'Automated pre-dispute defense & virtual terminal',
+      summary: 'Intercept cardholder disputes within 2 seconds before they hit your MID, plus full MOTO terminal for high-ticket transactions.',
+      image: imgDisputeShield,
       highlights: [
-        'Hosted web & mobile checkout',
-        'Virtual terminal for phone & MOTO orders',
-        'Direct server-to-server API',
-        '20+ global currencies supported'
+        'Ethoca & Verifi RDR automatic dispute interception',
+        'Maintains merchant dispute ratio safely below 0.65%',
+        'Secure MOTO virtual terminal with hosted tokenization',
+        'Full PCI-DSS Level 1 compliant token vault'
       ],
-      tag: 'Multi-Channel Ingestion'
+      tag: 'Pre-Dispute Defense'
     }
   ];
 
@@ -76,20 +76,20 @@ export default function MerchantPositioning({ onOpenApplication }) {
         }}
       />
 
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Top Header */}
-        <div className="max-w-3xl mb-8 sm:mb-12 space-y-2.5 sm:space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[11px] font-mono tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
+        <div className="max-w-3xl mb-7 sm:mb-10 space-y-2 sm:space-y-2.5">
+          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[10.5px] tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500] animate-pulse" />
             <span>02 • Merchant Positioning</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-bold text-[#0B192C] tracking-tight leading-[1.12]">
+          <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-bold text-[#0B192C] tracking-tight leading-[1.14]">
             Built for merchants traditional processors <span className="text-[#FF5500]">reject.</span>
           </h2>
 
-          <p className="text-[#475569] text-sm sm:text-base lg:text-lg leading-relaxed">
+          <p className="text-[#475569] text-xs sm:text-sm lg:text-[15px] leading-relaxed">
             High-risk merchant infrastructure designed with direct acquirer routing, subscription continuity, and automated pre-dispute defense.
           </p>
         </div>
@@ -102,7 +102,7 @@ export default function MerchantPositioning({ onOpenApplication }) {
               <button
                 key={pillar.id}
                 onClick={() => setActiveTab(idx)}
-                className={`flex-1 py-2 px-2.5 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all text-center cursor-pointer ${
+                className={`flex-1 py-2 px-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all text-center cursor-pointer ${
                   isActive
                     ? 'bg-[#FF5500] text-white shadow-sm'
                     : 'text-[#475569] hover:text-[#0B192C]'
@@ -137,12 +137,12 @@ export default function MerchantPositioning({ onOpenApplication }) {
 
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className={`text-[11px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md transition-colors ${
+                    <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md transition-colors ${
                       isActive ? 'bg-orange-50 text-[#FF5500] border border-orange-200/80' : 'bg-[#FCFBF8] text-[#707887] border border-[#E7E3DA]'
                     }`}>
                       {pillar.badge}
                     </span>
-                    <span className={`text-xs font-mono font-semibold transition-colors ${isActive ? 'text-[#FF5500]' : 'text-slate-400'}`}>
+                    <span className={`text-xs font-semibold transition-colors ${isActive ? 'text-[#FF5500]' : 'text-slate-400'}`}>
                       {isActive ? '● Active' : 'Hover to View'}
                     </span>
                   </div>
@@ -156,7 +156,7 @@ export default function MerchantPositioning({ onOpenApplication }) {
                   </p>
                 </div>
 
-                <div className="pt-3 mt-3 border-t border-[#E7E3DA] flex items-center justify-between text-xs font-mono">
+                <div className="pt-3 mt-3 border-t border-[#E7E3DA] flex items-center justify-between text-xs font-semibold">
                   <span className={`font-bold transition-colors ${isActive ? 'text-[#FF5500]' : 'text-[#707887]'}`}>
                     Explore Visual
                   </span>
@@ -175,7 +175,7 @@ export default function MerchantPositioning({ onOpenApplication }) {
           {/* LEFT: Clean Punchy Content (5 cols) */}
           <div className="lg:col-span-5 space-y-4 sm:space-y-5 order-2 lg:order-1">
             <div>
-              <span className="text-[10.5px] font-mono font-bold text-[#FF5500] uppercase tracking-widest bg-orange-50 border border-orange-200/80 px-2.5 py-0.5 rounded-md">
+              <span className="text-[10.5px] font-bold text-[#FF5500] uppercase tracking-widest bg-orange-50 border border-orange-200/80 px-2.5 py-0.5 rounded-md">
                 {current.tag}
               </span>
               <div className="min-h-0 sm:min-h-[64px] flex items-center mt-2.5">
@@ -193,7 +193,7 @@ export default function MerchantPositioning({ onOpenApplication }) {
             {/* Quick 4-Point Checklist */}
             <div className="space-y-2.5 pt-2 border-t border-[#E7E3DA]">
               {current.highlights.map((point, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-xs font-mono text-[#0B192C]">
+                <div key={i} className="flex items-start gap-2.5 text-xs font-medium text-[#0B192C]">
                   <CheckCircle2 className="w-4 h-4 text-[#FF5500] shrink-0 mt-0.5" />
                   <span className="leading-snug">{point}</span>
                 </div>
@@ -204,7 +204,7 @@ export default function MerchantPositioning({ onOpenApplication }) {
             <div className="pt-2">
               <button
                 onClick={onOpenApplication}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#0B192C] hover:bg-[#1A283E] text-white font-mono font-semibold text-xs tracking-wide transition-all shadow-md hover:-translate-y-0.5 cursor-pointer"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#0B192C] hover:bg-[#1A283E] text-white font-semibold text-xs tracking-wide transition-all shadow-md hover:-translate-y-0.5 cursor-pointer"
               >
                 <span>Request Underwriting Review</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -228,7 +228,7 @@ export default function MerchantPositioning({ onOpenApplication }) {
               ))}
               
               {/* Bottom Glass Tag */}
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:left-4 sm:right-auto bg-[#FFFFFF]/90 backdrop-blur-md border border-[#E7E3DA] px-3 py-1.5 rounded-xl text-[11px] font-mono flex items-center gap-2 shadow-sm z-20">
+              <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:left-4 sm:right-auto bg-[#FFFFFF]/90 backdrop-blur-md border border-[#E7E3DA] px-3 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-2 shadow-sm z-20">
                 <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
                 <span className="font-bold text-[#0B192C]">{current.tag}</span>
                 <span className="text-slate-300">•</span>

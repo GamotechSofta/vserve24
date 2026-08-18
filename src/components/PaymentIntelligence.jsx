@@ -53,7 +53,7 @@ export default function PaymentIntelligence({ onOpenApplication }) {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-2.5 sm:space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[11px] font-mono tracking-widest text-[#FF5500] uppercase font-bold">
+          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[11px] tracking-widest text-[#FF5500] uppercase font-bold">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500]" />
             <span>07 • Global Processing Pipeline</span>
           </div>
@@ -69,7 +69,7 @@ export default function PaymentIntelligence({ onOpenApplication }) {
         <div className="bg-[#FFFFFF] border border-[#E7E3DA] rounded-3xl p-5 sm:p-8 lg:p-10 relative overflow-hidden shadow-sm">
           
           {/* Top Status Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-6 sm:mb-8 border-b border-[#E7E3DA] text-xs font-mono">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-6 sm:mb-8 border-b border-[#E7E3DA] text-xs font-semibold">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
               <span className="text-[#0B192C] font-bold">TRANSACTION PIPELINE: ACTIVE</span>
@@ -94,11 +94,11 @@ export default function PaymentIntelligence({ onOpenApplication }) {
                 >
                   <div>
                     <div className="flex items-center justify-between mb-2 sm:mb-3">
-                      <span className="text-[11px] font-mono font-bold text-[#FF5500]">
+                      <span className="text-[11px] font-bold text-[#FF5500]">
                         STAGE {node.step}
                       </span>
                       {node.highlight && (
-                        <span className="text-[9px] font-mono font-bold text-[#10B981] bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                        <span className="text-[9px] font-bold text-[#10B981] bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
                           RISK CHECK
                         </span>
                       )}
@@ -107,7 +107,7 @@ export default function PaymentIntelligence({ onOpenApplication }) {
                     <h4 className="text-sm sm:text-base font-bold text-[#0B192C] mb-0.5">
                       {node.title}
                     </h4>
-                    <div className="text-[11px] font-mono text-[#707887] mb-2">
+                    <div className="text-[11px] text-[#707887] mb-2 font-medium">
                       {node.sub}
                     </div>
 
@@ -116,7 +116,7 @@ export default function PaymentIntelligence({ onOpenApplication }) {
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-[#E7E3DA] flex items-center justify-between text-[10px] font-mono text-[#707887] mt-3">
+                  <div className="pt-3 border-t border-[#E7E3DA] flex items-center justify-between text-[10px] text-[#707887] mt-3 font-semibold">
                     <span>STATUS</span>
                     <span className="text-[#10B981] font-bold">VERIFIED</span>
                   </div>
@@ -134,7 +134,7 @@ export default function PaymentIntelligence({ onOpenApplication }) {
           </div>
 
           {/* Bottom Security Credentials Strip */}
-          <div className="mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-[#E7E3DA] flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-[#475569]">
+          <div className="mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-[#E7E3DA] flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-[#475569]">
             <div className="flex items-center gap-2">
               <Lock className="w-3.5 h-3.5 text-[#FF5500]" />
               <span>TLS 1.3 End-to-End Encryption Architecture</span>

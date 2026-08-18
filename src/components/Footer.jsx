@@ -31,7 +31,7 @@ export default function Footer({ onOpenApplication }) {
               Specialized merchant accounts for high-risk categories with gateway flexibility, fraud tools, and dispute support.
             </p>
 
-            <div className="space-y-1.5 text-xs font-mono text-[#707887]">
+            <div className="space-y-1.5 text-xs text-[#707887]">
               <div className="flex items-center gap-2 text-[#0B192C]">
                 <Mail className="w-3.5 h-3.5 text-[#FF5500]" />
                 <a href="mailto:hello@vserve24.com" className="hover:text-[#FF5500] transition-colors font-bold">
@@ -46,10 +46,10 @@ export default function Footer({ onOpenApplication }) {
 
           {/* Core Services (4 cols) */}
           <div className="lg:col-span-4 space-y-3">
-            <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#FF5500]">
+            <div className="text-[11px] font-bold uppercase tracking-widest text-[#FF5500]">
               CORE SERVICES
             </div>
-            <ul className="space-y-2 text-xs sm:text-sm text-[#475569] font-mono">
+            <ul className="space-y-2 text-xs sm:text-sm text-[#475569]">
               <li><a href="#services" className="hover:text-[#0B192C] transition-colors">Credit Card Processing</a></li>
               <li><a href="#services" className="hover:text-[#0B192C] transition-colors">ACH Processing</a></li>
               <li><a href="#services" className="hover:text-[#0B192C] transition-colors">Payment Gateways</a></li>
@@ -61,10 +61,10 @@ export default function Footer({ onOpenApplication }) {
 
           {/* Company Links (4 cols) */}
           <div className="lg:col-span-4 space-y-3">
-            <div className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#FF5500]">
+            <div className="text-[11px] font-bold uppercase tracking-widest text-[#FF5500]">
               ENTERPRISE PLATFORM
             </div>
-            <ul className="space-y-2 text-xs sm:text-sm text-[#475569] font-mono">
+            <ul className="space-y-2 text-xs sm:text-sm text-[#475569]">
               <li><a href="#industries" className="hover:text-[#0B192C] transition-colors">Supported Industries</a></li>
               <li><a href="#resources" className="hover:text-[#0B192C] transition-colors">Guides & Decline Codes</a></li>
               <li><a href="#faq" className="hover:text-[#0B192C] transition-colors">FAQ & Knowledge Base</a></li>
@@ -83,7 +83,7 @@ export default function Footer({ onOpenApplication }) {
         </div>
 
         {/* Bottom Copyright & Security Strip */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-[#707887]">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-[#707887]">
           <div>
             © {new Date().getFullYear()} VSERVE24. All rights reserved. Payment infrastructure for complex merchants.
           </div>

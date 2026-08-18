@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Building2, Sliders, Headphones, Activity, ShieldCheck, CheckCircle2, Zap } from 'lucide-react';
+import { ArrowRight, Building2, Sliders, Headphones, Activity, ShieldCheck, CheckCircle2, Zap, Gamepad2, TrendingUp } from 'lucide-react';
 
 /* ─── prefers-reduced-motion hook ───────────────────────────────── */
 function usePrefersReducedMotion() {
@@ -71,13 +71,30 @@ const TX_B = 'M 68,250 L 264,250 C 336,250 382,368 450,368 C 514,368 558,302 592
 
 function PaymentNetwork({ reduced }) {
   const [hoveredNode, setHoveredNode] = useState(null);
+  const [txIndex, setTxIndex] = useState(0);
+
+  const liveEvents = [
+    { label: '🎮 iGaming Instant Deposit:', amount: '₹25,000.00', speed: '✓ 58ms AUTH', rail: 'Direct Domestic MID' },
+    { label: '📈 Forex Trader Margin Fund:', amount: '₹1,50,000.00', speed: '✓ 74ms SETTLED', rail: 'IMPS/NEFT Rail' },
+    { label: '⚡ Crypto Platform On-Ramp:', amount: '₹85,000.00', speed: '✓ 61ms AUTH', rail: '3DS 2.2 Frictionless' },
+    { label: '🏆 Esports Tournament Payout:', amount: '₹45,000.00', speed: '✓ 52ms BATCH', rail: 'Instant Player Credit' },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTxIndex((prev) => (prev + 1) % liveEvents.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, []);
+
+  const currentTx = liveEvents[txIndex];
 
   return (
     <div className="relative w-full flex flex-col items-center justify-center h-full select-none">
       
       {/* ── Top Live Network Telemetry Pill ── */}
       <div 
-        className="mb-2 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/80 shadow-sm backdrop-blur-md text-[10px] font-mono tracking-wide text-slate-700 transition-all"
+        className="mb-2 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-slate-200/80 shadow-sm backdrop-blur-md text-[10px] tracking-wide text-slate-700 transition-all font-medium"
         style={{ animation: 'fadeIn 0.6s ease-out' }}
       >
         <span className="relative flex h-2 w-2">
@@ -437,18 +454,37 @@ function PaymentNetwork({ reduced }) {
         </>)}
       </svg>
 
-      {/* ── Interactive Node Details Footer Ticker ── */}
-      <div className="h-6 mt-1 flex items-center justify-center text-center">
-        {hoveredNode ? (
-          <div className="text-[11px] font-mono font-medium text-slate-700 bg-orange-50/80 border border-orange-200/80 px-3 py-0.5 rounded-full transition-all animate-in fade-in zoom-in-95">
-            <span className="text-[#FF5500] font-bold">INFO: </span>
-            {NODES.find(n => n.id === hoveredNode)?.detail}
-          </div>
-        ) : (
-          <div className="text-[10px] font-mono text-slate-400 tracking-wider">
-            HOVER OVER NODES TO INSPECT INFRASTRUCTURE ARCHITECTURE
-          </div>
-        )}
+      {/* ── Interactive Node Details & Live Gaming/Trading Telemetry ── */}
+      <div className="mt-2 w-full pt-2 border-t border-[#E7E3DA] flex flex-col gap-1.5">
+        <div className="flex items-center justify-between text-[10px] text-slate-500 font-medium">
+          <span className="flex items-center gap-1 text-emerald-600 font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+            LIVE TELEMETRY STREAM:
+          </span>
+          <span className="font-semibold text-slate-600">Sub-80ms Routing</span>
+        </div>
+
+        <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3 py-1.5 flex items-center justify-between text-[11px] overflow-hidden min-h-[34px]">
+          {hoveredNode ? (
+            <div className="font-medium text-slate-700 transition-all animate-in fade-in">
+              <span className="text-[#FF5500] font-bold">NODE: </span>
+              {NODES.find(n => n.id === hoveredNode)?.detail}
+            </div>
+          ) : (
+            <div key={txIndex} className="flex items-center justify-between w-full font-semibold text-slate-700 transition-all duration-300 animate-in fade-in slide-in-from-bottom-1">
+              <span className="flex items-center gap-1.5 text-[#0B192C]">
+                <span>{currentTx.label}</span>
+                <span className="text-[#FF5500] font-bold">{currentTx.amount}</span>
+              </span>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[9.5px] text-slate-500 hidden sm:inline">{currentTx.rail}</span>
+                <span className="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-mono font-bold">
+                  {currentTx.speed}
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
     </div>
@@ -491,19 +527,18 @@ export default function HeroSection({ onOpenApplication }) {
       />
 
       {/* ════ WIDE CONTAINER ══════════════════════════════════════
-          max-width: 1560px
-          Single Frame Viewport Layout
+          max-width: 1400px (Golden Proportion Layout)
       ═══════════════════════════════════════════════════════════ */}
       <div
-        className="px-5 sm:px-10 lg:px-14 relative z-10 w-full flex-1 flex flex-col justify-between"
-        style={{ maxWidth: '1560px', margin: '0 auto' }}
+        className="px-4 sm:px-8 lg:px-12 relative z-10 w-full flex-1 flex flex-col justify-between"
+        style={{ maxWidth: '1400px', margin: '0 auto' }}
       >
 
         {/* ════ HERO MAIN GRID ═══════════════════════════════════ */}
         <div
-          className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)] items-center flex-1 py-6 sm:py-8 lg:py-10"
+          className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)] items-center flex-1 py-4 sm:py-6 lg:py-8"
           style={{
-            columnGap: 'clamp(32px, 3.8vw, 64px)',
+            columnGap: 'clamp(24px, 3vw, 48px)',
           }}
         >
 
@@ -516,73 +551,95 @@ export default function HeroSection({ onOpenApplication }) {
               justifyContent: 'center',
             }}
           >
-            {/* Eyebrow with refined pill */}
+            {/* Eyebrow with refined pill (Hidden on Mobile View) */}
             <div
-              className="inline-flex items-center gap-1.5 sm:gap-2 bg-orange-50/90 border border-orange-200/80 px-3 py-1 rounded-full shadow-xs backdrop-blur-sm mb-4 sm:mb-5"
+              className="hidden sm:inline-flex items-center gap-1.5 sm:gap-2 bg-orange-50/90 border border-orange-200/80 px-3 py-1 rounded-full shadow-xs backdrop-blur-sm mb-3 sm:mb-4"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500] shrink-0 animate-pulse" />
-              <span className="text-[9.5px] sm:text-[10.5px] font-mono font-bold tracking-wider uppercase text-slate-800">
-                No Setup Fees <span className="text-orange-300 font-light mx-1">•</span> Daily Payouts <span className="text-orange-300 font-light mx-1">•</span> 24h Approvals
+              <span className="w-2 h-2 rounded-full bg-[#FF5500] shrink-0 animate-pulse" />
+              <span className="text-[10px] sm:text-[10.5px] font-bold tracking-wider uppercase text-slate-800">
+                🎮 Gaming &amp; 📈 Trading Direct Payment Gateway <span className="text-orange-300 font-light mx-1">•</span> 24h MIDs
               </span>
             </div>
 
-            {/* ── HEADLINE ── */}
+            {/* ── HEADLINE (Proportioned for crisp 100% Zoom) ── */}
             <h1
               style={{
                 fontFamily: "'Plus Jakarta Sans', sans-serif",
-                fontSize: 'clamp(28px, 6.2vw, 68px)',
+                fontSize: 'clamp(26px, 3.6vw, 48px)',
                 fontWeight: 750,
-                letterSpacing: '-0.026em',
-                lineHeight: 1.08,
+                letterSpacing: '-0.024em',
+                lineHeight: 1.12,
                 color: '#0B192C',
                 hyphens: 'none',
                 overflowWrap: 'normal',
                 wordBreak: 'keep-all',
-                marginBottom: 'clamp(14px, 2vh, 22px)',
+                marginBottom: 'clamp(12px, 1.5vh, 16px)',
               }}
             >
               <span className="lg:block lg:whitespace-nowrap">
-                Powering high-risk
+                High-risk payment
               </span>
               <span className="inline lg:hidden"> </span>
               <span className="lg:block lg:whitespace-nowrap">
-                businesses with
+                gateway built for
               </span>
               <span className="inline lg:hidden"> </span>
               <span
                 className="lg:block lg:whitespace-nowrap"
                 style={{ color: '#FF5500', fontWeight: 800 }}
               >
-                payment confidence.
+                Gaming &amp; Trading.
               </span>
             </h1>
 
             {/* Description */}
             <p
               style={{
-                fontSize: 'clamp(14px, 1.1vw, 17.5px)',
+                fontSize: 'clamp(13.5px, 0.95vw, 15.5px)',
                 color: '#475569',
-                lineHeight: 1.6,
-                maxWidth: '620px',
+                lineHeight: 1.58,
+                maxWidth: '560px',
                 fontWeight: 400,
-                marginBottom: 'clamp(18px, 2.5vh, 26px)',
+                marginBottom: 'clamp(14px, 1.6vh, 18px)',
               }}
             >
-              Vserve24 helps complex businesses process cards and ACH with
-              stronger approval performance, adaptive risk controls, and
-              chargeback defense.
+              Dedicated Tier-1 merchant accounts for <strong>iGaming, Esports, Forex &amp; Crypto Trading</strong> platforms. Process instant high-volume player deposits &amp; trader payouts with sub-80ms authorization, zero aggregator freezes, and automated dispute defense.
             </p>
+
+            {/* Quick Industry Feature Badges */}
+            <div className="flex flex-wrap items-center gap-2 mb-5 sm:mb-6 w-full">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white border border-[#E7E3DA] text-[11px] sm:text-xs font-semibold text-[#0B192C] shadow-2xs">
+                <span className="w-5 h-5 rounded-lg bg-orange-50 border border-orange-200/80 flex items-center justify-center text-[#FF5500] shrink-0">
+                  <Gamepad2 className="w-3.5 h-3.5" />
+                </span>
+                <span>iGaming &amp; Esports MIDs</span>
+              </div>
+
+              <div className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white border border-[#E7E3DA] text-[11px] sm:text-xs font-semibold text-[#0B192C] shadow-2xs">
+                <span className="w-5 h-5 rounded-lg bg-blue-50 border border-blue-200/80 flex items-center justify-center text-blue-600 shrink-0">
+                  <TrendingUp className="w-3.5 h-3.5" />
+                </span>
+                <span>Forex &amp; Crypto Rails</span>
+              </div>
+
+              <div className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-emerald-50/90 border border-emerald-200 text-[11px] sm:text-xs font-bold text-[#10B981] shadow-2xs">
+                <span className="w-5 h-5 rounded-lg bg-emerald-100/90 border border-emerald-300/80 flex items-center justify-center text-[#10B981] shrink-0">
+                  <Zap className="w-3.5 h-3.5" />
+                </span>
+                <span>Sub-80ms Live Deposits</span>
+              </div>
+            </div>
 
             {/* CTA Buttons - Full Width on Mobile */}
             <div
-              className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6 sm:mb-7"
+              className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 mb-5 sm:mb-6"
             >
               {/* Primary — Brand Electric Orange */}
               <button
                 onClick={onOpenApplication}
-                className="group relative overflow-hidden flex items-center justify-center gap-2 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md shadow-orange-500/25 py-3.5 px-6 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white font-bold text-sm font-mono tracking-wide"
+                className="group relative overflow-hidden flex items-center justify-center gap-2 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md shadow-orange-500/25 py-3 px-5.5 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white font-bold text-xs sm:text-sm tracking-wide"
               >
-                <span>Get Started</span>
+                <span>Get Gaming / Trading MID</span>
                 <ArrowRight
                   className="transition-transform duration-200 group-hover:translate-x-1 w-4 h-4"
                   strokeWidth={2.2}
@@ -592,9 +649,9 @@ export default function HeroSection({ onOpenApplication }) {
               {/* Secondary — Deep Navy Outline */}
               <button
                 onClick={onOpenApplication}
-                className="cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 py-3.5 px-6 rounded-xl bg-white hover:bg-[#F7F4ED] text-[#0B192C] font-semibold text-sm font-mono tracking-wide border border-[#E7E3DA] text-center shadow-xs"
+                className="cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 py-3 px-5 rounded-xl bg-white hover:bg-[#F7F4ED] text-[#0B192C] font-semibold text-xs sm:text-sm tracking-wide border border-[#E7E3DA] text-center shadow-xs"
               >
-                Talk to an Expert
+                Talk to Underwriting Specialist
               </button>
             </div>
 
@@ -609,15 +666,16 @@ export default function HeroSection({ onOpenApplication }) {
               <p
                 style={{
                   fontSize: '9.5px',
-                  fontFamily: 'ui-monospace, monospace',
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
                   color: '#475569',
                   opacity: 0.65,
                   marginBottom: '10px',
+                  fontWeight: 600
                 }}
               >
-                Payment networks supported
+                Gaming &amp; Trading Settlement Rails Supported
               </p>
               <div
                 style={{
@@ -638,16 +696,16 @@ export default function HeroSection({ onOpenApplication }) {
                 </div>
                 <span style={{ fontSize: '11px', fontWeight: 700, color: '#0B192C', letterSpacing: '0.10em' }}>DISCOVER</span>
                 <span style={{ fontSize: '9px', fontWeight: 700, color: '#0B192C', border: '0.8px solid rgba(11, 25, 44, 0.55)', borderRadius: '3px', padding: '2px 6px', letterSpacing: '0.06em' }}>AMEX</span>
-                <span style={{ fontSize: '9.5px', fontWeight: 700, fontFamily: 'ui-monospace, monospace', color: '#0B192C', letterSpacing: '0.08em' }}>ACH NETWORK</span>
+                <span style={{ fontSize: '9.5px', fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#0B192C', letterSpacing: '0.08em' }}>SEPA / ACH / CRYPTO</span>
               </div>
             </div>
           </div>
 
           {/* ══ RIGHT COLUMN — Payment Intelligence Network ════ */}
           <div
-            className="mt-8 lg:mt-0 bg-[#FFFFFF] border border-[#E7E3DA] rounded-3xl p-4 sm:p-6 shadow-sm relative"
+            className="mt-6 lg:mt-0 bg-[#FFFFFF] border border-[#E7E3DA] rounded-3xl p-3.5 sm:p-5 shadow-sm relative"
             style={{
-              minHeight: 'clamp(280px, 35vw, 460px)',
+              minHeight: 'clamp(280px, 32vw, 420px)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -656,10 +714,10 @@ export default function HeroSection({ onOpenApplication }) {
             }}
           >
             {/* Top Status Header */}
-            <div className="w-full flex items-center justify-between pb-2 mb-2 border-b border-[#E7E3DA] text-[10.5px] font-mono text-[#707887]">
+            <div className="w-full flex items-center justify-between pb-2 mb-2 border-b border-[#E7E3DA] text-[10.5px] text-[#707887]">
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-                <span className="font-bold text-[#0B192C]">INTELLIGENCE NETWORK</span>
+                <span className="font-bold text-[#0B192C]">GAMING &amp; TRADING PROCESSING ENGINE</span>
               </div>
               <span className="text-[#FF5500] font-semibold">Tier-1 Direct Rails</span>
             </div>
@@ -721,7 +779,7 @@ export default function HeroSection({ onOpenApplication }) {
               </div>
               <div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginBottom: '2px' }}>
-                  <span style={{ fontSize: 'clamp(20px, 1.8vw, 28px)', fontWeight: 800, fontFamily: 'ui-monospace, monospace', color: '#0B192C', letterSpacing: '-0.01em', lineHeight: 1 }}>
+                  <span style={{ fontSize: 'clamp(20px, 1.8vw, 28px)', fontWeight: 800, fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#0B192C', letterSpacing: '-0.01em', lineHeight: 1 }}>
                     {stat}
                   </span>
                   <span style={{ fontSize: 'clamp(13px, 1vw, 16px)', fontWeight: 700, color: '#0B192C', lineHeight: 1 }}>

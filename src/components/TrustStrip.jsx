@@ -42,7 +42,7 @@ export default function TrustStrip() {
       <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
         {/* Top header eyebrow */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-6 border-b border-[#E7E3DA] text-[11px] font-mono tracking-wider text-[#707887] uppercase">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-6 border-b border-[#E7E3DA] text-[11px] tracking-wider text-[#707887] uppercase font-semibold">
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500]" />
             <span className="font-bold text-[#0B192C]">FINANCIAL INFRASTRUCTURE BENCHMARKS</span>
@@ -60,7 +60,7 @@ export default function TrustStrip() {
                 className={`pt-4 md:pt-0 ${index > 0 ? 'md:pl-8 lg:pl-10' : ''} group cursor-default transition-all duration-300`}
               >
                 <div className="flex items-start justify-between mb-2.5">
-                  <span className="text-[10px] font-mono font-semibold uppercase tracking-widest text-[#FF5500] bg-orange-50 border border-orange-200/60 px-2.5 py-0.5 rounded-md">
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-[#FF5500] bg-orange-50 border border-orange-200/60 px-2.5 py-0.5 rounded-md">
                     {item.tag}
                   </span>
                   <div className="w-8 h-8 rounded-lg bg-orange-50/50 border border-orange-200/60 flex items-center justify-center text-[#FF5500] group-hover:bg-[#FF5500] group-hover:text-white transition-all duration-200">
@@ -70,7 +70,7 @@ export default function TrustStrip() {
 
                 <div className="space-y-1.5">
                   <div className="flex items-baseline gap-2.5">
-                    <span className="text-3xl lg:text-4xl font-bold font-mono text-[#0B192C] tracking-tight tabular-nums">
+                    <span className="text-3xl lg:text-4xl font-bold text-[#0B192C] tracking-tight tabular-nums">
                       {item.stat}
                     </span>
                     <span className="text-base lg:text-lg font-bold text-[#0B192C]">

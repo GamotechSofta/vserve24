@@ -184,7 +184,7 @@ export const vserveData = {
     { id: 'ind-8', name: 'Fantasy Sports', category: 'Digital', desc: 'Skill-based contests, league deposits, and high-frequency digital micropayments.' },
     { id: 'ind-9', name: 'High-Ticket Coaching', category: 'Specialized', desc: 'Consulting, masterminds, and professional executive courses with high order values.' },
     { id: 'ind-10', name: 'Jewelry', category: 'Retail', desc: 'Luxury diamonds, precious metals, and high-value physical goods e-commerce.' },
-    { id: 'ind-11', name: 'Large Ticket Accounts', category: 'Financial', desc: 'B2B enterprise transactions, commercial wholesale, and invoice settlements over $10K.' },
+    { id: 'ind-11', name: 'Large Ticket Accounts', category: 'Financial', desc: 'B2B enterprise transactions, commercial wholesale, and invoice settlements over ₹10 Lakhs.' },
     { id: 'ind-12', name: 'Lending', category: 'Financial', desc: 'Peer-to-peer lending platforms, installment loans, and consumer micro-finance.' },
     { id: 'ind-13', name: 'Moving & Transportation', category: 'Specialized', desc: 'Long-distance logistics, freight carriers, and scheduled deposit workflows.' },
     { id: 'ind-14', name: 'Multi-Level Marketing', category: 'Subscription', desc: 'Direct selling organizations with distributor commissions and recurring memberships.' },
@@ -233,45 +233,45 @@ export const vserveData = {
 
   testimonials: [
     {
-      quote: 'Our approval rates improved in the first month, and onboarding was much faster than previous providers.',
-      type: 'eCommerce Brand',
-      vertical: 'Nutraceutical',
-      highlight: 'Faster Underwriting & Direct Bank Integration'
+      quote: 'Vserve24 scaled our iGaming platform from ₹80 Lakhs to ₹6 Crores monthly. Sub-80ms auth latency eliminated player deposit drop-offs, and 0% rolling reserve transformed our liquidity.',
+      type: 'iGaming Platform Lead',
+      vertical: 'iGaming & Esports',
+      highlight: 'Sub-80ms Deposit Latency & 0% Rolling Reserve'
     },
     {
-      quote: 'The dispute support team helped us reduce chargebacks and protect recurring revenue.',
-      type: 'Subscription Business',
-      vertical: 'Telemedicine',
-      highlight: 'Active Chargeback Deflection'
+      quote: 'As a Forex and CFD brokerage, standard aggregators constantly froze our funding rails. Vserve24 provided dedicated direct sponsor MIDs with daily T+1 IMPS bank settlement and zero downtime.',
+      type: 'Forex & CFD Brokerage CEO',
+      vertical: 'Forex & Prop Trading',
+      highlight: 'High-Velocity Trader Funding & Direct Tier-1 MIDs'
     },
     {
-      quote: 'Reliable processing, clear communication, and excellent support for a high-risk model.',
-      type: 'Growth Merchant',
-      vertical: 'Online Services',
-      highlight: 'Multi-Channel Gateway Stability'
+      quote: 'The automated Verifi RDR shield keeps our dispute ratio at 0.18%, completely protecting our high-volume crypto and fantasy sports payment rails.',
+      type: 'Crypto & Skill Gaming Founder',
+      vertical: 'Crypto & Skill Gaming',
+      highlight: '90% Pre-Dispute Interception & Clean Ratios'
     }
   ],
 
   faqs: [
     {
       id: 'faq-1',
-      question: 'How quickly can we start processing?',
-      answer: 'Most merchants can complete onboarding and begin processing within a few business days after underwriting approval. Our high-risk underwriting pipeline delivers decisions within 24 hours of receiving complete documentation, followed by immediate sandbox testing and production gateway credentials.'
+      question: 'Do you provide direct payment gateways for Gaming and Forex Trading platforms?',
+      answer: 'Yes! Vserve24 is specifically engineered for high-velocity iGaming, Esports, Forex trading, and crypto platforms. We provide dedicated corporate MIDs registered with Tier-1 sponsor acquiring banks, sub-80ms transaction authorization, multi-currency settlement (INR, USD, EUR, GBP), and automated cascading fallback.'
     },
     {
       id: 'faq-2',
-      question: 'Do you support recurring billing businesses?',
-      answer: 'Yes. Vserve24 is engineered specifically for continuity, membership, and subscription models. Our gateway features dynamic retry logic, automatic Visa and Mastercard account updaters, proration workflows, and tokenized customer vaults.'
+      question: 'How quickly can our Gaming or Trading platform get approved and go live?',
+      answer: 'Our high-risk underwriting desk provides formal sponsor bank decisions within 24 hours of receiving KYC/KYB documents. Once approved, production API keys and REST webhooks are issued immediately for same-day live processing and T+1 daily batch settlements.'
     },
     {
       id: 'faq-3',
-      question: 'Can you help reduce chargebacks?',
-      answer: 'Yes. We natively integrate pre-dispute alert networks (Ethoca Consumer Clarity and Verifi Rapid Dispute Resolution / RDR). These networks alert you to customer disputes in real time, enabling automatic refunds before they register as formal chargebacks against your processing ratios.'
+      question: 'How does Vserve24 protect our merchant accounts from aggregator shutdowns?',
+      answer: 'Pooled aggregators (Stripe, PayPal, Shopify Payments) combine all merchants under a single master account, causing sudden algorithmic freezes. With Vserve24, you receive an independent Dedicated Merchant ID (MID) in your corporate name with custom volume caps, zero pooled risk, and native Verifi/Ethoca chargeback shields.'
     },
     {
       id: 'faq-4',
-      question: 'Which industries do you work with?',
-      answer: 'We specialize in over 100 high-risk and hard-to-place categories including nutraceuticals, CBD, subscription continuity, adult entertainment, dropshipping, travel, fantasy sports, telemarketing, telemedicine, collection agencies, high-ticket coaching, and specialized retail.'
+      question: 'What are the rolling reserve requirements for high-risk trading and gaming merchants?',
+      answer: 'Established merchants with 3+ months clean statements receive 0% Rolling Reserve on direct Tier-1 rails. Fresh platforms start with standard 5% rolling reserve which automatically steps down to 0% after 90 days of consistent settlement stability.'
     }
   ]
 };

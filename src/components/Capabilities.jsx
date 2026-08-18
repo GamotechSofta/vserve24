@@ -85,7 +85,7 @@ export default function Capabilities() {
         {/* Section Top Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
           <div className="max-w-2xl space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200/80 text-xs font-mono tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
+            <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200/80 text-xs tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
               <span className="w-2 h-2 rounded-full bg-[#FF5500]" />
               <span>03 • Core Architecture</span>
             </div>
@@ -99,7 +99,7 @@ export default function Capabilities() {
             </p>
           </div>
 
-          <div className="flex items-center gap-3 self-start lg:self-auto text-xs font-mono text-[#707887]">
+          <div className="flex items-center gap-3 self-start lg:self-auto text-xs text-[#707887]">
             <span className="flex items-center gap-1.5 text-[#10B981] font-bold bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-xl">
               <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
               99.99% Global Rail SLA
@@ -139,12 +139,12 @@ export default function Capabilities() {
                     />
                     
                     {/* Floating Step Badge */}
-                    <div className="absolute top-3 left-3 bg-[#0B192C]/90 backdrop-blur-md text-white px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold tracking-wider">
+                    <div className="absolute top-3 left-3 bg-[#0B192C]/90 backdrop-blur-md text-white px-2.5 py-1 rounded-lg text-[10px] font-bold tracking-wider">
                       PILLAR {pillar.step}
                     </div>
 
                     {/* Live Metric Pill */}
-                    <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md border border-[#E7E3DA] text-[#0B192C] px-2.5 py-1 rounded-lg text-[10.5px] font-mono font-bold flex items-center gap-1.5 shadow-xs">
+                    <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md border border-[#E7E3DA] text-[#0B192C] px-2.5 py-1 rounded-lg text-[10.5px] font-bold flex items-center gap-1.5 shadow-xs">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
                       <span>{pillar.metric}</span>
                     </div>
@@ -154,7 +154,7 @@ export default function Capabilities() {
                 {/* 2. MIDDLE: Architecture Title & Description */}
                 <div className="p-6 sm:p-7 flex-1 space-y-4">
                   <div>
-                    <span className="text-[10.5px] font-mono font-bold uppercase tracking-wider text-[#FF5500] bg-orange-50 border border-orange-200/80 px-2.5 py-0.5 rounded-md">
+                    <span className="text-[10.5px] font-bold uppercase tracking-wider text-[#FF5500] bg-orange-50 border border-orange-200/80 px-2.5 py-0.5 rounded-md">
                       {pillar.badge}
                     </span>
                     
@@ -162,7 +162,7 @@ export default function Capabilities() {
                       {pillar.title}
                     </h3>
 
-                    <div className="text-xs font-mono font-semibold text-[#707887] mt-0.5">
+                    <div className="text-xs font-semibold text-[#64748B] mt-1">
                       {pillar.subtitle}
                     </div>
 
@@ -172,10 +172,10 @@ export default function Capabilities() {
                   </div>
 
                   {/* 3. Deliverables / Technical Checklist */}
-                  <div className="space-y-2 pt-3 border-t border-[#E7E3DA]">
+                  <div className="space-y-2.5 pt-3.5 border-t border-[#E7E3DA]">
                     {pillar.points.map((point, i) => (
-                      <div key={i} className="flex items-start gap-2 text-xs font-mono text-[#0B192C]">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#FF5500] shrink-0 mt-0.5" />
+                      <div key={i} className="flex items-start gap-2.5 text-xs sm:text-[13px] font-medium text-[#1E293B]">
+                        <CheckCircle2 className="w-4 h-4 text-[#FF5500] shrink-0 mt-0.5" />
                         <span className="leading-snug">{point}</span>
                       </div>
                     ))}
@@ -183,7 +183,7 @@ export default function Capabilities() {
                 </div>
 
                 {/* 4. BOTTOM: Card Footer Status Bar */}
-                <div className="px-6 py-4 border-t border-[#E7E3DA] bg-white/60 group-hover:bg-white flex items-center justify-between text-xs font-mono transition-colors">
+                <div className="px-6 py-4 border-t border-[#E7E3DA] bg-white/60 group-hover:bg-white flex items-center justify-between text-xs font-semibold transition-colors">
                   <span className="text-[#707887] flex items-center gap-1">
                     <Lock className="w-3 h-3 text-[#FF5500]" />
                     <span>{pillar.sla}</span>
