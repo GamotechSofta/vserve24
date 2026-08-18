@@ -41,24 +41,24 @@ export default function ApiPlayground({ onOpenApplication }) {
   -H "Authorization: Bearer vs_live_9482bf109284" \\
   -H "Content-Type: application/json" \\
   -d '{
-    "amount": 14950,
-    "currency": "USD",
+    "amount": 1450000,
+    "currency": "INR",
     "token": "tok_vault_encrypted_884920",
-    "risk_vertical": "nutraceutical",
+    "risk_vertical": "gaming_trading",
     "three_d_secure": "frictionless_2_2",
-    "settlement_rail": "tier1_sponsor_mid_01"
+    "settlement_rail": "tier1_inr_direct_mid"
   }'`,
       node: `import { Vserve24Client } from '@vserve24/sdk';
 
 const vserve = new Vserve24Client('vs_live_9482bf109284');
 
 const charge = await vserve.charges.createDirectAcquirer({
-  amount: 14950, // $149.50
-  currency: 'USD',
+  amount: 1450000, // ₹14,500.00
+  currency: 'INR',
   token: 'tok_vault_encrypted_884920',
-  riskVertical: 'nutraceutical',
+  riskVertical: 'gaming_trading',
   threeDSecure: 'frictionless_2_2',
-  settlementRail: 'tier1_sponsor_mid_01'
+  settlementRail: 'tier1_inr_direct_mid'
 });
 
 console.log('Approved Auth Code:', charge.authorization_code);`,
@@ -67,24 +67,24 @@ console.log('Approved Auth Code:', charge.authorization_code);`,
 vserve24.api_key = "vs_live_9482bf109284"
 
 charge = vserve24.Charges.create_direct(
-    amount=14950,
-    currency="USD",
+    amount=1450000,
+    currency="INR",
     token="tok_vault_encrypted_884920",
-    risk_vertical="nutraceutical",
+    risk_vertical="gaming_trading",
     three_d_secure="frictionless_2_2"
 )
 
-print(f"Status: {charge.status}, Net Settlement: {charge.net_payout}")`,
+print(f"Status: {charge.status}, Net Settlement: ₹{charge.net_payout}")`,
       php: `<?php
 require_once('vendor/autoload.php');
 
 $vserve = new \\Vserve24\\Client('vs_live_9482bf109284');
 
 $charge = $vserve->charges->create([
-    'amount' => 14950,
-    'currency' => 'USD',
+    'amount' => 1450000,
+    'currency' => 'INR',
     'token' => 'tok_vault_encrypted_884920',
-    'risk_vertical' => 'nutraceutical',
+    'risk_vertical' => 'gaming_trading',
     'three_d_secure' => 'frictionless_2_2'
 ]);
 
@@ -99,10 +99,10 @@ import (
 func main() {
     client := vserve24.NewClient("vs_live_9482bf109284")
     charge, err := client.Charges.CreateDirect(&vserve24.ChargeParams{
-        Amount:       14950,
-        Currency:     "USD",
+        Amount:       1450000,
+        Currency:     "INR",
         Token:        "tok_vault_encrypted_884920",
-        RiskVertical: "nutraceutical",
+        RiskVertical: "gaming_trading",
     })
     fmt.Printf("Charge Approved: %s\\n", charge.ID)
 }`
@@ -112,22 +112,22 @@ func main() {
   -H "Authorization: Bearer vs_live_9482bf109284" \\
   -d '{
     "original_transaction_id": "tx_declined_soft_99182",
-    "primary_mid": "mid_us_tier1_01",
-    "fallback_mids": ["mid_us_tier1_02", "mid_offshore_04"],
+    "primary_mid": "mid_inr_tier1_01",
+    "fallback_mids": ["mid_inr_tier1_02", "mid_offshore_04"],
     "retry_policy": "intelligent_decline_salvage"
   }'`,
       node: `const failover = await vserve.routing.cascadingSalvage({
   originalTransactionId: 'tx_declined_soft_99182',
-  fallbackMids: ['mid_us_tier1_02', 'mid_offshore_04'],
+  fallbackMids: ['mid_inr_tier1_02', 'mid_offshore_04'],
   autoSalvageSoftDeclines: true
 });`,
       python: `salvaged = vserve24.Routing.cascade_failover(
     transaction_id="tx_declined_soft_99182",
-    fallback_mids=["mid_us_tier1_02", "mid_offshore_04"]
+    fallback_mids=["mid_inr_tier1_02", "mid_offshore_04"]
 )`,
       php: `$failover = $vserve->routing->cascade([
     'transaction_id' => 'tx_declined_soft_99182',
-    'fallback_mids' => ['mid_us_tier1_02', 'mid_offshore_04']
+    'fallback_mids' => ['mid_inr_tier1_02', 'mid_offshore_04']
 ]);`,
       go: `salvaged, err := client.Routing.CascadeFailover("tx_declined_soft_99182")`
     },
@@ -161,8 +161,8 @@ if ($event->type === 'dispute.pre_alert') {
     authorize: {
       status: "approved",
       id: "ch_live_8941098230",
-      amount: 14950,
-      currency: "USD",
+      amount: 1450000,
+      currency: "INR",
       risk_score: 12,
       risk_evaluation: "LOW_RISK_APPROVED",
       three_d_secure: {
@@ -174,18 +174,18 @@ if ($event->type === 'dispute.pre_alert') {
       authorization_code: "AUTH_882941",
       latency_ms: 68,
       net_settlement: {
-        gross: 149.50,
-        fee: 4.51,
-        net_merchant_payout: 144.99,
-        batch_funding: "T+1 Daily"
+        gross: "₹14,500.00",
+        fee: "₹413.25",
+        net_merchant_payout: "₹14,086.75",
+        batch_funding: "T+1 Daily Direct Bank Funding"
       }
     },
     failover: {
       status: "salvaged_and_approved",
       original_code: "05_DO_NOT_HONOR",
-      failover_route: "mid_us_tier1_02",
+      failover_route: "mid_inr_tier1_02",
       salvage_latency_ms: 74,
-      recovered_revenue: 149.50,
+      recovered_revenue: "₹14,500.00",
       authorization_code: "AUTH_SALVAGE_9941"
     },
     rdr: {

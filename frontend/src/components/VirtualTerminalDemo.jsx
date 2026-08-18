@@ -6,13 +6,13 @@ import {
 
 export default function VirtualTerminalDemo({ onOpenApplication }) {
   const [formData, setFormData] = useState({
-    amount: '450.00',
-    currency: 'USD',
+    amount: '14,500.00',
+    currency: 'INR',
     cardNumber: '4532 •••• •••• 8841',
     expiry: '08/28',
     cvv: '912',
     cardholderName: 'Apex Commercial Wholesale LLC',
-    midRail: 'mid_tier1_us_sponsor',
+    midRail: 'mid_tier1_inr_direct',
     threeDsOption: 'frictionless_2_2'
   });
 
@@ -30,12 +30,12 @@ export default function VirtualTerminalDemo({ onOpenApplication }) {
         authCode: 'VS-AUTH-' + Math.floor(100000 + Math.random() * 900000),
         status: 'Approved & Settled',
         timestamp: new Date().toLocaleString(),
-        amount: `$${formData.amount}`,
+        amount: `₹${formData.amount}`,
         currency: formData.currency,
         cardMasked: 'Visa ending in 8841',
         tokenVaultId: 'tok_vault_encrypted_' + Math.random().toString(36).substring(7),
-        rail: 'Direct Tier-1 Sponsor MID #01',
-        batchSettlement: 'T+1 Daily Funding'
+        rail: 'Direct Tier-1 Sponsor MID #01 (INR Rails)',
+        batchSettlement: 'T+1 Daily Direct Bank Funding'
       });
     }, 700);
   };
@@ -107,15 +107,15 @@ export default function VirtualTerminalDemo({ onOpenApplication }) {
               {/* Amount & Currency */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="sm:col-span-2 space-y-1">
-                  <label className="text-xs text-[#707887] font-semibold">Charge Amount ($ USD)</label>
+                  <label className="text-xs text-[#707887] font-semibold">Charge Amount (₹ INR)</label>
                   <div className="relative">
-                    <DollarSign className="w-4 h-4 text-[#707887] absolute left-3 top-1/2 -translate-y-1/2" />
+                    <span className="text-xs font-bold text-[#707887] absolute left-3 top-1/2 -translate-y-1/2">₹</span>
                     <input
                       type="text"
                       required
                       value={formData.amount}
                       onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-white border border-[#E7E3DA] text-sm font-bold text-[#0B192C] focus:outline-none focus:border-[#FF5500]"
+                      className="w-full pl-8 pr-3 py-2.5 rounded-xl bg-white border border-[#E7E3DA] text-sm font-bold text-[#0B192C] focus:outline-none focus:border-[#FF5500]"
                     />
                   </div>
                 </div>
@@ -127,9 +127,9 @@ export default function VirtualTerminalDemo({ onOpenApplication }) {
                     onChange={(e) => setFormData({ ...formData, midRail: e.target.value })}
                     className="w-full px-3 py-2.5 rounded-xl bg-white border border-[#E7E3DA] text-xs font-semibold text-[#0B192C] focus:outline-none focus:border-[#FF5500]"
                   >
-                    <option value="mid_tier1_us_sponsor">Tier-1 US MID</option>
+                    <option value="mid_tier1_inr_direct">Tier-1 INR Domestic MID</option>
                     <option value="mid_eu_uk_crossborder">EU/UK SEPA MID</option>
-                    <option value="mid_offshore_discrete">Offshore MID</option>
+                    <option value="mid_offshore_discrete">Offshore Multi-Currency MID</option>
                   </select>
                 </div>
               </div>

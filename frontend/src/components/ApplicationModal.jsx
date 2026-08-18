@@ -15,8 +15,8 @@ export default function ApplicationModal({ isOpen, onClose, initialParams }) {
     email: '',
     phone: '',
     website: '',
-    monthlyVolume: '$50,000 – $150,000',
-    industry: 'Nutraceutical',
+    monthlyVolume: '₹25 Lakhs – ₹1 Crore / mo',
+    industry: 'iGaming & Esports',
     needDisputeDefense: true,
     needRecurring: false
   });
@@ -160,11 +160,11 @@ export default function ApplicationModal({ isOpen, onClose, initialParams }) {
                     onChange={(e) => setFormData({ ...formData, monthlyVolume: e.target.value })}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-[#FCFBF8] hover:bg-white focus:bg-white border border-[#E7E3DA] text-xs sm:text-sm text-[#0B192C] focus:outline-none focus:border-[#FF5500] focus:ring-3 focus:ring-orange-500/10 transition-all shadow-xs cursor-pointer"
                   >
-                    <option>$10,000 – $50,000 / mo</option>
-                    <option>$50,000 – $150,000 / mo</option>
-                    <option>$150,000 – $500,000 / mo</option>
-                    <option>$500,000 – $2,000,000 / mo</option>
-                    <option>$2,000,000+ / mo (Enterprise Scale)</option>
+                    <option>₹5 Lakhs – ₹25 Lakhs / mo</option>
+                    <option>₹25 Lakhs – ₹1 Crore / mo</option>
+                    <option>₹1 Crore – ₹5 Crores / mo</option>
+                    <option>₹5 Crores – ₹20 Crores / mo</option>
+                    <option>₹20 Crores+ / mo (Enterprise Scale)</option>
                   </select>
                 </div>
 

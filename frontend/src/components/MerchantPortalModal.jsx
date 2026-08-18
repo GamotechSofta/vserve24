@@ -25,16 +25,16 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
   ];
 
   const midRails = [
-    { name: 'US Tier-1 Direct Sponsor MID #01', cap: '$1,500,000 / mo', utilized: '68%', status: 'Active (T+1 Daily)', health: 'Optimal' },
-    { name: 'US Domestic Secondary MID #02', cap: '$850,000 / mo', utilized: '44%', status: 'Active (Cascading)', health: 'Optimal' },
-    { name: 'EU / UK Cross-Border MID #03', cap: '€600,000 / mo', utilized: '52%', status: 'Active (SEPA / 3DS 2.2)', health: 'Optimal' },
+    { name: 'India Tier-1 Direct Sponsor MID #01', cap: '₹12.50 Cr / mo', utilized: '68%', status: 'Active (T+1 Daily)', health: 'Optimal' },
+    { name: 'Domestic High-Velocity Secondary MID #02', cap: '₹7.50 Cr / mo', utilized: '44%', status: 'Active (Cascading)', health: 'Optimal' },
+    { name: 'EU / UK Cross-Border SEPA MID #03', cap: '€600,000 / mo', utilized: '52%', status: 'Active (3DS 2.2)', health: 'Optimal' },
   ];
 
   const liveTransactions = [
-    { id: 'tx_884910', time: 'Just now', amount: '$189.50', card: 'Visa •••• 4012', vertical: 'Nutraceuticals', risk: 8, status: 'Approved (Sub-80ms)' },
-    { id: 'tx_884909', time: '12s ago', amount: '$340.00', card: 'Mastercard •••• 9241', vertical: 'SaaS Continuity', risk: 14, status: 'Approved (Tier-1 Rail)' },
-    { id: 'tx_884908', time: '28s ago', amount: '$75.00', card: 'AMEX •••• 1004', vertical: 'CBD Wellness', risk: 22, status: 'Cascaded & Approved' },
-    { id: 'tx_884907', time: '45s ago', amount: '$520.00', card: 'Visa •••• 8823', vertical: 'High-Ticket', risk: 11, status: '3DS 2.2 Frictionless' },
+    { id: 'tx_884910', time: 'Just now', amount: '₹18,950.00', card: 'Visa •••• 4012', vertical: 'iGaming & Esports', risk: 8, status: 'Approved (Sub-80ms)' },
+    { id: 'tx_884909', time: '12s ago', amount: '₹34,000.00', card: 'Mastercard •••• 9241', vertical: 'Forex & Crypto Trading', risk: 14, status: 'Approved (Tier-1 Rail)' },
+    { id: 'tx_884908', time: '28s ago', amount: '₹7,500.00', card: 'RuPay •••• 1004', vertical: 'Nutraceuticals', risk: 22, status: 'Cascaded & Approved' },
+    { id: 'tx_884907', time: '45s ago', amount: '₹52,000.00', card: 'Visa •••• 8823', vertical: 'High-Ticket B2B', risk: 11, status: '3DS 2.2 Frictionless' },
   ];
 
   return (
@@ -78,7 +78,7 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 my-6">
           <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1">
             <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Today's Volume</span>
-            <div className="text-2xl font-bold text-white">$459,000.00</div>
+            <div className="text-2xl font-bold text-white">₹3,45,80,000.00</div>
             <span className="text-xs text-emerald-400 flex items-center gap-1 font-semibold">
               <TrendingUp className="w-3 h-3" /> +14.2% vs yesterday
             </span>

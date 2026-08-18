@@ -6,8 +6,8 @@ import {
 } from 'lucide-react';
 
 export default function FeeCalculator({ onOpenApplication }) {
-  const [monthlyVolume, setMonthlyVolume] = useState(150000);
-  const [avgTicket, setAvgTicket] = useState(120);
+  const [monthlyVolume, setMonthlyVolume] = useState(2500000); // ₹25,00,000
+  const [avgTicket, setAvgTicket] = useState(3500); // ₹3,500
   const [industryTier, setIndustryTier] = useState('gaming');
   const [disputeDeflectionEnabled, setDisputeDeflectionEnabled] = useState(true);
 
@@ -27,16 +27,16 @@ export default function FeeCalculator({ onOpenApplication }) {
 
   const calculations = useMemo(() => {
     const txCount = Math.round(monthlyVolume / avgTicket);
-    const authLiftPercent = currentTier.vserveAuth - currentTier.baselineAuth; // e.g. 15%
+    const authLiftPercent = currentTier.vserveAuth - currentTier.baselineAuth; // e.g. 19%
     const salvagedVolume = Math.round(monthlyVolume * (authLiftPercent / 100));
     
     // Dispute savings calculation
     const estimatedDisputesWithoutRDR = Math.round(txCount * 0.012); // ~1.2% dispute rate
     const preventedChargebacks = disputeDeflectionEnabled ? Math.round(estimatedDisputesWithoutRDR * currentTier.disputeReduction) : 0;
-    const chargebackFeeSavings = preventedChargebacks * 45; // $45 avg bank dispute fee + operational loss
+    const chargebackFeeSavings = preventedChargebacks * 3500; // ₹3,500 avg bank dispute fee + operational loss
     
     // Processor fees
-    const estimatedProcessingFee = Math.round((monthlyVolume * (currentTier.rate / 100)) + (txCount * 0.25));
+    const estimatedProcessingFee = Math.round((monthlyVolume * (currentTier.rate / 100)) + (txCount * 15));
     const netPayout = monthlyVolume - estimatedProcessingFee;
     
     // Total monthly value generated
@@ -58,7 +58,7 @@ export default function FeeCalculator({ onOpenApplication }) {
   const handleApplyWithParams = () => {
     if (onOpenApplication) {
       onOpenApplication({
-        volume: `$${(monthlyVolume / 1000).toFixed(0)}k/mo`,
+        volume: `₹${(monthlyVolume / 100000).toFixed(0)} Lakhs/mo`,
         industry: currentTier.name
       });
     }
@@ -87,7 +87,7 @@ export default function FeeCalculator({ onOpenApplication }) {
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0B192C] tracking-tight leading-[1.08]">
-              Calculate your recovered revenue and net payouts.
+              Calculate your recovered revenue and net payouts in INR.
             </h2>
 
             <p className="text-[#475569] text-base lg:text-lg leading-relaxed">
@@ -98,7 +98,7 @@ export default function FeeCalculator({ onOpenApplication }) {
           <div className="flex items-center gap-3 self-start lg:self-auto text-xs text-[#707887]">
             <span className="flex items-center gap-1.5 text-[#FF5500] font-bold bg-orange-50 border border-orange-200 px-3.5 py-2 rounded-xl">
               <Calculator className="w-4 h-4 text-[#FF5500]" />
-              Real-Time Dynamic Estimator
+              Real-Time Dynamic Estimator (INR)
             </span>
           </div>
         </div>
@@ -123,7 +123,7 @@ export default function FeeCalculator({ onOpenApplication }) {
                   className="w-full px-4 py-3 rounded-xl bg-white border border-[#E7E3DA] text-sm font-semibold text-[#0B192C] focus:outline-none focus:border-[#FF5500] focus:ring-3 focus:ring-orange-500/10 shadow-xs cursor-pointer"
                 >
                   {Object.entries(tiers).map(([key, t]) => (
-                    <option key={key} value={key}>{t.name} (from {t.rate}% + $0.25)</option>
+                    <option key={key} value={key}>{t.name} (from {t.rate}% + ₹15/tx)</option>
                   ))}
                 </select>
               </div>
@@ -135,23 +135,23 @@ export default function FeeCalculator({ onOpenApplication }) {
                     2. Monthly Processing Volume
                   </label>
                   <span className="text-lg font-bold text-[#FF5500] bg-orange-50 border border-orange-200/80 px-3 py-1 rounded-xl">
-                    ${monthlyVolume.toLocaleString()} / mo
+                    ₹{monthlyVolume.toLocaleString('en-IN')} / mo
                   </span>
                 </div>
                 <input
                   type="range"
-                  min="20000"
-                  max="2000000"
-                  step="10000"
+                  min="200000"
+                  max="20000000"
+                  step="100000"
                   value={monthlyVolume}
                   onChange={(e) => setMonthlyVolume(Number(e.target.value))}
                   className="w-full h-2.5 bg-[#E7E3DA] rounded-lg appearance-none cursor-pointer accent-[#FF5500]"
                 />
                 <div className="flex justify-between text-[11px] text-[#707887] font-medium">
-                  <span>$20k</span>
-                  <span>$500k</span>
-                  <span>$1M</span>
-                  <span>$2M+</span>
+                  <span>₹2 Lakhs</span>
+                  <span>₹50 Lakhs</span>
+                  <span>₹1 Crore</span>
+                  <span>₹2 Crores+</span>
                 </div>
               </div>
 
@@ -162,23 +162,23 @@ export default function FeeCalculator({ onOpenApplication }) {
                     3. Average Order Value (Ticket Size)
                   </label>
                   <span className="text-base font-bold text-[#0B192C] bg-white border border-[#E7E3DA] px-3 py-1 rounded-xl">
-                    ${avgTicket} per order
+                    ₹{avgTicket.toLocaleString('en-IN')} per order
                   </span>
                 </div>
                 <input
                   type="range"
-                  min="15"
-                  max="1500"
-                  step="5"
+                  min="500"
+                  max="50000"
+                  step="250"
                   value={avgTicket}
                   onChange={(e) => setAvgTicket(Number(e.target.value))}
                   className="w-full h-2.5 bg-[#E7E3DA] rounded-lg appearance-none cursor-pointer accent-[#FF5500]"
                 />
                 <div className="flex justify-between text-[11px] text-[#707887] font-medium">
-                  <span>$15 (Micro)</span>
-                  <span>$250 (Mid-Ticket)</span>
-                  <span>$750 (High-Ticket)</span>
-                  <span>$1,500+</span>
+                  <span>₹500 (Micro)</span>
+                  <span>₹5,000 (Mid-Ticket)</span>
+                  <span>₹25,000 (High-Ticket)</span>
+                  <span>₹50,000+</span>
                 </div>
               </div>
 
@@ -187,7 +187,7 @@ export default function FeeCalculator({ onOpenApplication }) {
                 <div className="space-y-0.5">
                   <div className="text-xs font-bold text-[#0B192C] flex items-center gap-1.5">
                     <ShieldCheck className="w-4 h-4 text-[#10B981]" />
-                    <span>Ethoca & Verifi RDR Deflection</span>
+                    <span>Ethoca &amp; Verifi RDR Deflection</span>
                   </div>
                   <p className="text-[11px] text-[#707887]">
                     Intercept chargebacks before they register with card brands
@@ -210,7 +210,7 @@ export default function FeeCalculator({ onOpenApplication }) {
 
             {/* Bottom Volume Summary Badge */}
             <div className="pt-4 border-t border-[#E7E3DA] flex items-center justify-between text-xs text-[#707887]">
-              <span>Estimated Orders: <strong className="text-[#0B192C]">{calculations.txCount.toLocaleString()} / mo</strong></span>
+              <span>Estimated Orders: <strong className="text-[#0B192C]">{calculations.txCount.toLocaleString('en-IN')} / mo</strong></span>
               <span>Tier-1 Acquirer Rail: <strong className="text-[#10B981]">Dedicated MID</strong></span>
             </div>
 
@@ -240,10 +240,10 @@ export default function FeeCalculator({ onOpenApplication }) {
               {/* Big Highlighted Total Value */}
               <div>
                 <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
-                  Total Monthly Revenue Retained & Salvaged
+                  Total Monthly Revenue Retained &amp; Salvaged
                 </span>
                 <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#FF5500] mt-1 tracking-tight">
-                  +${calculations.totalMonthlyGain.toLocaleString()} <span className="text-sm font-normal text-slate-400">/ mo</span>
+                  +₹{calculations.totalMonthlyGain.toLocaleString('en-IN')} <span className="text-sm font-normal text-slate-400">/ mo</span>
                 </div>
                 <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
                   Combining decline salvage cascading with pre-dispute fee protection on direct acquiring rails.
@@ -260,7 +260,7 @@ export default function FeeCalculator({ onOpenApplication }) {
                     <TrendingUp className="w-3.5 h-3.5 text-[#10B981]" />
                   </div>
                   <div className="text-lg font-bold text-white">
-                    +${calculations.salvagedVolume.toLocaleString()}
+                    +₹{calculations.salvagedVolume.toLocaleString('en-IN')}
                   </div>
                   <div className="text-[11px] text-slate-500">
                     From {currentTier.baselineAuth}% → {currentTier.vserveAuth}% approval rate
@@ -274,7 +274,7 @@ export default function FeeCalculator({ onOpenApplication }) {
                     <ShieldCheck className="w-3.5 h-3.5 text-[#FF5500]" />
                   </div>
                   <div className="text-lg font-bold text-white">
-                    +${calculations.chargebackFeeSavings.toLocaleString()}
+                    +₹{calculations.chargebackFeeSavings.toLocaleString('en-IN')}
                   </div>
                   <div className="text-[11px] text-slate-500">
                     ~{calculations.preventedChargebacks} disputes auto-resolved
@@ -288,7 +288,7 @@ export default function FeeCalculator({ onOpenApplication }) {
                     <Percent className="w-3.5 h-3.5 text-slate-400" />
                   </div>
                   <div className="text-lg font-bold text-slate-200">
-                    ${calculations.estimatedProcessingFee.toLocaleString()}
+                    ₹{calculations.estimatedProcessingFee.toLocaleString('en-IN')}
                   </div>
                   <div className="text-[11px] text-slate-500">
                     Effective rate: {calculations.effectiveRate}% (no holdbacks)
@@ -302,7 +302,7 @@ export default function FeeCalculator({ onOpenApplication }) {
                     <Zap className="w-3.5 h-3.5 text-[#FF5500]" />
                   </div>
                   <div className="text-lg font-bold text-emerald-400">
-                    ${calculations.netPayout.toLocaleString()}
+                    ₹{calculations.netPayout.toLocaleString('en-IN')}
                   </div>
                   <div className="text-[11px] text-slate-500">
                     Direct batch to merchant bank
@@ -319,7 +319,7 @@ export default function FeeCalculator({ onOpenApplication }) {
                 onClick={handleApplyWithParams}
                 className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white font-bold text-xs sm:text-sm tracking-wide transition-all shadow-lg shadow-orange-500/30 hover:-translate-y-0.5 cursor-pointer"
               >
-                <span>Lock In This Rate & Apply for Dedicated MID</span>
+                <span>Lock In This Rate &amp; Apply for Dedicated MID</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               

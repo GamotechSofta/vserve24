@@ -20,19 +20,19 @@ export default function ChargebackCalculator({ onOpenApplication }) {
     // Protected Ratio after RDR Deflection
     const protectedRatio = (finalRegisteredDisputes / monthlyTxCount) * 100;
 
-    // Card Scheme Fines Estimate (Visa VFMP / Mastercard ECP triggers at 0.90% with $50-$100 fine/dispute + $5,000 monthly audit fines)
+    // Card Scheme Fines Estimate (Visa VFMP / Mastercard ECP triggers at 0.90% with ₹4,000-₹8,000 fine/dispute + ₹4,00,000 monthly audit fines)
     const isExceedingBaseline = baselineRatio >= 0.90;
     const isProtected = protectedRatio < 0.90;
     
     const baselineFineRisk = isExceedingBaseline 
-      ? (monthlyDisputes * 65) + 5000 
-      : (baselineRatio >= 0.65 ? monthlyDisputes * 25 : 0);
+      ? (monthlyDisputes * 5000) + 400000 
+      : (baselineRatio >= 0.65 ? monthlyDisputes * 2000 : 0);
 
     const protectedFineRisk = isProtected 
       ? 0 
-      : (finalRegisteredDisputes * 65);
+      : (finalRegisteredDisputes * 5000);
 
-    const totalMoneySaved = baselineFineRisk - protectedFineRisk + (deflectedCount * 45); // savings on fines + representment fees
+    const totalMoneySaved = baselineFineRisk - protectedFineRisk + (deflectedCount * 3500); // savings on fines + representment fees
 
     return {
       baselineRatio: baselineRatio.toFixed(2),
@@ -183,7 +183,7 @@ export default function ChargebackCalculator({ onOpenApplication }) {
                 <span className="font-extrabold text-rose-600">0.90% Limit</span>
               </div>
               <p className="text-[11px] text-[#707887]">
-                Exceeding 0.90% dispute ratio triggers $50/dispute scheme penalties, mandatory rolling reserves, and risk of MATCH/TMF listing.
+                Exceeding 0.90% dispute ratio triggers ₹4,000/dispute scheme penalties, mandatory rolling reserves, and risk of MATCH/TMF listing.
               </p>
             </div>
 
@@ -241,7 +241,7 @@ export default function ChargebackCalculator({ onOpenApplication }) {
                     {stats.protectedRatio}%
                   </div>
                   <div className="text-[11px] text-emerald-300 mt-1">
-                    ✓ Clean & Healthy MID Standing
+                    ✓ Clean &amp; Healthy MID Standing
                   </div>
                 </div>
 
@@ -256,7 +256,7 @@ export default function ChargebackCalculator({ onOpenApplication }) {
 
                 <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between text-xs">
                   <span className="text-slate-400">Card Brand Fine Avoidance / Month:</span>
-                  <span className="text-[#FF5500] font-bold">+${stats.totalMoneySaved.toLocaleString()} saved / mo</span>
+                  <span className="text-[#FF5500] font-bold">+₹{stats.totalMoneySaved.toLocaleString('en-IN')} saved / mo</span>
                 </div>
               </div>
 

@@ -184,7 +184,7 @@ export const vserveData = {
     { id: 'ind-8', name: 'Fantasy Sports', category: 'Digital', desc: 'Skill-based contests, league deposits, and high-frequency digital micropayments.' },
     { id: 'ind-9', name: 'High-Ticket Coaching', category: 'Specialized', desc: 'Consulting, masterminds, and professional executive courses with high order values.' },
     { id: 'ind-10', name: 'Jewelry', category: 'Retail', desc: 'Luxury diamonds, precious metals, and high-value physical goods e-commerce.' },
-    { id: 'ind-11', name: 'Large Ticket Accounts', category: 'Financial', desc: 'B2B enterprise transactions, commercial wholesale, and invoice settlements over $10K.' },
+    { id: 'ind-11', name: 'Large Ticket Accounts', category: 'Financial', desc: 'B2B enterprise transactions, commercial wholesale, and invoice settlements over ₹10 Lakhs.' },
     { id: 'ind-12', name: 'Lending', category: 'Financial', desc: 'Peer-to-peer lending platforms, installment loans, and consumer micro-finance.' },
     { id: 'ind-13', name: 'Moving & Transportation', category: 'Specialized', desc: 'Long-distance logistics, freight carriers, and scheduled deposit workflows.' },
     { id: 'ind-14', name: 'Multi-Level Marketing', category: 'Subscription', desc: 'Direct selling organizations with distributor commissions and recurring memberships.' },

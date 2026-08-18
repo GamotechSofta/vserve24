@@ -49,27 +49,27 @@ export default function UnderwriterChatDrawer({ onOpenApplication }) {
         badge: 'Priority Underwriting (< 24h)',
         highlights: ['Independent MID in your business name', 'Direct sponsor bank placement', 'Zero aggregator holdback'],
         actionText: 'Fast-Track Emergency MID',
-        actionPayload: { volume: '$150,000 – $500,000 / mo', industry: 'E-Commerce' }
+        actionPayload: { volume: '₹25 Lakhs – ₹1 Crore / mo', industry: 'E-Commerce' }
       }
     },
     {
       keywords: ['reserve', 'rolling reserve', 'holdback', 'escrow', 'deposit'],
-      response: 'Our rolling reserve policies are structured based on verified processing history:\n\n• Established Merchants (3+ months clean statements, < 0.8% dispute ratio): 0% Rolling Reserve on direct US/EU Tier-1 rails.\n• Fresh High-Risk Startups or Continuity Subscriptions: Standard 5% rolling reserve held for 90–180 days, which automatically steps down to 0% as your account demonstrates healthy settlement stability.\n• High-Ticket Masterminds ($1,000+ AOV): Custom capped reserve or milestone-based settlement release.',
+      response: 'Our rolling reserve policies are structured based on verified processing history:\n\n• Established Merchants (3+ months clean statements, < 0.8% dispute ratio): 0% Rolling Reserve on direct Tier-1 rails.\n• Fresh High-Risk Startups or Continuity Subscriptions: Standard 5% rolling reserve held for 90–180 days, which automatically steps down to 0% as your account demonstrates healthy settlement stability.\n• High-Ticket Masterminds (₹1,00,000+ AOV): Custom capped reserve or milestone-based settlement release.',
       card: {
         title: 'Reserve Optimization Assessment',
         badge: 'Transparent Risk Terms',
         highlights: ['0% Reserve available with clean history', 'Automated 90-day step-down review', 'Daily interest-bearing trust release'],
         actionText: 'Apply with Statements for 0% Reserve',
-        actionPayload: { volume: '$50,000 – $150,000 / mo' }
+        actionPayload: { volume: '₹10 Lakhs – ₹50 Lakhs / mo' }
       }
     },
     {
       keywords: ['cbd', 'hemp', 'delta', 'thc', 'cannabis', 'topical', 'gummies'],
-      response: 'Yes! We support 100% compliant CBD, Hemp wellness, and cannabinoid products (< 0.3% THC). Requirements for fast 24-hour approval:\n\n1. Full-Panel third-party Lab Certificate of Analysis (COA) for active SKUs.\n2. Valid corporate entity (US/EU/Canada).\n3. Clean checkout with age-gate verification (18+/21+).\n4. Ethoca & Verifi RDR enabled to defend subscription continuity orders.',
+      response: 'Yes! We support 100% compliant CBD, Hemp wellness, and cannabinoid products (< 0.3% THC). Requirements for fast 24-hour approval:\n\n1. Full-Panel third-party Lab Certificate of Analysis (COA) for active SKUs.\n2. Valid corporate entity.\n3. Clean checkout with age-gate verification (18+/21+).\n4. Ethoca & Verifi RDR enabled to defend subscription continuity orders.',
       card: {
         title: 'Dedicated CBD & Hemp Merchant Rail',
         badge: 'Approved MCC 5912/5999',
-        highlights: ['Tier-1 domestic bank placement', 'Interchange-Plus 2.95% + $0.25', 'Built-in COA batch verification'],
+        highlights: ['Tier-1 domestic bank placement', 'Interchange-Plus 2.95% + ₹15/tx', 'Built-in COA batch verification'],
         actionText: 'Apply for CBD Merchant ID',
         actionPayload: { industry: 'CBD & Hemp Wellness Products' }
       }
@@ -87,22 +87,22 @@ export default function UnderwriterChatDrawer({ onOpenApplication }) {
     },
     {
       keywords: ['payout', 'settle', 'settlement', 'funding', 'schedule', 'daily', 't+1', 'wire', 'batch'],
-      response: 'We support Direct Daily Batch Settlement:\n\n• Domestic US/Canada: T+1 Daily direct ACH deposit into your business bank account.\n• EU/UK: T+1 Daily SEPA / Faster Payments.\n• Cross-Border / Multi-Currency: Multi-currency daily batch with automated FX conversion in 135+ currencies or direct SWIFT wire.',
+      response: 'We support Direct Daily Batch Settlement:\n\n• Domestic INR Rails: T+1 Daily direct bank deposit via IMPS/NEFT/RTGS into your business current account.\n• Cross-Border / Multi-Currency: Multi-currency daily batch with automated FX conversion in 135+ currencies or direct SWIFT wire.',
       card: {
         title: 'Direct T+1 Daily Settlement Rails',
         badge: 'Daily Bank Deposit',
-        highlights: ['T+1 Daily batch payouts', 'Zero intermediate holding tanks', 'Multi-currency settlement (USD/EUR/GBP)'],
+        highlights: ['T+1 Daily batch payouts', 'Zero intermediate holding tanks', 'Direct INR bank settlement (IMPS/NEFT)'],
         actionText: 'Get T+1 Daily Processing',
-        actionPayload: { volume: '$150,000 – $500,000 / mo' }
+        actionPayload: { volume: '₹25 Lakhs – ₹1 Crore / mo' }
       }
     },
     {
       keywords: ['document', 'docs', 'requirement', 'kyc', 'kyb', 'paperwork', 'statement', 'apply'],
-      response: 'To guarantee a 24-hour underwriting decision, have the following 4 core items ready:\n\n1. Articles of Organization / Corporate Filing & Tax ID (EIN).\n2. Government ID (Passport or Driver\'s License) for 25%+ owners.\n3. Voided Business Check or Bank Letter matching legal entity.\n4. Last 3 Months Merchant Processing Statements (if currently processing). Fresh startups with no prior history can submit 3 months business bank statements instead.',
+      response: 'To guarantee a 24-hour underwriting decision, have the following 4 core items ready:\n\n1. Certificate of Incorporation / GST Registration & PAN.\n2. Government ID (Aadhaar / Passport / Director ID) for 25%+ owners.\n3. Cancelled Business Cheque or Bank Statement matching legal entity.\n4. Last 3 Months Merchant Processing Statements (if currently processing). Fresh startups with no prior history can submit 3 months business bank statements instead.',
       card: {
         title: '24-Hour Document Checklist',
         badge: 'Fast-Track Underwriting',
-        highlights: ['Articles of Incorporation + EIN', 'Government ID of Principal', 'Voided Check + 3 Months Statements'],
+        highlights: ['GST / Incorporation + PAN', 'Director KYC (Aadhaar / Passport)', 'Cancelled Cheque + 3 Months Statements'],
         actionText: 'Start 10-Min Application',
         actionPayload: {}
       }
@@ -118,8 +118,8 @@ Collect payment details with Vserve24 client-side tokenization (or iframe Hosted
 Send a POST request to 'https://api.vserve24.com/v1/charges' using axios or fetch with your Secret API Key:
 
 const response = await axios.post('https://api.vserve24.com/v1/charges', {
-  amount: 49.99,
-  currency: 'USD',
+  amount: 499900, // ₹4,999.00
+  currency: 'INR',
   token: req.body.token,
   customer: { email: user.email, name: user.name },
   routing: { priority: 'smart_cascade' }
@@ -157,18 +157,18 @@ Listen to POST /api/webhooks/vserve24 for instant automated 'charge.refunded', '
       card: {
         title: 'Ethoca & Verifi RDR Chargeback Shield',
         badge: 'Zero Dispute Registration',
-        highlights: ['Intercepts up to 90% of cardholder inquiries', 'Eliminates $50/dispute scheme fines', 'Safeguards MID longevity'],
+        highlights: ['Intercepts up to 90% of cardholder inquiries', 'Eliminates ₹4,000/dispute scheme fines', 'Safeguards MID longevity'],
         actionText: 'Activate Chargeback Shield',
         actionPayload: {}
       }
     },
     {
       keywords: ['rate', 'rates', 'fee', 'fees', 'pricing', 'cost', 'percentage', 'interchange', 'markup', 'interchange plus'],
-      response: 'We operate on transparent Interchange-Plus pricing with zero hidden aggregator surcharges:\n\n• Tier-1 Domestic High-Risk: 2.45% – 2.95% + $0.25/tx (Interchange-Plus)\n• Cross-Border / EU Rails: 2.25% – 2.85% + €0.20/tx\n• Setup Fee: $0 (Zero upfront setup fees)\n• Monthly Gateway Maintenance: $0 on qualified active volume\n• Pre-Dispute RDR Deflection: $0 gateway setup fee',
+      response: 'We operate on transparent Interchange-Plus pricing with zero hidden aggregator surcharges:\n\n• Domestic High-Risk (INR): 2.45% – 2.95% + ₹15/tx (Interchange-Plus)\n• Cross-Border / EU Rails: 2.25% – 2.85% + €0.20/tx\n• Setup Fee: ₹0 (Zero upfront setup fees)\n• Monthly Gateway Maintenance: ₹0 on qualified active volume\n• Pre-Dispute RDR Deflection: ₹0 gateway setup fee',
       card: {
         title: 'Interchange-Plus Transparent Rate',
         badge: 'Zero Setup Fees',
-        highlights: ['Direct acquiring pass-through', 'No predatory batch surcharges', 'Volume tier discounts over $250k/mo'],
+        highlights: ['Direct acquiring pass-through', 'No predatory batch surcharges', 'Volume tier discounts over ₹25 Lakhs/mo'],
         actionText: 'Lock In Your Interchange Rate',
         actionPayload: {}
       }
