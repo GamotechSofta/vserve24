@@ -78,17 +78,20 @@ export default function App() {
         {/* 06 — Payment Intelligence & Global Processing Pipeline */}
         <PaymentIntelligence onOpenApplication={() => handleOpenApplication()} />
 
-        {/* 07 — Merchant Knowledge Base & Decline Code Resources */}
-        <ResourcesSection onOpenApplication={() => handleOpenApplication()} />
+        {/* ── Desktop-Only Supplementary Knowledge & Reviews (Hidden on Mobile) ── */}
+        <div className="hidden md:block">
+          {/* 07 — Merchant Knowledge Base & Decline Code Resources */}
+          <ResourcesSection onOpenApplication={() => handleOpenApplication()} />
 
-        {/* 08 — Verified Merchant Testimonials Carousel */}
-        <Testimonials />
+          {/* 08 — Verified Merchant Testimonials Carousel */}
+          <Testimonials />
 
-        {/* 09 — Frequently Asked Questions Accordion */}
-        <FAQSection />
+          {/* 09 — Frequently Asked Questions Accordion */}
+          <FAQSection />
 
-        {/* 10 — Final High-Conversion Concluding CTA */}
-        <FinalCTA onOpenApplication={() => handleOpenApplication()} />
+          {/* 10 — Final High-Conversion Concluding CTA */}
+          <FinalCTA onOpenApplication={() => handleOpenApplication()} />
+        </div>
 
       </main>
 
