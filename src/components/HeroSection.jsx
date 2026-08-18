@@ -4,9 +4,13 @@ import {
   ShieldCheck, CheckCircle2, Zap, Gamepad2, TrendingUp, 
   ChevronLeft, ChevronRight, Sparkles 
 } from 'lucide-react';
-import banner01Img from '../assets/desktopbanner01.png';
-import banner02Img from '../assets/desktopbanner02.png';
-import banner03Img from '../assets/desktopbanner03.png';
+import banner01Mobile from '../assets/Banner01.png';
+import banner02Mobile from '../assets/Banner02.png';
+import banner03Mobile from '../assets/Banner03.png';
+
+import banner01Desktop from '../assets/desktopbanner01.png';
+import banner02Desktop from '../assets/desktopbanner02.png';
+import banner03Desktop from '../assets/desktopbanner03.png';
 
 /* ─── prefers-reduced-motion hook ───────────────────────────────── */
 function usePrefersReducedMotion() {
@@ -502,7 +506,8 @@ function PaymentNetwork({ reduced }) {
 const HERO_SLIDES = [
   {
     id: 'gaming',
-    image: banner01Img,
+    imageDesktop: banner01Desktop,
+    imageMobile: banner01Mobile,
     tag: '🎮 Gaming & Esports Payment Gateway',
     title: 'Gaming & Esports Payment Gateway — Dedicated High-Risk MIDs',
     shortLabel: 'Gaming & Esports',
@@ -512,7 +517,8 @@ const HERO_SLIDES = [
   },
   {
     id: 'trading',
-    image: banner02Img,
+    imageDesktop: banner02Desktop,
+    imageMobile: banner02Mobile,
     tag: '📈 Forex & Crypto Trading Rails',
     title: 'Forex & Crypto Trading Payment Gateway — Direct Bank Rails',
     shortLabel: 'Forex & Crypto',
@@ -522,7 +528,8 @@ const HERO_SLIDES = [
   },
   {
     id: 'defense',
-    image: banner03Img,
+    imageDesktop: banner03Desktop,
+    imageMobile: banner03Mobile,
     tag: '⚡ Smart Cascading & RDR Dispute Shield',
     title: 'Smart Acquirer Cascading & RDR Shield — Deflect 90% Chargebacks',
     shortLabel: 'Dispute & RDR Shield',
@@ -638,7 +645,7 @@ export default function HeroSection({ onOpenApplication }) {
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
-              className="relative w-full cursor-pointer overflow-hidden block h-[190px] sm:h-[245px] md:h-[285px] bg-slate-950 touch-pan-y"
+              className="relative w-full cursor-pointer overflow-hidden block aspect-[1.95/1] sm:aspect-auto sm:h-[245px] md:h-[285px] bg-slate-950 touch-pan-y"
               title="Click to apply or talk to an underwriting specialist"
             >
               {HERO_SLIDES.map((slide, idx) => (
@@ -648,11 +655,21 @@ export default function HeroSection({ onOpenApplication }) {
                     activeSlide === idx ? 'opacity-100 z-10 scale-100' : 'opacity-0 z-0 pointer-events-none scale-[1.006]'
                   }`}
                 >
+                  {/* Mobile Banner Image (Visible on Mobile only) */}
                   <img
-                    src={slide.image}
+                    src={slide.imageMobile}
                     alt={slide.title}
                     draggable="false"
-                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.012] pointer-events-none"
+                    className="sm:hidden w-full h-full object-cover object-center transition-transform duration-700 ease-out pointer-events-none"
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                  />
+
+                  {/* Desktop Banner Image (Visible on Tablet/Desktop only) */}
+                  <img
+                    src={slide.imageDesktop}
+                    alt={slide.title}
+                    draggable="false"
+                    className="hidden sm:block w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.012] pointer-events-none"
                     loading={idx === 0 ? 'eager' : 'lazy'}
                   />
                 </div>
