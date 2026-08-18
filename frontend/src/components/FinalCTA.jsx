@@ -28,23 +28,23 @@ export default function FinalCTA({ onOpenApplication }) {
         
         <div className="max-w-2xl mx-auto space-y-6">
           
-          <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFFFF] border border-[#D9D4C8] text-xs font-mono tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
+          <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFFFF] border border-[#D9D4C8] text-xs tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
             <span className="w-2 h-2 rounded-full bg-[#FF5500] animate-pulse" />
             <span>10 • Instant Intake Onboarding</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0B192C] tracking-tight leading-[1.1]">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#0B192C] tracking-tight leading-[1.1]">
             Ready to get started?
           </h2>
 
-          <p className="text-base sm:text-lg text-[#475569] leading-relaxed max-w-xl mx-auto">
-            Let our team build a payment solution that works for your high-risk business.
+          <p className="text-sm sm:text-lg text-[#475569] leading-relaxed max-w-xl mx-auto">
+            Let our team build a direct acquiring payment solution tailored for your high-risk business.
           </p>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
               onClick={onOpenApplication}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white font-bold text-sm font-mono tracking-wide transition-all shadow-xl shadow-orange-500/25 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white font-bold text-sm tracking-wide transition-all shadow-xl shadow-orange-500/25 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
               <span>Get Started</span>
               <ArrowRight className="w-4 h-4" />
@@ -52,21 +52,21 @@ export default function FinalCTA({ onOpenApplication }) {
 
             <button
               onClick={onOpenApplication}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#FFFFFF] hover:bg-[#F7F4ED] border border-[#D9D4C8] text-[#0B192C] font-semibold text-sm font-mono tracking-wide transition-colors cursor-pointer shadow-xs"
+              className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#FFFFFF] hover:bg-[#F7F4ED] border border-[#D9D4C8] text-[#0B192C] font-semibold text-sm tracking-wide transition-colors cursor-pointer shadow-xs"
             >
               Talk to an Expert
             </button>
           </div>
 
           {/* Underwriting Guarantee Strip */}
-          <div className="pt-8 border-t border-[#D9D4C8] flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-[#707887]">
-            <div className="flex items-center gap-1.5">
+          <div className="pt-8 border-t border-[#D9D4C8] flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-[#707887]">
+            <div className="flex items-center gap-1.5 font-medium">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#FF5500]" />
-              <span className="text-[#0B192C]">No Setup Fees</span>
+              <span className="text-[#0B192C] font-semibold">No Setup Fees</span>
             </div>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 font-medium">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#FF5500]" />
-              <span className="text-[#0B192C]">Daily Batch Payouts</span>
+              <span className="text-[#0B192C] font-semibold">Daily Batch Payouts</span>
             </div>
             <div className="flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#FF5500]" />
