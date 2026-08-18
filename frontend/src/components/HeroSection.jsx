@@ -508,6 +508,7 @@ const HERO_SLIDES = [
     shortLabel: 'Gaming & Esports',
     ctaText: 'Get Gaming MIDs',
     accentColor: '#FF5500',
+    borderGlow: 'border-orange-500/40 shadow-orange-500/10 ring-1 ring-orange-500/20',
   },
   {
     id: 'trading',
@@ -517,6 +518,7 @@ const HERO_SLIDES = [
     shortLabel: 'Forex & Crypto',
     ctaText: 'Get Trading Rails',
     accentColor: '#0284C7',
+    borderGlow: 'border-cyan-500/40 shadow-cyan-500/10 ring-1 ring-cyan-500/20',
   },
   {
     id: 'defense',
@@ -526,6 +528,7 @@ const HERO_SLIDES = [
     shortLabel: 'Dispute & RDR Shield',
     ctaText: 'Protect Your Business',
     accentColor: '#10B981',
+    borderGlow: 'border-emerald-500/40 shadow-emerald-500/10 ring-1 ring-emerald-500/20',
   }
 ];
 
@@ -628,7 +631,7 @@ export default function HeroSection({ onOpenApplication }) {
           className="w-full pt-3 sm:pt-4 pb-2 relative z-20"
         >
           {/* Banner Outer Card */}
-          <div className="relative group overflow-hidden rounded-2xl sm:rounded-3xl border border-[#E7E3DA] bg-white shadow-lg shadow-slate-900/5 transition-all duration-300 select-none">
+          <div className={`relative group overflow-hidden rounded-2xl sm:rounded-3xl border ${currentSlide.borderGlow || 'border-orange-500/40'} bg-white shadow-xl transition-all duration-500 select-none`}>
             {/* Clickable Banner Canvas with Touch Swipe */}
             <div 
               onClick={handleBannerClick}
