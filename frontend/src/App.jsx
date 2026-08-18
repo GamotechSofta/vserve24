@@ -4,7 +4,6 @@ import HeroSection from './components/HeroSection';
 import MerchantPositioning from './components/MerchantPositioning';
 import Capabilities from './components/Capabilities';
 import FeeCalculator from './components/FeeCalculator';
-import DeclineCodeLookup from './components/DeclineCodeLookup';
 import ServicesSection from './components/ServicesSection';
 import IndustriesSection from './components/IndustriesSection';
 import VirtualTerminalDemo from './components/VirtualTerminalDemo';
@@ -67,9 +66,6 @@ export default function App() {
 
         {/* [TOOL 1] — Interactive Interchange & Revenue Recovery Calculator */}
         <FeeCalculator onOpenApplication={handleOpenApplication} />
-
-        {/* [TOOL 2] — Decline Code Translator & Bank Salvage Intelligence Engine */}
-        <DeclineCodeLookup onOpenApplication={() => handleOpenApplication()} />
 
         {/* 04 — Core Payment Services: 6 Dynamic Service Interactive Systems */}
         <ServicesSection onOpenApplication={() => handleOpenApplication()} />
