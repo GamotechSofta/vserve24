@@ -76,20 +76,20 @@ export default function MerchantPositioning({ onOpenApplication }) {
         }}
       />
 
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Top Header */}
-        <div className="max-w-3xl mb-8 sm:mb-12 space-y-2.5 sm:space-y-3">
-          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[11px] tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
+        <div className="max-w-3xl mb-7 sm:mb-10 space-y-2 sm:space-y-2.5">
+          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[10.5px] tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500] animate-pulse" />
             <span>02 • Merchant Positioning</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-bold text-[#0B192C] tracking-tight leading-[1.12]">
+          <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-bold text-[#0B192C] tracking-tight leading-[1.14]">
             Built for merchants traditional processors <span className="text-[#FF5500]">reject.</span>
           </h2>
 
-          <p className="text-[#475569] text-sm sm:text-base lg:text-lg leading-relaxed">
+          <p className="text-[#475569] text-xs sm:text-sm lg:text-[15px] leading-relaxed">
             High-risk merchant infrastructure designed with direct acquirer routing, subscription continuity, and automated pre-dispute defense.
           </p>
         </div>

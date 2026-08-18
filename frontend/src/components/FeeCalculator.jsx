@@ -76,21 +76,21 @@ export default function FeeCalculator({ onOpenApplication }) {
         }}
       />
 
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Top Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 lg:mb-16">
-          <div className="max-w-2xl space-y-3">
-            <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200/80 text-xs tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8 lg:mb-12">
+          <div className="max-w-2xl space-y-2.5">
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[10.5px] tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
               <span className="w-2 h-2 rounded-full bg-[#FF5500] animate-pulse" />
-              <span>Interactive ROI & Interchange Tool</span>
+              <span>Interactive ROI &amp; Interchange Tool</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0B192C] tracking-tight leading-[1.08]">
+            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-bold text-[#0B192C] tracking-tight leading-[1.12]">
               Calculate your recovered revenue and net payouts in INR.
             </h2>
 
-            <p className="text-[#475569] text-base lg:text-lg leading-relaxed">
+            <p className="text-[#475569] text-xs sm:text-sm lg:text-[15px] leading-relaxed">
               Estimate authorization rate improvements, salvaged bank declines, and pre-dispute savings tailored to your exact merchant volume.
             </p>
           </div>

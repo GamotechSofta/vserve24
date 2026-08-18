@@ -165,21 +165,21 @@ export default function ServicesSection({ onOpenApplication }) {
         }}
       />
 
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Top Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
-          <div className="max-w-2xl space-y-2.5 sm:space-y-3">
-            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[11px] tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-5 mb-7 sm:mb-10">
+          <div className="max-w-2xl space-y-2 sm:space-y-2.5">
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[10.5px] tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500] animate-pulse" />
               <span>05 • Core Payment Services</span>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-bold text-[#0B192C] tracking-tight leading-[1.12]">
+            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-bold text-[#0B192C] tracking-tight leading-[1.14]">
               Payment infrastructure built around <span className="text-[#FF5500]">your business.</span>
             </h2>
 
-            <p className="text-[#475569] text-sm sm:text-base lg:text-lg leading-relaxed">
+            <p className="text-[#475569] text-xs sm:text-sm lg:text-[15px] leading-relaxed">
               Select any payment service below to understand how it works and how it protects your revenue.
             </p>
           </div>

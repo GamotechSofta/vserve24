@@ -527,19 +527,18 @@ export default function HeroSection({ onOpenApplication }) {
       />
 
       {/* ════ WIDE CONTAINER ══════════════════════════════════════
-          max-width: 1560px
-          Single Frame Viewport Layout
+          max-width: 1400px (Golden Proportion Layout)
       ═══════════════════════════════════════════════════════════ */}
       <div
-        className="px-5 sm:px-10 lg:px-14 relative z-10 w-full flex-1 flex flex-col justify-between"
-        style={{ maxWidth: '1560px', margin: '0 auto' }}
+        className="px-4 sm:px-8 lg:px-12 relative z-10 w-full flex-1 flex flex-col justify-between"
+        style={{ maxWidth: '1400px', margin: '0 auto' }}
       >
 
         {/* ════ HERO MAIN GRID ═══════════════════════════════════ */}
         <div
-          className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)] items-center flex-1 py-6 sm:py-8 lg:py-10"
+          className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)] items-center flex-1 py-4 sm:py-6 lg:py-8"
           style={{
-            columnGap: 'clamp(32px, 3.8vw, 64px)',
+            columnGap: 'clamp(24px, 3vw, 48px)',
           }}
         >
 
@@ -554,27 +553,27 @@ export default function HeroSection({ onOpenApplication }) {
           >
             {/* Eyebrow with refined pill (Hidden on Mobile View) */}
             <div
-              className="hidden sm:inline-flex items-center gap-1.5 sm:gap-2 bg-orange-50/90 border border-orange-200/80 px-3.5 py-1.5 rounded-full shadow-xs backdrop-blur-sm mb-4 sm:mb-5"
+              className="hidden sm:inline-flex items-center gap-1.5 sm:gap-2 bg-orange-50/90 border border-orange-200/80 px-3 py-1 rounded-full shadow-xs backdrop-blur-sm mb-3 sm:mb-4"
             >
               <span className="w-2 h-2 rounded-full bg-[#FF5500] shrink-0 animate-pulse" />
-              <span className="text-[10px] sm:text-[11px] font-bold tracking-wider uppercase text-slate-800">
+              <span className="text-[10px] sm:text-[10.5px] font-bold tracking-wider uppercase text-slate-800">
                 🎮 Gaming &amp; 📈 Trading Direct Payment Gateway <span className="text-orange-300 font-light mx-1">•</span> 24h MIDs
               </span>
             </div>
 
-            {/* ── HEADLINE ── */}
+            {/* ── HEADLINE (Proportioned for crisp 100% Zoom) ── */}
             <h1
               style={{
                 fontFamily: "'Plus Jakarta Sans', sans-serif",
-                fontSize: 'clamp(28px, 5.8vw, 64px)',
+                fontSize: 'clamp(26px, 3.6vw, 48px)',
                 fontWeight: 750,
-                letterSpacing: '-0.026em',
-                lineHeight: 1.08,
+                letterSpacing: '-0.024em',
+                lineHeight: 1.12,
                 color: '#0B192C',
                 hyphens: 'none',
                 overflowWrap: 'normal',
                 wordBreak: 'keep-all',
-                marginBottom: 'clamp(14px, 2vh, 20px)',
+                marginBottom: 'clamp(12px, 1.5vh, 16px)',
               }}
             >
               <span className="lg:block lg:whitespace-nowrap">
@@ -596,38 +595,38 @@ export default function HeroSection({ onOpenApplication }) {
             {/* Description */}
             <p
               style={{
-                fontSize: 'clamp(14px, 1.1vw, 17px)',
+                fontSize: 'clamp(13.5px, 0.95vw, 15.5px)',
                 color: '#475569',
-                lineHeight: 1.6,
-                maxWidth: '620px',
+                lineHeight: 1.58,
+                maxWidth: '560px',
                 fontWeight: 400,
-                marginBottom: 'clamp(16px, 2vh, 22px)',
+                marginBottom: 'clamp(14px, 1.6vh, 18px)',
               }}
             >
               Dedicated Tier-1 merchant accounts for <strong>iGaming, Esports, Forex &amp; Crypto Trading</strong> platforms. Process instant high-volume player deposits &amp; trader payouts with sub-80ms authorization, zero aggregator freezes, and automated dispute defense.
             </p>
 
             {/* Quick Industry Feature Badges */}
-            <div className="flex flex-wrap items-center gap-2 mb-6 sm:mb-7">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#FCFBF8] border border-[#E7E3DA] text-xs font-semibold text-[#0B192C] shadow-2xs">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-5 sm:mb-6">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FCFBF8] border border-[#E7E3DA] text-[11.5px] font-semibold text-[#0B192C] shadow-2xs">
                 <span>🎮</span> iGaming &amp; Esports MIDs
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#FCFBF8] border border-[#E7E3DA] text-xs font-semibold text-[#0B192C] shadow-2xs">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FCFBF8] border border-[#E7E3DA] text-[11.5px] font-semibold text-[#0B192C] shadow-2xs">
                 <span>📈</span> Forex &amp; Crypto Trading Rails
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-xs font-bold text-[#10B981]">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-[11.5px] font-bold text-[#10B981]">
                 <span>⚡</span> Sub-80ms Live Deposits
               </span>
             </div>
 
             {/* CTA Buttons - Full Width on Mobile */}
             <div
-              className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6 sm:mb-7"
+              className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 mb-5 sm:mb-6"
             >
               {/* Primary — Brand Electric Orange */}
               <button
                 onClick={onOpenApplication}
-                className="group relative overflow-hidden flex items-center justify-center gap-2 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md shadow-orange-500/25 py-3.5 px-6 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white font-bold text-sm tracking-wide"
+                className="group relative overflow-hidden flex items-center justify-center gap-2 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md shadow-orange-500/25 py-3 px-5.5 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white font-bold text-xs sm:text-sm tracking-wide"
               >
                 <span>Get Gaming / Trading MID</span>
                 <ArrowRight
@@ -639,7 +638,7 @@ export default function HeroSection({ onOpenApplication }) {
               {/* Secondary — Deep Navy Outline */}
               <button
                 onClick={onOpenApplication}
-                className="cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 py-3.5 px-6 rounded-xl bg-white hover:bg-[#F7F4ED] text-[#0B192C] font-semibold text-sm tracking-wide border border-[#E7E3DA] text-center shadow-xs"
+                className="cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 py-3 px-5 rounded-xl bg-white hover:bg-[#F7F4ED] text-[#0B192C] font-semibold text-xs sm:text-sm tracking-wide border border-[#E7E3DA] text-center shadow-xs"
               >
                 Talk to Underwriting Specialist
               </button>
@@ -693,9 +692,9 @@ export default function HeroSection({ onOpenApplication }) {
 
           {/* ══ RIGHT COLUMN — Payment Intelligence Network ════ */}
           <div
-            className="mt-8 lg:mt-0 bg-[#FFFFFF] border border-[#E7E3DA] rounded-3xl p-4 sm:p-6 shadow-sm relative"
+            className="mt-6 lg:mt-0 bg-[#FFFFFF] border border-[#E7E3DA] rounded-3xl p-3.5 sm:p-5 shadow-sm relative"
             style={{
-              minHeight: 'clamp(280px, 35vw, 460px)',
+              minHeight: 'clamp(280px, 32vw, 420px)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
