@@ -534,14 +534,51 @@ export default function HeroSection({ onOpenApplication }) {
   const reduced = usePrefersReducedMotion();
   const [activeSlide, setActiveSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const [isSwiping, setIsSwiping] = useState(false);
 
+  // Auto-scroll banners every 5s (pauses on desktop hover)
   useEffect(() => {
     if (isHovered) return;
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 5500);
+    }, 5000);
     return () => clearInterval(timer);
-  }, [isHovered]);
+  }, [isHovered, activeSlide]);
+
+  // Mobile Hand Swipe Gestures
+  const handleTouchStart = (e) => {
+    setIsSwiping(false);
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+    if (touchStart && Math.abs(touchStart - e.targetTouches[0].clientX) > 10) {
+      setIsSwiping(true);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > 35) {
+      // Swipe left ➡️ Next Slide
+      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    } else if (distance < -35) {
+      // Swipe right ⬅️ Previous Slide
+      setActiveSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1));
+    }
+    setTimeout(() => setIsSwiping(false), 80);
+  };
+
+  const handleBannerClick = () => {
+    if (!isSwiping && onOpenApplication) {
+      onOpenApplication();
+    }
+  };
 
   const currentSlide = HERO_SLIDES[activeSlide];
 
@@ -591,11 +628,14 @@ export default function HeroSection({ onOpenApplication }) {
           className="w-full pt-3 sm:pt-4 pb-2 relative z-20"
         >
           {/* Banner Outer Card */}
-          <div className="relative group overflow-hidden rounded-2xl sm:rounded-3xl border border-[#E7E3DA] bg-white shadow-lg shadow-slate-900/5 transition-all duration-300">
-            {/* Clickable Banner Canvas (Enhanced Medium Height) */}
+          <div className="relative group overflow-hidden rounded-2xl sm:rounded-3xl border border-[#E7E3DA] bg-white shadow-lg shadow-slate-900/5 transition-all duration-300 select-none">
+            {/* Clickable Banner Canvas with Touch Swipe */}
             <div 
-              onClick={() => onOpenApplication && onOpenApplication()}
-              className="relative w-full cursor-pointer overflow-hidden block h-[190px] sm:h-[245px] md:h-[285px] bg-slate-950"
+              onClick={handleBannerClick}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              className="relative w-full cursor-pointer overflow-hidden block h-[190px] sm:h-[245px] md:h-[285px] bg-slate-950 touch-pan-y"
               title="Click to apply or talk to an underwriting specialist"
             >
               {HERO_SLIDES.map((slide, idx) => (
@@ -608,44 +648,45 @@ export default function HeroSection({ onOpenApplication }) {
                   <img
                     src={slide.image}
                     alt={slide.title}
-                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.012]"
+                    draggable="false"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.012] pointer-events-none"
                     loading={idx === 0 ? 'eager' : 'lazy'}
                   />
                 </div>
               ))}
 
-              {/* Subtle Gradient Bottom Vignette */}
-              <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/45 via-black/15 to-transparent pointer-events-none z-15" />
+              {/* Subtle Gradient Bottom Vignette (Desktop only) */}
+              <div className="hidden sm:block absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/45 via-black/15 to-transparent pointer-events-none z-15" />
             </div>
 
-            {/* Left Chevron Button */}
+            {/* Left Chevron Button (Desktop only - Hidden on Mobile) */}
             <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 setActiveSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1));
               }}
-              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/45 hover:bg-[#FF5500] text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg cursor-pointer opacity-85 group-hover:opacity-100"
+              className="hidden sm:flex absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/45 hover:bg-[#FF5500] text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg cursor-pointer opacity-85 group-hover:opacity-100"
               aria-label="Previous banner slide"
             >
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
-            {/* Right Chevron Button */}
+            {/* Right Chevron Button (Desktop only - Hidden on Mobile) */}
             <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
               }}
-              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/45 hover:bg-[#FF5500] text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg cursor-pointer opacity-85 group-hover:opacity-100"
+              className="hidden sm:flex absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/45 hover:bg-[#FF5500] text-white backdrop-blur-md border border-white/20 items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg cursor-pointer opacity-85 group-hover:opacity-100"
               aria-label="Next banner slide"
             >
-              <ChevronRight className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
-            {/* Bottom Floating Selector Pills */}
-            <div className="absolute bottom-2 sm:bottom-3.5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-black/55 backdrop-blur-md border border-white/15 shadow-md">
+            {/* Bottom Floating Selector Pills (Desktop only - Hidden on Mobile) */}
+            <div className="hidden sm:flex absolute bottom-2 sm:bottom-3.5 left-1/2 -translate-x-1/2 z-20 items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-black/55 backdrop-blur-md border border-white/15 shadow-md">
               {HERO_SLIDES.map((slide, idx) => (
                 <button
                   key={slide.id}
@@ -668,7 +709,7 @@ export default function HeroSection({ onOpenApplication }) {
               ))}
             </div>
 
-            {/* Top-Right Badge: Live Carousel Tracker */}
+            {/* Top-Right Badge: Live Carousel Tracker (Desktop only) */}
             <div className="absolute top-2.5 right-3 z-20 hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/15 text-[10px] text-white/90 font-medium tracking-wide">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>{activeSlide + 1} / {HERO_SLIDES.length}</span>
