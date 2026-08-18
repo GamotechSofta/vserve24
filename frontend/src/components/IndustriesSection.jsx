@@ -140,8 +140,8 @@ export default function IndustriesSection({ onOpenApplication }) {
             </p>
           </div>
 
-          {/* Interactive Layout View Switcher (Desktop/Tablet Only) */}
-          <div className="hidden sm:flex items-center gap-1.5 p-1.5 rounded-2xl bg-[#FFFFFF] border border-[#E7E3DA] shadow-xs overflow-x-auto scrollbar-none w-full sm:w-auto self-start lg:self-auto">
+          {/* Interactive Layout View Switcher */}
+          <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-[#FFFFFF] border border-[#E7E3DA] shadow-xs overflow-x-auto scrollbar-none w-full sm:w-auto self-start lg:self-auto">
             <button
               onClick={() => setViewMode('circular')}
               className={`flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
@@ -180,8 +180,8 @@ export default function IndustriesSection({ onOpenApplication }) {
           </div>
         </div>
 
-        {/* Filter Controls & Search (Desktop/Tablet Only) */}
-        <div className="hidden sm:flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mb-8 pb-5 border-b border-[#E7E3DA]">
+        {/* Filter Controls & Search */}
+        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 mb-8 pb-5 border-b border-[#E7E3DA]">
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
             {categories.map((cat) => (
               <button
@@ -277,7 +277,7 @@ export default function IndustriesSection({ onOpenApplication }) {
                 </div>
               </div>
 
-              {/* LEFT: Central Live Underwriting Inspector (Full width on mobile, 5 cols on desktop) */}
+              {/* Central Live Underwriting Inspector (Left 5 cols on desktop, full width on mobile) */}
               <div className="w-full lg:col-span-5 space-y-5 bg-[#F7F4ED] border border-[#E7E3DA] p-5 sm:p-7 rounded-3xl relative shadow-md">
                 
                 {/* 3D Visual Header for Active Vertical with Smooth Crossfade */}
@@ -351,11 +351,12 @@ export default function IndustriesSection({ onOpenApplication }) {
 
               </div>
 
-              {/* DESKTOP ONLY RIGHT: Circular 360° Orbital Galaxy of 24 High-Risk Nodes (7 cols) */}
+              {/* 360° Circular Orbital Galaxy of 24 High-Risk Nodes (Active on Mobile and Desktop) */}
               <div 
-                className="hidden lg:flex lg:col-span-7 relative items-center justify-center min-h-[560px] select-none origin-center my-0"
+                className="w-full lg:col-span-7 relative flex items-center justify-center min-h-[420px] sm:min-h-[520px] lg:min-h-[580px] select-none scale-[0.68] xs:scale-[0.78] sm:scale-90 lg:scale-100 origin-center my-4 lg:my-0 overflow-visible"
                 onMouseEnter={() => setIsRotating(false)}
                 onMouseLeave={() => setIsRotating(true)}
+                onTouchStart={() => setIsRotating(false)}
               >
                 {/* Radar Sweep Effect */}
                 <div 
@@ -397,23 +398,29 @@ export default function IndustriesSection({ onOpenApplication }) {
                     <div
                       key={ind.id}
                       onMouseEnter={() => setActiveHoverId(ind.id)}
-                      onClick={() => setActiveModalIndustry(ind)}
+                      onClick={() => {
+                        setActiveHoverId(ind.id);
+                        setActiveModalIndustry(ind);
+                      }}
+                      onTouchEnd={() => {
+                        setActiveHoverId(ind.id);
+                      }}
                       style={{
                         transform: `translate(${x}px, ${y}px)`,
                         transition: 'transform 0.1s linear'
                       }}
                       className="absolute z-30 group cursor-pointer flex items-center justify-center"
                     >
-                      <div className={`p-2.5 rounded-2xl border transition-all duration-300 flex items-center gap-2 shadow-md ${
+                      <div className={`p-2 sm:p-2.5 rounded-2xl border transition-all duration-300 flex items-center gap-1.5 sm:gap-2 shadow-md ${
                         isActive
                           ? 'bg-[#0B192C] text-white border-[#FF5500] scale-125 shadow-2xl shadow-orange-500/30 z-40'
                           : 'bg-[#FFFFFF] text-[#0B192C] border-[#E7E3DA] hover:border-[#FF5500] hover:scale-115'
                       }`}>
-                        <div className={`w-7 h-7 rounded-lg ${isActive ? 'bg-[#FF5500] text-white' : config.bg} flex items-center justify-center shadow-xs`}>
-                          <Icon className="w-3.5 h-3.5" style={{ color: isActive ? '#FFFFFF' : config.color }} />
+                        <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg ${isActive ? 'bg-[#FF5500] text-white' : config.bg} flex items-center justify-center shadow-xs shrink-0`}>
+                          <Icon className="w-3 sm:w-3.5 h-3 sm:h-3.5" style={{ color: isActive ? '#FFFFFF' : config.color }} />
                         </div>
                         
-                        <span className="text-[10px] font-bold whitespace-nowrap pr-1">
+                        <span className="text-[9.5px] sm:text-[10px] font-bold whitespace-nowrap pr-1">
                           {ind.name}
                         </span>
                       </div>
