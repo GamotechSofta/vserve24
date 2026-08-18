@@ -38,15 +38,9 @@ export default function Navbar({ onOpenApplication, onOpenPortal }) {
       items: [
         { name: 'Fee & ROI Calculator', desc: 'Estimate recovered revenue & rates', href: '#calculator', icon: TrendingUp },
         { name: 'Decline Code Translator', desc: 'Diagnose bank responses & salvage rules', href: '#decline-lookup', icon: Cpu },
-        { name: 'Chargeback Safety Tool', desc: 'Model 0.90% fine threshold & RDR', href: '#chargeback-calculator', icon: ShieldAlert },
-        { name: 'Underwriting Compliance', desc: 'Industry document prerequisites', href: '#doc-checker', icon: ShieldCheck },
         { name: 'MOTO Virtual Terminal', desc: 'Test telephone & invoice payments', href: '#virtual-terminal', icon: CreditCard },
+        { name: 'Developer REST API', desc: 'Sandbox sandbox & webhook tester', href: '#api', icon: Network },
       ]
-    },
-    {
-      label: 'Eligibility',
-      href: '#eligibility',
-      hasDropdown: false
     },
     {
       label: 'Industries',

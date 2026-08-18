@@ -5,10 +5,6 @@ import MerchantPositioning from './components/MerchantPositioning';
 import Capabilities from './components/Capabilities';
 import FeeCalculator from './components/FeeCalculator';
 import DeclineCodeLookup from './components/DeclineCodeLookup';
-import ChargebackCalculator from './components/ChargebackCalculator';
-import IndustryDocChecker from './components/IndustryDocChecker';
-import UnderwritingEligibility from './components/UnderwritingEligibility';
-import OnboardingFlow from './components/OnboardingFlow';
 import ServicesSection from './components/ServicesSection';
 import IndustriesSection from './components/IndustriesSection';
 import VirtualTerminalDemo from './components/VirtualTerminalDemo';
@@ -75,48 +71,36 @@ export default function App() {
         {/* [TOOL 2] — Decline Code Translator & Bank Salvage Intelligence Engine */}
         <DeclineCodeLookup onOpenApplication={() => handleOpenApplication()} />
 
-        {/* [TOOL 3] — Chargeback Ratio & Card Scheme Fine Safety Calculator */}
-        <ChargebackCalculator onOpenApplication={() => handleOpenApplication()} />
-
-        {/* [TOOL 4] — Industry Underwriting & Compliance Document Inspector */}
-        <IndustryDocChecker onOpenApplication={handleOpenApplication} />
-
-        {/* [TOOL 5] — Instant 60-Second Underwriting Eligibility Diagnostic */}
-        <UnderwritingEligibility onOpenApplication={handleOpenApplication} />
-
-        {/* 04 — How Onboarding Works: 3-Step Interactive Connected Timeline */}
-        <OnboardingFlow onOpenApplication={() => handleOpenApplication()} />
-
-        {/* 05 — Core Payment Services: 6 Dynamic Service Interactive Systems */}
+        {/* 04 — Core Payment Services: 6 Dynamic Service Interactive Systems */}
         <ServicesSection onOpenApplication={() => handleOpenApplication()} />
 
-        {/* 06 — High-Risk Industries: 24 Specialized Merchant Directory with 3D Orbit Radar */}
+        {/* 05 — High-Risk Industries: 24 Specialized Merchant Directory with 3D Orbit Radar */}
         <IndustriesSection onOpenApplication={() => handleOpenApplication()} />
 
-        {/* [TOOL 6] — Interactive MOTO Virtual Terminal Simulator */}
+        {/* [TOOL 3] — Interactive MOTO Virtual Terminal Simulator */}
         <VirtualTerminalDemo onOpenApplication={() => handleOpenApplication()} />
 
-        {/* [TOOL 7] — Developer REST API Sandbox & Real-Time Test Request Playground */}
+        {/* [TOOL 4] — Developer REST API Sandbox & Real-Time Test Request Playground */}
         <ApiPlayground onOpenApplication={() => handleOpenApplication()} />
 
-        {/* 07 — Payment Intelligence & Global Processing Pipeline */}
+        {/* 06 — Payment Intelligence & Global Processing Pipeline */}
         <PaymentIntelligence onOpenApplication={() => handleOpenApplication()} />
 
-        {/* 08 — Merchant Knowledge Base & Decline Code Resources */}
+        {/* 07 — Merchant Knowledge Base & Decline Code Resources */}
         <ResourcesSection onOpenApplication={() => handleOpenApplication()} />
 
-        {/* 09 — Verified Merchant Testimonials Carousel */}
+        {/* 08 — Verified Merchant Testimonials Carousel */}
         <Testimonials />
 
-        {/* 10 — Frequently Asked Questions Accordion */}
+        {/* 09 — Frequently Asked Questions Accordion */}
         <FAQSection />
 
-        {/* 11 — Final High-Conversion Concluding CTA */}
+        {/* 10 — Final High-Conversion Concluding CTA */}
         <FinalCTA onOpenApplication={() => handleOpenApplication()} />
 
       </main>
 
-      {/* 12 — Enterprise Financial Infrastructure Footer */}
+      {/* 11 — Enterprise Financial Infrastructure Footer */}
       <Footer onOpenApplication={() => handleOpenApplication()} />
 
       {/* ── Streamlined 24h Underwriting Intake Modal ── */}
