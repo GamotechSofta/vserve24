@@ -9,7 +9,6 @@ import VirtualTerminalDemo from './components/VirtualTerminalDemo';
 import ApiPlayground from './components/ApiPlayground';
 import PaymentIntelligence from './components/PaymentIntelligence';
 import ResourcesSection from './components/ResourcesSection';
-import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import ApplicationModal from './components/ApplicationModal';
 import MerchantPortalModal from './components/MerchantPortalModal';
@@ -76,13 +75,10 @@ export default function App() {
         {/* 06 — Payment Intelligence & Global Processing Pipeline */}
         <PaymentIntelligence onOpenApplication={() => handleOpenApplication()} />
 
-        {/* ── Desktop-Only Supplementary Knowledge & Reviews (Hidden on Mobile) ── */}
+        {/* ── Desktop-Only Supplementary Knowledge (Hidden on Mobile) ── */}
         <div className="hidden md:block">
           {/* 07 — Merchant Knowledge Base & Decline Code Resources */}
           <ResourcesSection onOpenApplication={() => handleOpenApplication()} />
-
-          {/* 08 — Verified Merchant Testimonials Carousel */}
-          <Testimonials />
         </div>
 
       </main>
