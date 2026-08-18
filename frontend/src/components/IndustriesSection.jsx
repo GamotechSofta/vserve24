@@ -321,9 +321,9 @@ export default function IndustriesSection({ onOpenApplication }) {
 
               </div>
 
-              {/* RIGHT: Circular 360° Orbital Galaxy (Desktop >= lg) */}
+              {/* RIGHT: Circular 360° Orbital Galaxy (Visible on Mobile & Desktop - 100% Bug-Free 3-Ring Layout) */}
               <div 
-                className="hidden lg:flex lg:col-span-7 relative items-center justify-center min-h-[560px] select-none scale-100 origin-center my-0"
+                className="lg:col-span-7 relative flex items-center justify-center min-h-[380px] xs:min-h-[460px] sm:min-h-[560px] select-none scale-[0.60] xs:scale-[0.74] sm:scale-90 lg:scale-100 origin-center my-0 overflow-visible"
                 onMouseEnter={() => setIsRotating(false)}
                 onMouseLeave={() => setIsRotating(true)}
               >
@@ -336,25 +336,33 @@ export default function IndustriesSection({ onOpenApplication }) {
                   }}
                 />
 
-                {/* Orbit Guideline Dashed Rings */}
+                {/* 3 Concentric Orbit Guideline Dashed Rings */}
                 <div className="absolute w-[460px] h-[460px] rounded-full border border-dashed border-[#E7E3DA] pointer-events-none opacity-80" />
-                <div className="absolute w-[310px] h-[310px] rounded-full border border-dashed border-[#FF5500]/30 pointer-events-none opacity-60" />
-                <div className="absolute w-[160px] h-[160px] rounded-full border border-[#E7E3DA] pointer-events-none" />
+                <div className="absolute w-[310px] h-[310px] rounded-full border border-dashed border-[#FF5500]/25 pointer-events-none opacity-60" />
+                <div className="absolute w-[176px] h-[176px] rounded-full border border-dashed border-[#E7E3DA] pointer-events-none opacity-60" />
 
-                {/* Central Vserve24 Core Hub */}
-                <div className="relative z-20 w-32 h-32 rounded-full bg-gradient-to-br from-[#0B192C] to-[#1A283E] border-4 border-white shadow-2xl flex flex-col items-center justify-center text-white text-center p-3">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#FF5500] animate-ping mb-1" />
-                  <span className="text-[12px] font-bold tracking-wider text-[#FF5500]">VSERVE24</span>
-                  <span className="text-[9px] text-slate-300">BANKING HUB</span>
-                  <span className="text-[8px] text-[#10B981] mt-0.5">● 24 MIDs ONLINE</span>
+                {/* Central Vserve24 Core Banking Hub */}
+                <div className="relative z-20 w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-[#0B192C] to-[#1A283E] border-4 border-white shadow-2xl flex flex-col items-center justify-center text-white text-center p-2">
+                  <span className="w-2 h-2 rounded-full bg-[#FF5500] animate-ping mb-0.5" />
+                  <span className="text-[11px] sm:text-[12px] font-bold tracking-wider text-[#FF5500]">VSERVE24</span>
+                  <span className="text-[8px] sm:text-[9px] text-slate-300">BANKING HUB</span>
+                  <span className="text-[7.5px] sm:text-[8px] text-[#10B981] mt-0.5 font-medium">● 24 MIDs ONLINE</span>
                 </div>
 
-                {/* 24 Orbiting Interactive Nodes positioned along outer & inner radii */}
+                {/* 24 Orbiting Interactive Nodes distributed across 3 non-overlapping rings */}
                 {filteredIndustries.map((ind, idx) => {
-                  const total = filteredIndustries.length;
-                  const isOuter = idx % 2 === 0;
-                  const radius = isOuter ? 225 : 155;
-                  const angle = (idx * (360 / total) + rotationAngle) * (Math.PI / 180);
+                  // Distribute 24 items evenly across 3 concentric rings (8 per ring)
+                  const ring = idx % 3; // 0 = outer (8), 1 = middle (8), 2 = inner (8)
+                  const ringIndex = Math.floor(idx / 3); // 0 to 7
+                  const ringTotal = 8;
+                  
+                  // Radii for 3 distinct orbits
+                  const radius = ring === 0 ? 230 : (ring === 1 ? 155 : 88);
+                  
+                  // Angular offset between rings to prevent radial clustering
+                  const ringOffset = ring === 0 ? 0 : (ring === 1 ? 22.5 : 11.25);
+                  const angle = ((ringIndex * (360 / ringTotal)) + ringOffset + rotationAngle) * (Math.PI / 180);
+                  
                   const x = Math.cos(angle) * radius;
                   const y = Math.sin(angle) * radius;
 
@@ -366,67 +374,32 @@ export default function IndustriesSection({ onOpenApplication }) {
                     <div
                       key={ind.id}
                       onMouseEnter={() => setActiveHoverId(ind.id)}
-                      onClick={() => setActiveModalIndustry(ind)}
+                      onClick={() => {
+                        setActiveHoverId(ind.id);
+                        setActiveModalIndustry(ind);
+                      }}
                       style={{
                         transform: `translate(${x}px, ${y}px)`,
-                        transition: 'transform 0.1s linear'
+                        transition: 'transform 0.08s linear'
                       }}
                       className="absolute z-30 group cursor-pointer flex items-center justify-center"
                     >
-                      <div className={`p-2.5 rounded-2xl border transition-all duration-300 flex items-center gap-2 shadow-md ${
+                      <div className={`transition-all duration-300 flex items-center gap-1.5 shadow-md ${
                         isActive
-                          ? 'bg-[#0B192C] text-white border-[#FF5500] scale-125 shadow-2xl shadow-orange-500/30 z-40'
-                          : 'bg-[#FFFFFF] text-[#0B192C] border-[#E7E3DA] hover:border-[#FF5500] hover:scale-115'
+                          ? 'bg-[#0B192C] text-white border-2 border-[#FF5500] scale-120 shadow-2xl shadow-orange-500/30 z-40 p-2 sm:p-2.5 rounded-2xl'
+                          : 'bg-[#FFFFFF] text-[#0B192C] border border-[#E7E3DA] hover:border-[#FF5500] hover:scale-110 p-1.5 sm:p-2 rounded-xl'
                       }`}>
-                        <div className={`w-7 h-7 rounded-lg ${isActive ? 'bg-[#FF5500] text-white' : config.bg} flex items-center justify-center shadow-xs`}>
+                        <div className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg ${isActive ? 'bg-[#FF5500] text-white' : config.bg} flex items-center justify-center shadow-2xs shrink-0`}>
                           <Icon className="w-3.5 h-3.5" style={{ color: isActive ? '#FFFFFF' : config.color }} />
                         </div>
                         
-                        <span className="text-[10px] font-bold whitespace-nowrap pr-1">
+                        <span className={`text-[9.5px] sm:text-[10px] font-bold whitespace-nowrap pr-1 ${ring === 2 && !isActive ? 'hidden sm:inline' : 'inline'}`}>
                           {ind.name}
                         </span>
                       </div>
                     </div>
                   );
                 })}
-              </div>
-
-              {/* MOBILE ONLY: Touch-Friendly Interactive Vertical Selector (< lg) */}
-              <div className="block lg:hidden space-y-3 pt-4 border-t border-[#E7E3DA]">
-                <div className="flex items-center justify-between text-xs text-[#707887]">
-                  <span className="font-bold text-[#0B192C]">Tap any vertical to inspect:</span>
-                  <span className="text-[#FF5500] font-semibold">{filteredIndustries.length} Verticals Active</span>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[320px] overflow-y-auto pr-1">
-                  {filteredIndustries.map((ind) => {
-                    const config = INDUSTRY_CONFIG[ind.id] || INDUSTRY_CONFIG['ind-1'];
-                    const Icon = config.icon;
-                    const isActive = activeHoverId === ind.id;
-
-                    return (
-                      <button
-                        key={ind.id}
-                        type="button"
-                        onClick={() => {
-                          setActiveHoverId(ind.id);
-                        }}
-                        className={`p-2.5 rounded-xl border text-left flex items-center gap-2 transition-all cursor-pointer ${
-                          isActive
-                            ? 'bg-[#0B192C] text-white border-[#FF5500] shadow-md shadow-orange-500/20'
-                            : 'bg-white text-[#0B192C] border-[#E7E3DA] hover:border-[#FF5500]'
-                        }`}
-                      >
-                        <div className={`w-6 h-6 rounded-lg ${isActive ? 'bg-[#FF5500] text-white' : config.bg} flex items-center justify-center shrink-0`}>
-                          <Icon className="w-3 h-3" style={{ color: isActive ? '#FFFFFF' : config.color }} />
-                        </div>
-                        <span className="text-[11px] font-bold truncate">
-                          {ind.name}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
               </div>
 
             </div>
