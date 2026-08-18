@@ -321,9 +321,9 @@ export default function IndustriesSection({ onOpenApplication }) {
 
               </div>
 
-              {/* RIGHT: Circular 360° Orbital Galaxy of 24 High-Risk Nodes (7 cols) */}
+              {/* RIGHT: Circular 360° Orbital Galaxy (Desktop >= lg) */}
               <div 
-                className="lg:col-span-7 relative flex items-center justify-center min-h-[440px] sm:min-h-[560px] select-none scale-[0.68] sm:scale-90 lg:scale-100 origin-center my-2 lg:my-0"
+                className="hidden lg:flex lg:col-span-7 relative items-center justify-center min-h-[560px] select-none scale-100 origin-center my-0"
                 onMouseEnter={() => setIsRotating(false)}
                 onMouseLeave={() => setIsRotating(true)}
               >
@@ -352,7 +352,6 @@ export default function IndustriesSection({ onOpenApplication }) {
                 {/* 24 Orbiting Interactive Nodes positioned along outer & inner radii */}
                 {filteredIndustries.map((ind, idx) => {
                   const total = filteredIndustries.length;
-                  // Split into outer and inner orbit tracks for perfect visual distribution
                   const isOuter = idx % 2 === 0;
                   const radius = isOuter ? 225 : 155;
                   const angle = (idx * (360 / total) + rotationAngle) * (Math.PI / 180);
@@ -390,6 +389,44 @@ export default function IndustriesSection({ onOpenApplication }) {
                     </div>
                   );
                 })}
+              </div>
+
+              {/* MOBILE ONLY: Touch-Friendly Interactive Vertical Selector (< lg) */}
+              <div className="block lg:hidden space-y-3 pt-4 border-t border-[#E7E3DA]">
+                <div className="flex items-center justify-between text-xs text-[#707887]">
+                  <span className="font-bold text-[#0B192C]">Tap any vertical to inspect:</span>
+                  <span className="text-[#FF5500] font-semibold">{filteredIndustries.length} Verticals Active</span>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[320px] overflow-y-auto pr-1">
+                  {filteredIndustries.map((ind) => {
+                    const config = INDUSTRY_CONFIG[ind.id] || INDUSTRY_CONFIG['ind-1'];
+                    const Icon = config.icon;
+                    const isActive = activeHoverId === ind.id;
+
+                    return (
+                      <button
+                        key={ind.id}
+                        type="button"
+                        onClick={() => {
+                          setActiveHoverId(ind.id);
+                        }}
+                        className={`p-2.5 rounded-xl border text-left flex items-center gap-2 transition-all cursor-pointer ${
+                          isActive
+                            ? 'bg-[#0B192C] text-white border-[#FF5500] shadow-md shadow-orange-500/20'
+                            : 'bg-white text-[#0B192C] border-[#E7E3DA] hover:border-[#FF5500]'
+                        }`}
+                      >
+                        <div className={`w-6 h-6 rounded-lg ${isActive ? 'bg-[#FF5500] text-white' : config.bg} flex items-center justify-center shrink-0`}>
+                          <Icon className="w-3 h-3" style={{ color: isActive ? '#FFFFFF' : config.color }} />
+                        </div>
+                        <span className="text-[11px] font-bold truncate">
+                          {ind.name}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
 
             </div>
