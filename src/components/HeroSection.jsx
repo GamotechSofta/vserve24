@@ -437,9 +437,9 @@ const HERO_SLIDES = [
     id: 'gaming',
     imageDesktop: banner01Desktop,
     imageMobile: banner01Mobile,
-    tag: '🎰 Casino & iGaming Payment Gateway',
-    title: 'Casino & iGaming Payment Gateway — Dedicated High-Risk MIDs',
-    shortLabel: 'Casino & Gaming',
+    tag: '🎰 Casino, RMG & iGaming Gateway',
+    title: 'Casino & Real Money Gaming Payment Gateway — Dedicated High-Risk MIDs',
+    shortLabel: 'Casino & Real Money Gaming',
     ctaText: 'Get Casino MIDs',
     accentColor: '#FF5500',
     borderGlow: 'border-orange-500/40 shadow-orange-500/10 ring-1 ring-orange-500/20',
@@ -663,7 +663,7 @@ export default function HeroSection({ onOpenApplication }) {
             >
               <span className="w-2 h-2 rounded-full bg-[#FF5500] shrink-0 animate-pulse" />
               <span className="text-[10px] sm:text-[10.5px] font-bold tracking-wider uppercase text-slate-800">
-                🎮 Gaming &amp; 📈 Trading Direct Payment Gateway <span className="text-orange-300 font-light mx-1">•</span> 24h MIDs
+                🎰 Casino, Real Money Gaming &amp; 📈 Trading Gateway <span className="text-orange-300 font-light mx-1">•</span> 24h MIDs
               </span>
             </div>
 
@@ -694,7 +694,7 @@ export default function HeroSection({ onOpenApplication }) {
                 className="lg:block lg:whitespace-nowrap"
                 style={{ color: '#FF5500', fontWeight: 800 }}
               >
-                Gaming &amp; Trading.
+                Casino, Gaming &amp; Trading.
               </span>
             </h1>
 
@@ -709,7 +709,7 @@ export default function HeroSection({ onOpenApplication }) {
                 marginBottom: 'clamp(14px, 1.6vh, 18px)',
               }}
             >
-              Dedicated Tier-1 merchant accounts for <strong>Online Casino, iGaming, Forex &amp; Crypto Trading</strong> platforms. Process instant high-volume player deposits &amp; winning payouts with instant real-time authorization, zero aggregator freezes, and automated dispute defense.
+              Dedicated Tier-1 merchant accounts for <strong>Online Casino, Real Money Gaming (RMG), iGaming, Forex &amp; Crypto Trading</strong> platforms. Process instant high-volume player deposits &amp; winning payouts with instant real-time authorization, zero aggregator freezes, and automated dispute defense.
             </p>
 
             {/* Quick Industry Feature Badges */}
@@ -718,7 +718,7 @@ export default function HeroSection({ onOpenApplication }) {
                 <span className="w-5 h-5 rounded-lg bg-orange-50 border border-orange-200/80 flex items-center justify-center text-[#FF5500] shrink-0">
                   <Gamepad2 className="w-3.5 h-3.5" />
                 </span>
-                <span>Casino &amp; iGaming MIDs</span>
+                <span>Casino &amp; RMG MIDs</span>
               </div>
 
               <div className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white border border-[#E7E3DA] text-[11px] sm:text-xs font-semibold text-[#0B192C] shadow-2xs">
@@ -732,7 +732,7 @@ export default function HeroSection({ onOpenApplication }) {
                 <span className="w-5 h-5 rounded-lg bg-emerald-100/90 border border-emerald-300/80 flex items-center justify-center text-[#10B981] shrink-0">
                   <Zap className="w-3.5 h-3.5" />
                 </span>
-                <span>Instant Live Deposits</span>
+                <span>Instant Player Payouts</span>
               </div>
             </div>
 
@@ -745,7 +745,7 @@ export default function HeroSection({ onOpenApplication }) {
                 onClick={onOpenApplication}
                 className="group relative overflow-hidden flex items-center justify-center gap-2 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md shadow-orange-500/25 py-3 px-5.5 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white font-bold text-xs sm:text-sm tracking-wide"
               >
-                <span>Get Gaming / Trading MID</span>
+                <span>Get Casino / Gaming MID</span>
                 <ArrowRight
                   className="transition-transform duration-200 group-hover:translate-x-1 w-4 h-4"
                   strokeWidth={2.2}
