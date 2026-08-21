@@ -760,51 +760,6 @@ export default function HeroSection({ onOpenApplication }) {
                 Talk to Underwriting Specialist
               </button>
             </div>
-
-            {/* Trust row */}
-            <div
-              style={{
-                paddingTop: 'clamp(14px, 2vh, 20px)',
-                borderTop: '1px solid rgba(11, 25, 44, 0.09)',
-                width: '100%',
-              }}
-            >
-              <p
-                style={{
-                  fontSize: '9.5px',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif",
-                  letterSpacing: '0.22em',
-                  textTransform: 'uppercase',
-                  color: '#475569',
-                  opacity: 0.65,
-                  marginBottom: '10px',
-                  fontWeight: 600
-                }}
-              >
-                Gaming &amp; Trading Settlement Rails Supported
-              </p>
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  alignItems: 'center',
-                  gap: '16px 24px',
-                  opacity: 0.55,
-                }}
-              >
-                <span style={{ fontSize: '17px', fontWeight: 900, fontFamily: 'Georgia, "Times New Roman", serif', color: '#0B192C', letterSpacing: '0.06em' }}>
-                  VISA
-                </span>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#0B192C' }} />
-                  <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#475569', marginLeft: '-6px' }} />
-                  <span className="inline" style={{ fontSize: '10px', fontWeight: 700, color: '#0B192C', marginLeft: '5px', letterSpacing: '0.04em' }}>mastercard</span>
-                </div>
-                <span style={{ fontSize: '11px', fontWeight: 700, color: '#0B192C', letterSpacing: '0.10em' }}>DISCOVER</span>
-                <span style={{ fontSize: '9px', fontWeight: 700, color: '#0B192C', border: '0.8px solid rgba(11, 25, 44, 0.55)', borderRadius: '3px', padding: '2px 6px', letterSpacing: '0.06em' }}>AMEX</span>
-                <span style={{ fontSize: '9.5px', fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#0B192C', letterSpacing: '0.08em' }}>SEPA / ACH / CRYPTO</span>
-              </div>
-            </div>
           </div>
 
           {/* ══ RIGHT COLUMN — Payment Intelligence Network ════ */}

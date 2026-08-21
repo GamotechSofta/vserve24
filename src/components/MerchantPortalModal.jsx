@@ -869,7 +869,7 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
                       </div>
                       <div className="flex justify-between text-slate-400">
                         <span>Methods:</span>
-                        <span className="text-emerald-400">Visa, Mastercard, UPI, IMPS</span>
+                        <span className="text-emerald-400">Instant UPI, QR, NetBanking, IMPS</span>
                       </div>
                     </div>
 
