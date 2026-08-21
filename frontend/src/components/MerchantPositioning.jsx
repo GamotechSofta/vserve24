@@ -14,18 +14,18 @@ export default function MerchantPositioning({ onOpenApplication }) {
   const pillars = [
     {
       id: 0,
-      badge: '01 • iGAMING & ESPORTS',
-      mobileLabel: '01 iGaming',
-      title: 'Sub-80ms live deposit rails for iGaming & Esports',
-      summary: 'High-frequency player deposits, instant direct payouts, zero aggregator freeze risks, and multi-MID load balancing.',
+      badge: '01 • ONLINE CASINO & iGAMING',
+      mobileLabel: '01 Casino',
+      title: 'Instant live deposit rails for Online Casino & Gaming',
+      summary: 'High-frequency player deposits, instant winning payouts, zero aggregator freeze risks, and multi-MID load balancing.',
       image: imgGaming,
       highlights: [
-        'Instant sub-80ms player wallet top-ups & deposits',
+        'Instant real-time player deposits & live casino top-ups',
         'Direct Tier-1 bank MIDs (Zero pooled aggregator freeze)',
-        'Automated Verifi & Ethoca chargeback shield',
+        'Automated pre-dispute risk and chargeback shield',
         '24/7 dedicated high-volume transaction routing'
       ],
-      tag: 'Gaming Processing Engine'
+      tag: 'Casino & Gaming Engine'
     },
     {
       id: 1,
@@ -47,12 +47,12 @@ export default function MerchantPositioning({ onOpenApplication }) {
       badge: '03 • CHARGEBACK SHIELD & MOTO',
       mobileLabel: '03 Dispute Shield',
       title: 'Automated pre-dispute defense & virtual terminal',
-      summary: 'Intercept cardholder disputes within 2 seconds before they hit your MID, plus full MOTO terminal for high-ticket transactions.',
+      summary: 'Intercept transaction disputes within seconds before they hit your MID, plus full virtual terminal for high-ticket transactions.',
       image: imgDisputeShield,
       highlights: [
         'Ethoca & Verifi RDR automatic dispute interception',
         'Maintains merchant dispute ratio safely below 0.65%',
-        'Secure MOTO virtual terminal with hosted tokenization',
+        'Secure enterprise virtual terminal with hosted tokenization',
         'Full PCI-DSS Level 1 compliant token vault'
       ],
       tag: 'Pre-Dispute Defense'
@@ -227,8 +227,8 @@ export default function MerchantPositioning({ onOpenApplication }) {
                 />
               ))}
               
-              {/* Bottom Glass Tag */}
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:left-4 sm:right-auto bg-[#FFFFFF]/90 backdrop-blur-md border border-[#E7E3DA] px-3 py-1.5 rounded-xl text-[11px] font-semibold flex items-center gap-2 shadow-sm z-20">
+              {/* Bottom Glass Tag - Hidden on mobile view */}
+              <div className="hidden sm:flex absolute bottom-4 left-4 bg-[#FFFFFF]/90 backdrop-blur-md border border-[#E7E3DA] px-3 py-1.5 rounded-xl text-[11px] font-semibold items-center gap-2 shadow-sm z-20">
                 <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
                 <span className="font-bold text-[#0B192C]">{current.tag}</span>
                 <span className="text-slate-300">•</span>

@@ -3,9 +3,9 @@ export const vserveData = {
     name: 'VSERVE24',
     tagline: 'No setup fees • Daily payouts • 24h approvals',
     headline: 'Powering high-risk businesses with payment confidence',
-    description: 'Vserve24 helps complex businesses process cards and ACH with stronger approval performance, adaptive risk controls, and chargeback defense.',
+    description: 'Vserve24 helps complex businesses process instant UPI, dynamic QR, NetBanking, and automated payouts with stronger approval performance, adaptive risk controls, and dispute defense.',
     positioning: 'Built for merchants traditional processors reject',
-    positioningDesc: 'A high-risk merchant account is designed for businesses with elevated fraud, chargeback, or regulatory complexity. Vserve24 combines payment infrastructure and risk strategy so you can scale sustainably.'
+    positioningDesc: 'A high-risk merchant account is designed for businesses with elevated fraud, dispute, or regulatory complexity. Vserve24 combines payment infrastructure and risk strategy so you can scale sustainably.'
   },
 
   trustMetrics: [
@@ -33,21 +33,21 @@ export const vserveData = {
     {
       letter: 'A',
       title: 'Multi-channel acceptance',
-      description: 'Online, phone, and virtual terminal support for complex sales channels.',
+      description: 'Instant UPI, Dynamic QR, NetBanking, and automated payout support for complex sales channels.',
       badge: 'Omnichannel Routing',
       metric: 'Omnichannel'
     },
     {
       letter: 'B',
       title: 'Subscription ready',
-      description: 'Recurring billing workflows and account updater tools for continuity.',
+      description: 'Recurring billing workflows and automated retry tools for continuity.',
       badge: 'Continuity Billing',
       metric: 'Automated Lifecycle'
     },
     {
       letter: 'C',
       title: 'Dispute controls',
-      description: 'Chargeback alerts, Ethoca/Verifi RDR networks, and representment support.',
+      description: 'Pre-dispute alerts, direct sponsor risk shields, and automated representment support.',
       badge: 'Shield Architecture',
       metric: 'Pre-Dispute Alerts'
     }
@@ -57,36 +57,36 @@ export const vserveData = {
     {
       id: 'multi-channel',
       tabTitle: 'Multi-channel Acceptance',
-      headline: 'Process cards and ACH across every commercial customer touchpoint',
-      description: 'Accept payments through hosted checkout forms, developer REST APIs, MOTO virtual terminals, and batch file uploads under one unified processing gateway.',
+      headline: 'Process instant Pay-In collections and Payout disbursements across all touchpoints',
+      description: 'Accept payments through hosted checkout forms, developer REST APIs, dynamic QR codes, and automated payout rails under one unified processing gateway.',
       channels: [
-        { label: 'Online Storefront', desc: 'Embedded checkout with tokenized card vaulting', status: 'API Connected' },
-        { label: 'Virtual Terminal', desc: 'Secure browser-based MOTO entry with 2FA authentication', status: 'Active Console' },
-        { label: 'Recurring Engine', desc: 'Automated card-on-file billing schedules & proration', status: 'Continuous' }
+        { label: 'Instant UPI Intent', desc: 'Embedded checkout with instant UPI app redirection', status: 'API Connected' },
+        { label: 'Dynamic QR', desc: 'Real-time dynamic QR code generation with sub-second callbacks', status: 'Active Console' },
+        { label: 'Instant Payouts', desc: '24/7 automated IMPS and NEFT disbursement rails', status: 'Continuous' }
       ],
-      flowSteps: ['Customer Order', 'Secure Tokenization', 'Gateway Encryption', 'Direct Acquirer Routing', 'Approved Settlement']
+      flowSteps: ['Customer Order', 'Instant UPI / QR', 'Gateway Encryption', 'Direct Bank Routing', 'Settled & Credited']
     },
     {
       id: 'subscription',
       tabTitle: 'Subscription Ready',
       headline: 'Built specifically for high-velocity recurring billing continuity',
-      description: 'Engineered with intelligent decline salvage rules, automated card account updaters, and cascading retry algorithms to eliminate involuntary subscriber churn.',
+      description: 'Engineered with intelligent decline salvage rules, automated bank retry algorithms, and cascading fallback to eliminate involuntary subscriber churn.',
       channels: [
         { label: 'Smart Retry Logic', desc: 'Dynamic timing algorithm based on issuer bank patterns', status: 'Automated' },
-        { label: 'Account Updater', desc: 'Direct Visa/Mastercard real-time expiry & card refresh', status: 'Zero-Drop' },
+        { label: 'Bank Cascading', desc: 'Multi-sponsor fallback routing with zero player drop-offs', status: 'Zero-Drop' },
         { label: 'Proration Engine', desc: 'Multi-tier plans, metered billing & custom trial intervals', status: 'Flexible' }
       ],
-      flowSteps: ['Initial Signup', 'Recurring Cycle', 'Dynamic Cascading', 'Account Updater', 'Settlement Engine']
+      flowSteps: ['Initial Signup', 'Recurring Cycle', 'Dynamic Cascading', 'Bank Settlement', 'Settlement Engine']
     },
     {
       id: 'dispute-controls',
       tabTitle: 'Dispute Controls',
       headline: 'Automated pre-dispute deflection to preserve healthy merchant ratios',
-      description: 'Intercept cardholder inquiries before they convert into formal chargebacks through native integration with Ethoca Consumer Clarity and Verifi Rapid Dispute Resolution (RDR).',
+      description: 'Intercept customer inquiries before they convert into formal disputes through native integration with bank risk monitoring and rapid dispute resolution.',
       channels: [
-        { label: 'Ethoca Alerts', desc: 'Early warning signals direct from issuing banks', status: 'Pre-Chargeback' },
-        { label: 'Verifi RDR', desc: 'Automated instant refund rules configured by descriptor', status: 'Auto-Deflect' },
-        { label: 'Evidence Builder', desc: 'Templated representment packets with signature proof', status: 'Rapid Reversal' }
+        { label: 'Bank Alerts', desc: 'Early warning signals direct from partner sponsor banks', status: 'Pre-Dispute' },
+        { label: 'Rapid Resolution', desc: 'Automated instant refund rules configured by descriptor', status: 'Auto-Deflect' },
+        { label: 'Evidence Builder', desc: 'Templated representment packets with transaction proof', status: 'Rapid Reversal' }
       ],
       flowSteps: ['Transaction Flagged', 'Pre-Dispute Alert', 'Automated Evaluation', 'Instant Resolution', 'Ratio Protected']
     }
@@ -118,22 +118,22 @@ export const vserveData = {
 
   services: [
     {
-      id: 'credit-card',
+      id: 'payin-collections',
       num: '01',
-      title: 'Credit Card Processing',
-      summary: 'Accept cards online, over phone, and in person.',
-      description: 'High-capacity Visa, Mastercard, AMEX, and Discover processing engineered for complex business verticals with robust authorization performance and daily batch settlement.',
-      flowNodes: ['Card Authorization', 'Encrypted Payload', 'Bank Routing', 'Instant Approval'],
-      features: ['Level 2 & Level 3 data support', 'Multi-currency settlement in 30+ currencies', 'Direct tier-1 processor connections']
+      title: 'Instant UPI & Pay-In Collections',
+      summary: 'Accept dynamic UPI, QR, and NetBanking with instant authentication and immediate clearance.',
+      description: 'High-capacity dynamic UPI Intent, dynamic QR codes, and NetBanking collections engineered for complex business verticals with robust authorization and daily T+0 settlement.',
+      flowNodes: ['UPI / QR Scan', 'Encrypted Payload', 'Bank Routing', 'Instant Approval'],
+      features: ['Dynamic QR & UPI Intent support', 'Multi-currency settlement support', 'Direct Tier-1 sponsor bank connections']
     },
     {
-      id: 'ach-processing',
+      id: 'payout-disbursements',
       num: '02',
-      title: 'ACH Processing',
-      summary: 'Lower costs with direct debit and eCheck rails.',
-      description: 'Direct bank-to-bank electronic fund transfers with automated routing verification, lower interchange overhead, and predictable clearing schedules.',
-      flowNodes: ['Bank Verification', 'ACH Network Rail', 'Clearing House', 'Merchant Settlement'],
-      features: ['Same-Day ACH capability', 'Instant bank account micro-verification', 'Lower cost structure than card interchange']
+      title: 'Instant Payouts & Disbursements',
+      summary: '24/7 automated real-time IMPS and NEFT player withdrawals.',
+      description: 'Direct bank-to-bank electronic fund transfers with automated beneficiary verification, sub-second clearance, and predictable clearing schedules.',
+      flowNodes: ['Bank Verification', 'IMPS Network Rail', 'Clearing House', 'Player Credited'],
+      features: ['24/7 Instant IMPS capability', 'Instant beneficiary micro-verification', 'High-capacity daily disbursement limits']
     },
     {
       id: 'ai-fraud',
@@ -142,7 +142,7 @@ export const vserveData = {
       summary: 'Adaptive rules to stop suspicious behavior.',
       description: 'Machine learning fraud defense that evaluates device fingerprints, IP geolocation, proxy signals, and velocity anomalies in real time without creating false positives.',
       flowNodes: ['Transaction Payload', 'Behavioral Analysis', 'AI Risk Assessment', 'Instant Decision'],
-      features: ['Dynamic 3D Secure 2.2 routing', 'Custom velocity and proxy rules', 'Device reputation database indexing']
+      features: ['Real-time risk scoring', 'Custom velocity and proxy rules', 'Device reputation database indexing']
     },
     {
       id: 'payment-gateways',
@@ -151,7 +151,7 @@ export const vserveData = {
       summary: 'Connect with trusted gateway ecosystems.',
       description: 'Enterprise gateway infrastructure featuring multi-MID load balancing, smart cascading, tokenized customer vaults, and zero downtime API redundancy.',
       flowNodes: ['Merchant Storefront', 'Tokenized Gateway', 'Multi-MID Router', 'Payment Network'],
-      features: ['Multi-MID volume load balancing', 'Over 50+ shopping cart integrations', 'PCI-compliant tokenized vault']
+      features: ['Multi-MID volume load balancing', 'Over 50+ shopping cart integrations', 'Secure encrypted vault']
     },
     {
       id: 'approval-optimization',
@@ -160,16 +160,16 @@ export const vserveData = {
       summary: 'Recover good orders that are falsely declined.',
       description: 'Intelligent cascading architecture that reroutes soft declines through secondary acquiring bank networks with optimized transaction data to capture legitimate revenue.',
       flowNodes: ['Soft Decline', 'Risk Re-Analysis', 'Acquirer Cascading', 'Transaction Approved'],
-      features: ['Automated decline salvage routing', 'BIN-level interchange optimization', 'Smart retry scheduling for subscriptions']
+      features: ['Automated decline salvage routing', 'Bank-level routing optimization', 'Smart retry scheduling for subscriptions']
     },
     {
       id: 'chargeback-protection',
       num: '06',
-      title: 'Chargeback Protection',
+      title: 'Dispute Protection',
       summary: 'Dispute prevention and faster response cycles.',
-      description: 'Comprehensive dispute defense combining Ethoca, Verifi RDR, automated merchant refunds, and representment evidence automation to keep dispute ratios well below bank thresholds.',
+      description: 'Comprehensive dispute defense combining early alerts, automated merchant refunds, and representment evidence automation to keep dispute ratios well below bank thresholds.',
       flowNodes: ['Payment In Dispute', 'Pre-Dispute Alert', 'Protection Workflow', 'Deflected & Resolved'],
-      features: ['Real-time Ethoca & Verifi RDR integration', 'Automated threshold monitoring alerts', 'End-to-end representment support']
+      features: ['Real-time early warning integration', 'Automated threshold monitoring alerts', 'End-to-end representment support']
     }
   ],
 
@@ -181,7 +181,7 @@ export const vserveData = {
     { id: 'ind-5', name: 'E-Cig & Vape', category: 'Retail', desc: 'Regulated online age-verified consumer vape & e-liquid distribution.' },
     { id: 'ind-6', name: 'Extended Warranty', category: 'Subscription', desc: 'Consumer protection plans, recurring continuity warranties, and policy billing.' },
     { id: 'ind-7', name: 'Firearms & Guns', category: 'Specialized', desc: 'Licensed online sporting goods, accessories, and FFL retailer processing.' },
-    { id: 'ind-8', name: 'Fantasy Sports', category: 'Digital', desc: 'Skill-based contests, league deposits, and high-frequency digital micropayments.' },
+    { id: 'ind-8', name: 'Online Casino & iGaming', category: 'Digital', desc: 'Live dealer casino, slots, roulette, instant player deposits & real-time winning payouts.' },
     { id: 'ind-9', name: 'High-Ticket Coaching', category: 'Specialized', desc: 'Consulting, masterminds, and professional executive courses with high order values.' },
     { id: 'ind-10', name: 'Jewelry', category: 'Retail', desc: 'Luxury diamonds, precious metals, and high-value physical goods e-commerce.' },
     { id: 'ind-11', name: 'Large Ticket Accounts', category: 'Financial', desc: 'B2B enterprise transactions, commercial wholesale, and invoice settlements over ₹10 Lakhs.' },
@@ -204,8 +204,8 @@ export const vserveData = {
     {
       id: 'res-1',
       category: 'PAYMENT INTELLIGENCE',
-      title: 'Common Credit Card Decline Codes',
-      summary: 'A complete merchant guide to understanding issuer response codes (05 Do Not Honor, 51 Insufficient Funds, 62 Restricted Card) and strategies to recover failed payments.',
+      title: 'Common Payment Decline Codes',
+      summary: 'A complete merchant guide to understanding bank response codes (05 Do Not Honor, 51 Insufficient Funds, 62 Restricted Route) and strategies to recover failed payments.',
       readTime: '6 min read'
     },
     {
@@ -226,17 +226,17 @@ export const vserveData = {
       id: 'res-4',
       category: 'FEE TRANSPARENCY',
       title: 'Merchant Account Fees 101',
-      summary: 'Understanding interchange-plus pricing models, card association assessments, rolling reserve mechanics, and chargeback ratio calculation benchmarks.',
+      summary: 'Understanding interchange-plus pricing models, network assessments, rolling reserve mechanics, and dispute ratio calculation benchmarks.',
       readTime: '10 min read'
     }
   ],
 
   testimonials: [
     {
-      quote: 'Vserve24 scaled our iGaming platform from ₹80 Lakhs to ₹6 Crores monthly. Sub-80ms auth latency eliminated player deposit drop-offs, and 0% rolling reserve transformed our liquidity.',
-      type: 'iGaming Platform Lead',
-      vertical: 'iGaming & Esports',
-      highlight: 'Sub-80ms Deposit Latency & 0% Rolling Reserve'
+      quote: 'Vserve24 scaled our Online Casino platform from ₹80 Lakhs to ₹6 Crores monthly. Real-time instant auth eliminated player deposit drop-offs, and 0% rolling reserve transformed our liquidity.',
+      type: 'Online Casino Platform Lead',
+      vertical: 'Online Casino & iGaming',
+      highlight: 'Instant Deposit Clearance & 0% Rolling Reserve'
     },
     {
       quote: 'As a Forex and CFD brokerage, standard aggregators constantly froze our funding rails. Vserve24 provided dedicated direct sponsor MIDs with daily T+1 IMPS bank settlement and zero downtime.',
@@ -245,9 +245,9 @@ export const vserveData = {
       highlight: 'High-Velocity Trader Funding & Direct Tier-1 MIDs'
     },
     {
-      quote: 'The automated Verifi RDR shield keeps our dispute ratio at 0.18%, completely protecting our high-volume crypto and fantasy sports payment rails.',
-      type: 'Crypto & Skill Gaming Founder',
-      vertical: 'Crypto & Skill Gaming',
+      quote: 'The automated Verifi RDR shield keeps our dispute ratio at 0.18%, completely protecting our high-volume crypto and online casino payment rails.',
+      type: 'Crypto & Casino Platform Founder',
+      vertical: 'Crypto & Online Casino',
       highlight: '90% Pre-Dispute Interception & Clean Ratios'
     }
   ],
@@ -255,12 +255,12 @@ export const vserveData = {
   faqs: [
     {
       id: 'faq-1',
-      question: 'Do you provide direct payment gateways for Gaming and Forex Trading platforms?',
-      answer: 'Yes! Vserve24 is specifically engineered for high-velocity iGaming, Esports, Forex trading, and crypto platforms. We provide dedicated corporate MIDs registered with Tier-1 sponsor acquiring banks, sub-80ms transaction authorization, multi-currency settlement (INR, USD, EUR, GBP), and automated cascading fallback.'
+      question: 'Do you provide direct payment gateways for Casino, Gaming and Forex Trading platforms?',
+      answer: 'Yes! Vserve24 is specifically engineered for high-velocity Online Casino, iGaming, Forex trading, and crypto platforms. We provide dedicated corporate MIDs registered with Tier-1 sponsor acquiring banks, instant real-time authorization, multi-currency settlement (INR, USD, EUR, GBP), and automated cascading fallback.'
     },
     {
       id: 'faq-2',
-      question: 'How quickly can our Gaming or Trading platform get approved and go live?',
+      question: 'How quickly can our Casino or Trading platform get approved and go live?',
       answer: 'Our high-risk underwriting desk provides formal sponsor bank decisions within 24 hours of receiving KYC/KYB documents. Once approved, production API keys and REST webhooks are issued immediately for same-day live processing and T+1 daily batch settlements.'
     },
     {
@@ -270,7 +270,7 @@ export const vserveData = {
     },
     {
       id: 'faq-4',
-      question: 'What are the rolling reserve requirements for high-risk trading and gaming merchants?',
+      question: 'What are the rolling reserve requirements for high-risk trading and casino merchants?',
       answer: 'Established merchants with 3+ months clean statements receive 0% Rolling Reserve on direct Tier-1 rails. Fresh platforms start with standard 5% rolling reserve which automatically steps down to 0% after 90 days of consistent settlement stability.'
     }
   ]

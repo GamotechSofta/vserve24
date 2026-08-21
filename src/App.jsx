@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import MerchantPositioning from './components/MerchantPositioning';
-import FeeCalculator from './components/FeeCalculator';
 import ServicesSection from './components/ServicesSection';
 import IndustriesSection from './components/IndustriesSection';
-import VirtualTerminalDemo from './components/VirtualTerminalDemo';
-import ApiPlayground from './components/ApiPlayground';
 import PaymentIntelligence from './components/PaymentIntelligence';
 import ResourcesSection from './components/ResourcesSection';
 import Footer from './components/Footer';
@@ -57,20 +54,11 @@ export default function App() {
         {/* 02 — Merchant Positioning: Built for merchants traditional processors reject */}
         <MerchantPositioning onOpenApplication={() => handleOpenApplication()} />
 
-        {/* [TOOL 1] — Interactive Interchange & Revenue Recovery Calculator */}
-        <FeeCalculator onOpenApplication={handleOpenApplication} />
-
         {/* 04 — Core Payment Services: 6 Dynamic Service Interactive Systems */}
         <ServicesSection onOpenApplication={() => handleOpenApplication()} />
 
         {/* 05 — High-Risk Industries: 24 Specialized Merchant Directory with 3D Orbit Radar */}
         <IndustriesSection onOpenApplication={() => handleOpenApplication()} />
-
-        {/* [TOOL 3] — Interactive MOTO Virtual Terminal Simulator */}
-        <VirtualTerminalDemo onOpenApplication={() => handleOpenApplication()} />
-
-        {/* [TOOL 4] — Developer REST API Sandbox & Real-Time Test Request Playground */}
-        <ApiPlayground onOpenApplication={() => handleOpenApplication()} />
 
         {/* 06 — Payment Intelligence & Global Processing Pipeline */}
         <PaymentIntelligence onOpenApplication={() => handleOpenApplication()} />

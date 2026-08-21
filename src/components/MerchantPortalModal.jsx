@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   X, Activity, ArrowUpRight, TrendingUp, ShieldCheck, 
   Cpu, Zap, HardDrive, RefreshCw, Lock, CheckCircle2,
-  DollarSign, CreditCard, Layers, Clock, AlertTriangle,
+  DollarSign, Building2, Layers, Clock, AlertTriangle,
   ArrowRight, Key, Webhook, Link as LinkIcon, Send,
   Download, Filter, Search, Copy, Check, Eye, EyeOff,
   Sliders, ShieldAlert, Sparkles, Server, FileText, QrCode,
@@ -24,7 +24,7 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
   // Payment link generator state
   const [linkAmount, setLinkAmount] = useState('25000');
   const [linkCustomer, setLinkCustomer] = useState('Rahul Sharma');
-  const [linkVertical, setLinkVertical] = useState('iGaming Deposit');
+  const [linkVertical, setLinkVertical] = useState('Online Casino Deposit');
   const [generatedLink, setGeneratedLink] = useState(null);
   const [copiedLink, setCopiedLink] = useState(false);
 
@@ -88,8 +88,8 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
       rawAmount: 25000,
       customer: 'Arjun Verma',
       email: 'arjun.v@gmail.com',
-      card: 'Visa •••• 4012', 
-      vertical: 'iGaming & Esports', 
+      card: 'UPI • arjun@okaxis', 
+      vertical: 'Online Casino & iGaming', 
       risk: 8, 
       status: 'Approved', 
       statusType: 'success',
@@ -106,7 +106,7 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
       rawAmount: 150000,
       customer: 'Vikramaditya Rao',
       email: 'vikram.rao@trader.io',
-      card: 'Mastercard •••• 9241', 
+      card: 'NetBanking • HDFC Direct', 
       vertical: 'Forex & Trading', 
       risk: 14, 
       status: 'Approved (Cascaded)', 
@@ -124,7 +124,7 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
       rawAmount: 8500,
       customer: 'Pooja Kulkarni',
       email: 'pooja.k@outlook.com',
-      card: 'RuPay •••• 1004', 
+      card: 'Dynamic QR • Scan & Pay', 
       vertical: 'Nutraceuticals', 
       risk: 22, 
       status: 'Approved', 
@@ -142,10 +142,10 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
       rawAmount: 75000,
       customer: 'Rohan Deshmukh',
       email: 'rohan.d@crypto.in',
-      card: 'Visa •••• 8823', 
+      card: 'Instant UPI • rohan@ybl', 
       vertical: 'Crypto Platform', 
       risk: 11, 
-      status: '3DS 2.2 Frictionless', 
+      status: 'Instant Approved', 
       statusType: 'success',
       authLatency: '67ms',
       midRail: 'MID-IN-02 (High-Velocity)',
@@ -160,8 +160,8 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
       rawAmount: 4500,
       customer: 'Fraud Bot Pattern',
       email: 'suspicious_proxy@temp.org',
-      card: 'Mastercard •••• 0019', 
-      vertical: 'iGaming & Esports', 
+      card: 'Flagged Proxy Request', 
+      vertical: 'Online Casino & iGaming', 
       risk: 94, 
       status: 'Blocked by AI Shield', 
       statusType: 'blocked',
@@ -178,7 +178,7 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
       rawAmount: 32000,
       customer: 'Sameer Joshi',
       email: 'sameer.j@gmail.com',
-      card: 'Visa •••• 5512', 
+      card: 'Instant UPI • sameer@upi', 
       vertical: 'Forex & Trading', 
       risk: 16, 
       status: 'Auto-Deflected (RDR)', 
@@ -194,22 +194,22 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
   const disputesList = [
     {
       id: 'DISP-89241',
-      cardholder: 'Cardholder inquiry via Ethoca',
+      cardholder: 'Customer inquiry via Bank Stream',
       amount: '₹32,000.00',
-      reason: 'Unrecognized Charge (iGaming deposit)',
+      reason: 'Duplicate intent check (Casino deposit)',
       date: 'Today, 14:10 IST',
-      rail: 'Ethoca Pre-Dispute Rail',
+      rail: 'Direct Pre-Dispute Rail',
       status: 'Auto-Deflected & Refunded',
       statusNote: '0 Chargeback Fee • 0% Dispute Ratio Impact',
       ratioHealth: 'Protected'
     },
     {
       id: 'DISP-89240',
-      cardholder: 'Visa Verifi CDRN Intercept',
+      cardholder: 'Bank Dispute Intercept',
       amount: '₹18,500.00',
       reason: 'Subscription renewal inquiry',
       date: 'Yesterday, 18:30 IST',
-      rail: 'Verifi Rapid Dispute Resolution (RDR)',
+      rail: 'Rapid Dispute Resolution (RDR)',
       status: 'Pre-Dispute Resolved',
       statusNote: 'Auto-settled in 8 seconds before bank filing',
       ratioHealth: 'Protected'
@@ -408,7 +408,7 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
             <div className="p-3 sm:p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800">
               <span className="text-[10.5px] text-slate-400 uppercase tracking-wider font-semibold">Auth Rate (Tier-1)</span>
               <div className="text-lg sm:text-xl font-bold text-emerald-400 mt-0.5">94.8%</div>
-              <span className="text-[10.5px] text-slate-400 mt-0.5 block">Sub-80ms auth latency</span>
+              <span className="text-[10.5px] text-slate-400 mt-0.5 block">Real-time instant authorization</span>
             </div>
 
             <div className="p-3 sm:p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800">
@@ -677,8 +677,8 @@ export default function MerchantPortalModal({ isOpen, onClose, onOpenApplication
             <div className="space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2.5 border-b border-slate-800">
                 <div>
-                  <h3 className="text-sm sm:text-base font-bold text-white">Ethoca &amp; Verifi RDR Interception Hub</h3>
-                  <p className="text-xs text-slate-400">Auto-resolves inquiries before formal Visa/Mastercard chargeback filing.</p>
+                  <h3 className="text-sm sm:text-base font-bold text-white">Direct Risk &amp; RDR Interception Hub</h3>
+                  <p className="text-xs text-slate-400">Auto-resolves customer inquiries before bank escalation.</p>
                 </div>
                 <div className="px-2.5 py-1 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold self-start sm:self-auto">
                   ✓ Safe: 0.24% vs 0.90% Limit

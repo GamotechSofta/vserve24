@@ -50,12 +50,12 @@ export default function Footer({ onOpenApplication }) {
               CORE SERVICES
             </div>
             <ul className="space-y-2 text-xs sm:text-sm text-[#475569]">
-              <li><a href="#services" className="hover:text-[#0B192C] transition-colors">Credit Card Processing</a></li>
-              <li><a href="#services" className="hover:text-[#0B192C] transition-colors">ACH Processing</a></li>
-              <li><a href="#services" className="hover:text-[#0B192C] transition-colors">Payment Gateways</a></li>
-              <li><a href="#services" className="hover:text-[#0B192C] transition-colors">AI Fraud Detection</a></li>
+              <li><a href="#services" className="hover:text-[#0B192C] transition-colors">Instant UPI & Pay-In</a></li>
+              <li><a href="#services" className="hover:text-[#0B192C] transition-colors">Instant Payout Rails</a></li>
+              <li><a href="#services" className="hover:text-[#0B192C] transition-colors">Multi-Bank Direct Routing</a></li>
+              <li><a href="#services" className="hover:text-[#0B192C] transition-colors">AI Risk & Fraud Detection</a></li>
               <li><a href="#services" className="hover:text-[#0B192C] transition-colors">Approval Optimization</a></li>
-              <li><a href="#services" className="hover:text-[#0B192C] transition-colors">Chargeback Protection</a></li>
+              <li><a href="#services" className="hover:text-[#0B192C] transition-colors">T+0 Settlement Engine</a></li>
             </ul>
           </div>
 

@@ -34,16 +34,16 @@ export default function Capabilities() {
       step: '02',
       badge: 'AI FRAUD ENGINE',
       title: 'Real-Time AI Risk Screening',
-      subtitle: 'Sub-80ms Biometric & Velocity Filter',
+      subtitle: 'Real-Time Biometric & Velocity Filter',
       description: 'Machine learning scores fraud indicators in milliseconds without creating false declines for good buyers.',
       image: imgFraudScreening,
       points: [
-        'Dynamic 3D Secure 2.2 frictionless authentication',
+        'Dynamic biometric & device authentication',
         'Device fingerprinting, proxy, bot & IP geolocation',
         'Custom velocity and high-ticket security thresholds',
-        'Continuous compliance scoring across card brands'
+        'Continuous compliance scoring across sponsor banks'
       ],
-      metric: '< 80ms Decisioning',
+      metric: 'Instant Decisioning',
       sla: '0% False Declines'
     },
     {

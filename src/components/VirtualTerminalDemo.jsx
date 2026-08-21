@@ -286,7 +286,7 @@ export default function VirtualTerminalDemo({ onOpenApplication }) {
                       Authorization Successful
                     </span>
                   </div>
-                  <span className="text-[10.5px] text-slate-400">Sub-80ms</span>
+                  <span className="text-[10.5px] text-slate-400">Instant</span>
                 </div>
 
                 <div className="space-y-3 text-xs">

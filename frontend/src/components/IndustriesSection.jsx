@@ -58,7 +58,7 @@ export default function IndustriesSection({ onOpenApplication }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeModalIndustry, setActiveModalIndustry] = useState(null);
-  const [activeHoverId, setActiveHoverId] = useState('ind-8'); // iGaming & Esports Default
+  const [activeHoverId, setActiveHoverId] = useState('ind-8'); // Online Casino & iGaming Default
   const [viewMode, setViewMode] = useState('circular'); // 'circular' | 'hex' | 'grid'
   const [isRotating, setIsRotating] = useState(true);
   const [rotationAngle, setRotationAngle] = useState(0);

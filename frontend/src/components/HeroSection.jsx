@@ -27,78 +27,100 @@ function usePrefersReducedMotion() {
 }
 
 /* ─── Payment Intelligence Network ──────────────────────────────── */
+/* ─── Payment Intelligence Network ──────────────────────────────── */
 /*
-  viewBox 640 × 500
-  Five nodes: Merchant → Hub → Risk / Processing → Settlement
-  Theme: Exact Logo Colors (Deep Navy #0B192C + Electric Orange #FF5500)
+  viewBox 680 × 470
+  Exact User Flow:
+  
+                 PAY-IN / COLLECTION
+  USER ─────────► VSERVE24 ─────────► MERCHANT
+                                        │
+                                        ▼
+                                     SETTLED
+
+                 PAYOUT / DISBURSEMENT
+  MERCHANT ──────► VSERVE24 ─────────► USER
+                                        │
+                                        ▼
+                                     CREDITED
 */
 const NODES = [
+  // ── Flow 1: PAY-IN / COLLECTION
   { 
-    id: 'merchant',   
-    x: 68,  y: 250, r: 18, 
-    label: 'MERCHANT',   
-    sub: 'Authorization',
-    detail: 'Terminal & POS Gateway Connection'
+    id: 'user_in',   
+    x: 95,  y: 100, r: 20, 
+    label: 'USER',   
+    sub: 'Payer / Player',
+    track: 'payin',
+    detail: 'Customer / Player initiates instant deposit via UPI, Cards, QR, NetBanking'
   },
   { 
-    id: 'hub',        
-    x: 264, y: 250, r: 34, 
+    id: 'gateway_in',        
+    x: 340, y: 100, r: 28, 
     label: 'VSERVE24',   
     sub: 'Gateway Core',
-    detail: 'Direct Bank Underwriting & API Router'
+    track: 'payin',
+    detail: 'AI Chargeback Shield, 3DS 2.2 Auth & Multi-Acquirer Smart Router (<50ms)'
   },
   { 
-    id: 'risk',       
-    x: 450, y: 132, r: 18, 
-    label: 'RISK CHECK', 
-    sub: 'Intelligence',
-    detail: 'AI Chargeback Shield & Fraud Filter'
+    id: 'merchant_in', 
+    x: 585, y: 100, r: 20, 
+    label: 'MERCHANT', 
+    sub: 'Platform Account',
+    track: 'payin',
+    detail: 'Merchant platform receives verified payment authorization payload'
+  },
+  {
+    id: 'settled_badge',
+    x: 585, y: 176,
+    isDrop: true,
+    label: 'SETTLED',
+    sub: 'T+0 Net Bank Funding',
+    track: 'payin',
+    detail: 'Direct T+0 daily batch bank settlement deposited to merchant business account'
+  },
+
+  // ── Flow 2: PAYOUT / DISBURSEMENT
+  { 
+    id: 'merchant_out',   
+    x: 95,  y: 310, r: 20, 
+    label: 'MERCHANT',   
+    sub: 'Platform API',
+    track: 'payout',
+    detail: 'Merchant platform initiates automated instant player withdrawal or prize disbursement'
   },
   { 
-    id: 'processing', 
-    x: 450, y: 368, r: 18, 
-    label: 'PROCESSING', 
-    sub: 'Clearing',
-    detail: 'Multi-Acquirer Global Clearing Rail'
+    id: 'gateway_out',        
+    x: 340, y: 310, r: 28, 
+    label: 'VSERVE24',   
+    sub: 'Gateway Core',
+    track: 'payout',
+    detail: '24/7 Real-Time IMPS / NEFT Rail, Multi-Bank API & Automated Name Verification'
   },
   { 
-    id: 'settlement', 
-    x: 592, y: 250, r: 22, 
-    label: 'SETTLEMENT', 
-    sub: 'Completed',
-    detail: 'Automated Daily Merchant Payouts'
+    id: 'user_out', 
+    x: 585, y: 310, r: 20, 
+    label: 'USER', 
+    sub: 'End Customer',
+    track: 'payout',
+    detail: 'Player / Customer bank account or UPI VPA receives instant disbursement'
+  },
+  {
+    id: 'credited_badge',
+    x: 585, y: 386,
+    isDrop: true,
+    label: 'CREDITED',
+    sub: 'Instant Cash Receipt',
+    track: 'payout',
+    detail: 'Instant cash receipt confirmed and credited directly to player account'
   },
 ];
 
-const EDGES = [
-  'M 68,250 L 264,250',
-  'M 264,250 C 336,250 382,132 450,132',
-  'M 264,250 C 336,250 382,368 450,368',
-  'M 450,132 C 514,132 558,198 592,250',
-  'M 450,368 C 514,368 558,302 592,250',
-];
-const TX_A = 'M 68,250 L 264,250 C 336,250 382,132 450,132 C 514,132 558,198 592,250';
-const TX_B = 'M 68,250 L 264,250 C 336,250 382,368 450,368 C 514,368 558,302 592,250';
+const TX_PAYIN_PATH  = 'M 95,100 L 340,100 L 585,100 L 585,176';
+const TX_PAYOUT_PATH = 'M 95,310 L 340,310 L 585,310 L 585,386';
 
 function PaymentNetwork({ reduced }) {
   const [hoveredNode, setHoveredNode] = useState(null);
-  const [txIndex, setTxIndex] = useState(0);
-
-  const liveEvents = [
-    { label: '🎮 iGaming Instant Deposit:', amount: '₹25,000.00', speed: '✓ 58ms AUTH', rail: 'Direct Domestic MID' },
-    { label: '📈 Forex Trader Margin Fund:', amount: '₹1,50,000.00', speed: '✓ 74ms SETTLED', rail: 'IMPS/NEFT Rail' },
-    { label: '⚡ Crypto Platform On-Ramp:', amount: '₹85,000.00', speed: '✓ 61ms AUTH', rail: '3DS 2.2 Frictionless' },
-    { label: '🏆 Esports Tournament Payout:', amount: '₹45,000.00', speed: '✓ 52ms BATCH', rail: 'Instant Player Credit' },
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTxIndex((prev) => (prev + 1) % liveEvents.length);
-    }, 3200);
-    return () => clearInterval(timer);
-  }, []);
-
-  const currentTx = liveEvents[txIndex];
 
   return (
     <div className="relative w-full flex flex-col items-center justify-center h-full select-none">
@@ -112,29 +134,40 @@ function PaymentNetwork({ reduced }) {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
-        <span className="font-bold text-[#0B192C]">LIVE NETWORK ACTIVE</span>
+        <span className="font-bold text-[#0B192C]">LIVE PROCESSING ENGINE ACTIVE</span>
         <span className="text-slate-300">•</span>
-        <span className="text-slate-500">99.999% Direct Rail</span>
+        <span className="text-slate-500">Collection &amp; Disbursement Rails</span>
       </div>
 
-      {/* Subtle hub glow - matching brand orange */}
+      {/* Subtle background glow */}
       <div
         aria-hidden
         style={{
           position: 'absolute',
-          top: '50%', left: '42%',
+          top: '25%', left: '50%',
           transform: 'translate(-50%,-50%)',
-          width: '460px', height: '460px', borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(255,85,0,0.08) 0%, transparent 68%)',
+          width: '340px', height: '240px', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(16,185,129,0.07) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }}
+      />
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          top: '75%', left: '50%',
+          transform: 'translate(-50%,-50%)',
+          width: '340px', height: '240px', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(255,85,0,0.07) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
 
       <svg
-        viewBox="0 0 640 500"
+        viewBox="0 0 680 470"
         className="w-full h-auto relative z-10"
         style={{ display: 'block', maxHeight: '580px', width: '100%' }}
-        aria-label="Payment intelligence network — Merchant to Settlement flow"
+        aria-label="Payment Intelligence Network — Pay-In & Pay-Out Processing Flow"
         role="img"
       >
         <defs>
@@ -163,160 +196,155 @@ function PaymentNetwork({ reduced }) {
             <stop offset="100%" stopColor="#F8FAFC" />
           </radialGradient>
 
-          <path id="v24-pa" d={TX_A} fill="none" />
-          <path id="v24-pb" d={TX_B} fill="none" />
+          {/* Arrow markers */}
+          <marker id="v24-arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981" fillOpacity="0.9" />
+          </marker>
+          <marker id="v24-arrow-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#FF5500" fillOpacity="0.9" />
+          </marker>
+
+          <path id="v24-tx-payin"  d={TX_PAYIN_PATH}  fill="none" />
+          <path id="v24-tx-payout" d={TX_PAYOUT_PATH} fill="none" />
         </defs>
 
-        {/* ── Background depth circles ── */}
-        <circle cx="264" cy="250" r="180" fill="none" stroke="#0B192C" strokeWidth="0.5" strokeOpacity="0.06" />
-        <circle cx="264" cy="250" r="275" fill="none" stroke="#0B192C" strokeWidth="0.4" strokeOpacity="0.035" />
+        {/* ── Background Lane Containers ── */}
+        {/* Pay-In Container */}
+        <rect x="25" y="16" width="630" height="195" rx="16" fill="#F8FAFC" stroke="#E2E8F0" strokeWidth="0.9" fillOpacity="0.75" />
+        {/* Payout Container */}
+        <rect x="25" y="226" width="630" height="195" rx="16" fill="#FFFBF7" stroke="#FED7AA" strokeWidth="0.9" fillOpacity="0.75" />
 
-        {/* Slow rotating geometric radar ring around hub */}
-        {!reduced && (
-          <g style={{ transformOrigin: '264px 250px' }}>
-            <circle
-              cx="264" cy="250" r="112"
-              fill="none"
-              stroke="#0B192C"
-              strokeWidth="0.6"
-              strokeOpacity="0.09"
-              strokeDasharray="4 14"
-            >
-              <animateTransform
-                attributeName="transform"
-                type="rotate"
-                from="0 264 250"
-                to="360 264 250"
-                dur="30s"
-                repeatCount="indefinite"
-              />
-            </circle>
-          </g>
-        )}
+        {/* ── FLOW 1: PAY-IN / COLLECTION HEADER ── */}
+        <g>
+          <rect x="240" y="28" width="200" height="26" rx="13" fill="#ECFDF5" stroke="#A7F3D0" strokeWidth="1" filter="url(#v24-nshadow)" />
+          <circle cx="256" cy="41" r="3.5" fill="#10B981">
+            {!reduced && <animate attributeName="opacity" values="1;0.4;1" dur="1.8s" repeatCount="indefinite" />}
+          </circle>
+          <text x="344" y="45" textAnchor="middle" fontSize="9.5" fontFamily="ui-monospace, monospace" fontWeight="800" fill="#065F46" letterSpacing="0.14em">
+            PAY-IN / COLLECTION
+          </text>
+        </g>
 
-        {/* Hub crosshair ticks */}
-        {[[264,195,264,208],[264,292,264,305],[208,250,221,250],[307,250,320,250]].map(([x1,y1,x2,y2],i)=>(
-          <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#0B192C" strokeWidth="0.8" strokeOpacity="0.14" />
-        ))}
+        {/* ── FLOW 2: PAYOUT / DISBURSEMENT HEADER ── */}
+        <g>
+          <rect x="230" y="238" width="220" height="26" rx="13" fill="#FFF7ED" stroke="#FFEDD5" strokeWidth="1" filter="url(#v24-nshadow)" />
+          <circle cx="246" cy="251" r="3.5" fill="#FF5500">
+            {!reduced && <animate attributeName="opacity" values="1;0.4;1" dur="1.6s" repeatCount="indefinite" />}
+          </circle>
+          <text x="344" y="255" textAnchor="middle" fontSize="9.5" fontFamily="ui-monospace, monospace" fontWeight="800" fill="#9A3412" letterSpacing="0.14em">
+            PAYOUT / DISBURSEMENT
+          </text>
+        </g>
 
-        {/* ── Base edge architectural lines ── */}
-        {EDGES.map((d,i)=>(
-          <path key={i} d={d} fill="none" stroke="#0B192C" strokeWidth="1" strokeOpacity="0.12" />
-        ))}
+        {/* ── Track 1 Flow Lines: USER ──► VSERVE24 ──► MERCHANT ──► SETTLED ── */}
+        {/* User to VServe24 */}
+        <line x1="120" y1="100" x2="306" y2="100" stroke="#10B981" strokeWidth="1.8" strokeOpacity="0.45" markerEnd="url(#v24-arrow-emerald)" />
+        {/* VServe24 to Merchant */}
+        <line x1="372" y1="100" x2="558" y2="100" stroke="#10B981" strokeWidth="1.8" strokeOpacity="0.45" markerEnd="url(#v24-arrow-emerald)" />
+        {/* Merchant down to Settled */}
+        <line x1="585" y1="124" x2="585" y2="160" stroke="#10B981" strokeWidth="1.8" strokeOpacity="0.55" markerEnd="url(#v24-arrow-emerald)" />
 
-        {/* ── Static Orange Accent paths ── */}
-        <path d={TX_A} fill="none" stroke="#FF5500" strokeWidth="1.2" strokeOpacity="0.35" />
-        <path d={TX_B} fill="none" stroke="#FF5500" strokeWidth="1.0" strokeOpacity="0.22" />
+        {/* ── Track 2 Flow Lines: MERCHANT ──► VSERVE24 ──► USER ──► CREDITED ── */}
+        {/* Merchant to VServe24 */}
+        <line x1="120" y1="310" x2="306" y2="310" stroke="#FF5500" strokeWidth="1.8" strokeOpacity="0.45" markerEnd="url(#v24-arrow-orange)" />
+        {/* VServe24 to User */}
+        <line x1="372" y1="310" x2="558" y2="310" stroke="#FF5500" strokeWidth="1.8" strokeOpacity="0.45" markerEnd="url(#v24-arrow-orange)" />
+        {/* User down to Credited */}
+        <line x1="585" y1="334" x2="585" y2="370" stroke="#FF5500" strokeWidth="1.8" strokeOpacity="0.55" markerEnd="url(#v24-arrow-orange)" />
 
-        {/* ── Animated Continuous Energy Pulse Beams (Dash Streams) ── */}
+        {/* ── Animated Continuous Flowing Beams ── */}
         {!reduced && (
           <>
-            {/* Route A flowing beam */}
+            {/* Pay-In Flow Beam */}
             <path
-              d={TX_A}
+              d={TX_PAYIN_PATH}
               fill="none"
-              stroke="#FF5500"
-              strokeWidth="2.2"
-              strokeDasharray="16 110"
+              stroke="#10B981"
+              strokeWidth="2.5"
+              strokeDasharray="24 110"
               strokeLinecap="round"
-              strokeOpacity="0.80"
+              strokeOpacity="0.95"
               filter="url(#v24-intense-glow)"
             >
-              <animate
-                attributeName="stroke-dashoffset"
-                from="252"
-                to="0"
-                dur="3.2s"
-                repeatCount="indefinite"
-              />
+              <animate attributeName="stroke-dashoffset" from="300" to="0" dur="3.0s" repeatCount="indefinite" />
             </path>
 
-            {/* Route B flowing beam (offset) */}
+            {/* Payout Flow Beam */}
             <path
-              d={TX_B}
+              d={TX_PAYOUT_PATH}
               fill="none"
               stroke="#FF5500"
-              strokeWidth="1.8"
-              strokeDasharray="14 130"
+              strokeWidth="2.5"
+              strokeDasharray="24 110"
               strokeLinecap="round"
-              strokeOpacity="0.70"
+              strokeOpacity="0.95"
               filter="url(#v24-intense-glow)"
             >
-              <animate
-                attributeName="stroke-dashoffset"
-                from="288"
-                to="0"
-                dur="3.6s"
-                begin="1.6s"
-                repeatCount="indefinite"
-              />
+              <animate attributeName="stroke-dashoffset" from="300" to="0" dur="3.0s" begin="0.8s" repeatCount="indefinite" />
             </path>
           </>
         )}
 
-        {/* Mid-path architectural ticks */}
-        <line x1="166" y1="244" x2="166" y2="256" stroke="#0B192C" strokeWidth="0.8" strokeOpacity="0.18" />
-        <line x1="345" y1="184" x2="351" y2="178" stroke="#0B192C" strokeWidth="0.7" strokeOpacity="0.14" />
-        <line x1="345" y1="316" x2="351" y2="322" stroke="#0B192C" strokeWidth="0.7" strokeOpacity="0.14" />
-        <line x1="524" y1="214" x2="530" y2="220" stroke="#0B192C" strokeWidth="0.7" strokeOpacity="0.14" />
-        <line x1="524" y1="286" x2="530" y2="280" stroke="#0B192C" strokeWidth="0.7" strokeOpacity="0.14" />
-
-        {/* ── Process State Indicator Badges with Live Status ── */}
-        {/* RISK CHECK badge */}
-        <g>
-          <rect x="382" y="60" width="136" height="24" rx="12"
-            fill="#FFFFFF" stroke="#0B192C" strokeWidth="0.6" strokeOpacity="0.18" filter="url(#v24-nshadow)" />
-          <circle cx="396" cy="72" r="3" fill="#10B981">
-            {!reduced && (
-              <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite" />
-            )}
-          </circle>
-          <text x="450" y="76" textAnchor="middle" fontSize="7.5"
-            fontFamily="ui-monospace, 'Cascadia Code', monospace"
-            fontWeight="700" letterSpacing="0.12em" fill="#0B192C" fillOpacity="0.85">
-            RISK CHECK: PASSED
-          </text>
-        </g>
-
-        {/* PROCESSING badge */}
-        <g>
-          <rect x="382" y="434" width="136" height="24" rx="12"
-            fill="#FFFFFF" stroke="#0B192C" strokeWidth="0.6" strokeOpacity="0.18" filter="url(#v24-nshadow)" />
-          <circle cx="396" cy="446" r="3" fill="#FF5500">
-            {!reduced && (
-              <animate attributeName="opacity" values="1;0.4;1" dur="1.5s" repeatCount="indefinite" />
-            )}
-          </circle>
-          <text x="450" y="450" textAnchor="middle" fontSize="7.5"
-            fontFamily="ui-monospace, 'Cascadia Code', monospace"
-            fontWeight="700" letterSpacing="0.12em" fill="#0B192C" fillOpacity="0.85">
-            PROCESSING: ACTIVE
-          </text>
-        </g>
-
-        {/* ── Expanding Radar Pulse Ripples on Hub & Settlement ── */}
+        {/* ── Rotating Radar Ripple on VServe24 Cores ── */}
         {!reduced && (
           <>
-            {/* Hub expanding radar ripple */}
-            <circle cx="264" cy="250" r="34" fill="none" stroke="#FF5500" strokeWidth="1.2">
-              <animate attributeName="r" values="34;66" dur="2.8s" repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0.45;0" dur="2.8s" repeatCount="indefinite" />
+            <circle cx="340" cy="100" r="28" fill="none" stroke="#10B981" strokeWidth="1">
+              <animate attributeName="r" values="28;50" dur="2.5s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.45;0" dur="2.5s" repeatCount="indefinite" />
             </circle>
-
-            {/* Settlement expanding radar ripple */}
-            <circle cx="592" cy="250" r="22" fill="none" stroke="#FF5500" strokeWidth="1">
-              <animate attributeName="r" values="22;48" dur="2.8s" begin="1.4s" repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0.40;0" dur="2.8s" begin="1.4s" repeatCount="indefinite" />
+            <circle cx="340" cy="310" r="28" fill="none" stroke="#FF5500" strokeWidth="1">
+              <animate attributeName="r" values="28;50" dur="2.5s" begin="1.2s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.45;0" dur="2.5s" begin="1.2s" repeatCount="indefinite" />
             </circle>
           </>
         )}
 
-        {/* ── Interactive Nodes ── */}
+        {/* ── Interactive Flow Nodes ── */}
         {NODES.map((n) => {
-          const isHub  = n.id === 'hub';
-          const isSett = n.id === 'settlement';
+          const isGateway = n.id.startsWith('gateway');
+          const isPayInTrack = n.track === 'payin';
           const isHovered = hoveredNode === n.id;
+          const accentColor = isPayInTrack ? '#10B981' : '#FF5500';
 
+          // Render Drop Badges (SETTLED and CREDITED)
+          if (n.isDrop) {
+            const isSettled = n.id === 'settled_badge';
+            return (
+              <g 
+                key={n.id} 
+                className="cursor-pointer transition-all duration-200"
+                onMouseEnter={() => setHoveredNode(n.id)}
+                onMouseLeave={() => setHoveredNode(null)}
+              >
+                <rect 
+                  x={n.x - 52} 
+                  y={n.y - 12} 
+                  width="104" 
+                  height="26" 
+                  rx="13" 
+                  fill={isSettled ? '#ECFDF5' : '#FFF7ED'} 
+                  stroke={isHovered ? '#0B192C' : accentColor} 
+                  strokeWidth={isHovered ? '1.5' : '1'} 
+                  filter="url(#v24-nshadow)" 
+                />
+                <circle cx={n.x - 38} cy={n.y + 1} r="3" fill={accentColor} />
+                <text 
+                  x={n.x + 4} 
+                  y={n.y + 5} 
+                  textAnchor="middle" 
+                  fontSize="8.5" 
+                  fontFamily="ui-monospace, monospace" 
+                  fontWeight="800" 
+                  fill={isSettled ? '#065F46' : '#9A3412'} 
+                  letterSpacing="0.10em"
+                >
+                  ✓ {n.label}
+                </text>
+              </g>
+            );
+          }
+
+          // Render Main Circular Nodes
           return (
             <g 
               key={n.id} 
@@ -325,178 +353,79 @@ function PaymentNetwork({ reduced }) {
               onMouseEnter={() => setHoveredNode(n.id)}
               onMouseLeave={() => setHoveredNode(null)}
             >
-              {/* Outermost decorative ring */}
-              <circle cx={n.x} cy={n.y} r={n.r + (isHub ? 15 : 10)}
+              {/* Outer decorative dashed ring */}
+              <circle cx={n.x} cy={n.y} r={n.r + (isGateway ? 10 : 7)}
                 fill="none"
-                stroke={isHovered ? '#FF5500' : (isHub ? '#FF5500' : '#0B192C')}
-                strokeWidth={isHovered ? '1.5' : (isHub ? '1' : '0.5')}
-                strokeOpacity={isHovered ? 0.6 : (isHub ? 0.32 : 0.08)}
-                strokeDasharray={isHub ? '4 6' : '2 5'} 
+                stroke={isHovered ? accentColor : (isGateway ? accentColor : '#0B192C')}
+                strokeWidth={isHovered ? '1.5' : (isGateway ? '1.1' : '0.6')}
+                strokeOpacity={isHovered ? 0.75 : (isGateway ? 0.40 : 0.12)}
+                strokeDasharray={isGateway ? '4 5' : '2 4'} 
               />
 
               {/* Main node body */}
               <circle cx={n.x} cy={n.y} r={n.r}
-                fill={isHub ? 'url(#v24-hub-fill)' : 'url(#v24-node-fill)'}
-                stroke={isHovered ? '#FF5500' : '#0B192C'}
-                strokeWidth={isHovered ? '1.8' : (isHub ? '1.3' : '0.8')}
-                strokeOpacity={isHovered ? 0.8 : (isHub ? 0.28 : 0.16)} 
+                fill={isGateway ? 'url(#v24-hub-fill)' : 'url(#v24-node-fill)'}
+                stroke={isHovered ? accentColor : (isGateway ? accentColor : '#0B192C')}
+                strokeWidth={isHovered ? '1.8' : (isGateway ? '1.4' : '0.9')}
+                strokeOpacity={isHovered ? 0.9 : (isGateway ? 0.45 : 0.25)} 
               />
 
-              {/* Hub interior system with Logo colors */}
-              {isHub && (<>
-                <circle cx={n.x} cy={n.y} r={19} fill="none" stroke="#0B192C" strokeWidth="0.6" strokeOpacity="0.15" />
-                <circle cx={n.x} cy={n.y} r={11} fill="none" stroke="#FF5500" strokeWidth="0.9" strokeOpacity="0.45" />
-                <circle cx={n.x} cy={n.y} r={7.5}  fill="#0B192C" fillOpacity="0.95" />
-                {/* Breathing Core */}
-                <circle cx={n.x} cy={n.y} r={3.2} fill="#FF5500" fillOpacity="1">
+              {/* Gateway Core Interior */}
+              {isGateway && (<>
+                <circle cx={n.x} cy={n.y} r={15} fill="none" stroke="#0B192C" strokeWidth="0.6" strokeOpacity="0.15" />
+                <circle cx={n.x} cy={n.y} r={8.5} fill="none" stroke={accentColor} strokeWidth="1" strokeOpacity="0.55" />
+                <circle cx={n.x} cy={n.y} r={5.5} fill="#0B192C" fillOpacity="0.95" />
+                <circle cx={n.x} cy={n.y} r={2.6} fill={accentColor} fillOpacity="1">
                   {!reduced && (
-                    <animate attributeName="r" values="3.2;4.2;3.2" dur="2.4s" repeatCount="indefinite" />
+                    <animate attributeName="r" values="2.6;3.5;2.6" dur="2.2s" repeatCount="indefinite" />
                   )}
                 </circle>
               </>)}
 
-              {/* Settlement Orange ring */}
-              {isSett && (<>
-                <circle cx={n.x} cy={n.y} r={n.r + 6}
-                  fill="none" stroke="#FF5500" strokeWidth="1" strokeOpacity="0.42" />
-                <circle cx={n.x} cy={n.y} r={6} fill="#0B192C" fillOpacity="0.85" />
-              </>)}
-
-              {/* Regular nodes inner dot */}
-              {!isHub && !isSett && (
-                <circle cx={n.x} cy={n.y} r={4.5} fill={isHovered ? '#FF5500' : '#0B192C'} fillOpacity={isHovered ? 0.9 : 0.55} />
+              {/* Regular Node Inner Dot */}
+              {!isGateway && (
+                <circle cx={n.x} cy={n.y} r={4.5} fill={isHovered ? accentColor : (isPayInTrack ? '#10B981' : '#FF5500')} fillOpacity={isHovered ? 1 : 0.8} />
               )}
 
-              {/* Label */}
-              <text x={n.x} y={n.y + n.r + (isHub ? 22 : 18)}
+              {/* Node Title Label */}
+              <text x={n.x} y={n.y + n.r + (isGateway ? 17 : 15)}
                 textAnchor="middle"
-                fontSize={isHub ? '9.5' : '8.5'}
+                fontSize={isGateway ? '9.5' : '8.5'}
                 fontFamily="ui-monospace, 'Cascadia Code', monospace"
-                fontWeight="700" letterSpacing="0.15em"
-                fill={isHovered ? '#FF5500' : '#0B192C'} 
-                fillOpacity="0.88">
+                fontWeight="700" letterSpacing="0.10em"
+                fill={isHovered ? accentColor : '#0B192C'} 
+                fillOpacity="0.90">
                 {n.label}
               </text>
-              <text x={n.x} y={n.y + n.r + (isHub ? 34 : 29)}
-                textAnchor="middle" fontSize="7"
-                fontFamily="ui-monospace, monospace" letterSpacing="0.06em"
-                fill="#475569" fillOpacity="0.68">
+              <text x={n.x} y={n.y + n.r + (isGateway ? 27 : 24)}
+                textAnchor="middle" fontSize="6.8"
+                fontFamily="ui-monospace, monospace" letterSpacing="0.03em"
+                fill="#475569" fillOpacity="0.75">
                 {n.sub}
               </text>
             </g>
           );
         })}
 
-        {/* Connection endpoint squares */}
-        {[{x:68,y:250},{x:450,y:132},{x:450,y:368},{x:592,y:250}].map((pt,i)=>(
-          <rect key={i} x={pt.x-2.5} y={pt.y-2.5} width="5" height="5"
-            fill="#0B192C" fillOpacity="0.14" rx="0.8" />
-        ))}
-
-        {/* ── Multi-Particle High-Speed Transaction Stream ── */}
+        {/* ── High-Speed Stream Packets with Trail ── */}
         {!reduced && (<>
-          {/* Primary Main Packet — Route A */}
+          {/* Pay-In Stream Packet */}
+          <circle r="5.2" fill="#10B981" fillOpacity="0" filter="url(#v24-intense-glow)">
+            <animateMotion dur="3.6s" repeatCount="indefinite" begin="0s" calcMode="spline" keySplines="0.42 0 0.58 1">
+              <mpath href="#v24-tx-payin" />
+            </animateMotion>
+            <animate attributeName="fill-opacity" values="0;1;1;1;1;0" keyTimes="0;0.06;0.45;0.88;0.96;1" dur="3.6s" repeatCount="indefinite" begin="0s" />
+          </circle>
+
+          {/* Payout Stream Packet */}
           <circle r="5.2" fill="#FF5500" fillOpacity="0" filter="url(#v24-intense-glow)">
-            <animateMotion dur="4.8s" repeatCount="indefinite" begin="0s"
-              calcMode="spline" keySplines="0.42 0 0.58 1">
-              <mpath href="#v24-pa" />
+            <animateMotion dur="3.6s" repeatCount="indefinite" begin="1.8s" calcMode="spline" keySplines="0.42 0 0.58 1">
+              <mpath href="#v24-tx-payout" />
             </animateMotion>
-            <animate attributeName="fill-opacity"
-              values="0;1;1;1;1;0"
-              keyTimes="0;0.05;0.40;0.90;0.97;1"
-              dur="4.8s" repeatCount="indefinite" begin="0s" />
-          </circle>
-
-          {/* Primary Main Packet — Route B */}
-          <circle r="4.6" fill="#FF5500" fillOpacity="0" filter="url(#v24-intense-glow)">
-            <animateMotion dur="4.8s" repeatCount="indefinite" begin="2.4s"
-              calcMode="spline" keySplines="0.42 0 0.58 1">
-              <mpath href="#v24-pb" />
-            </animateMotion>
-            <animate attributeName="fill-opacity"
-              values="0;0.95;0.95;0.95;0.95;0"
-              keyTimes="0;0.05;0.40;0.90;0.97;1"
-              dur="4.8s" repeatCount="indefinite" begin="2.4s" />
-          </circle>
-
-          {/* Fast Stream Micro Packet — Route A */}
-          <circle r="3.2" fill="#FF7733" fillOpacity="0" filter="url(#v24-intense-glow)">
-            <animateMotion dur="4.8s" repeatCount="indefinite" begin="0.8s">
-              <mpath href="#v24-pa" />
-            </animateMotion>
-            <animate attributeName="fill-opacity"
-              values="0;0.80;0.80;0.80;0.80;0"
-              keyTimes="0;0.08;0.42;0.90;0.96;1"
-              dur="4.8s" repeatCount="indefinite" begin="0.8s" />
-          </circle>
-
-          {/* Fast Stream Micro Packet — Route B */}
-          <circle r="2.8" fill="#FF7733" fillOpacity="0" filter="url(#v24-intense-glow)">
-            <animateMotion dur="4.8s" repeatCount="indefinite" begin="3.2s">
-              <mpath href="#v24-pb" />
-            </animateMotion>
-            <animate attributeName="fill-opacity"
-              values="0;0.75;0.75;0.75;0.75;0"
-              keyTimes="0;0.08;0.42;0.90;0.96;1"
-              dur="4.8s" repeatCount="indefinite" begin="3.2s" />
-          </circle>
-
-          {/* Comet Tail Tracer — Route A */}
-          <circle r="2" fill="#FFA366" fillOpacity="0">
-            <animateMotion dur="4.8s" repeatCount="indefinite" begin="0.15s">
-              <mpath href="#v24-pa" />
-            </animateMotion>
-            <animate attributeName="fill-opacity"
-              values="0;0.55;0.55;0.55;0.55;0"
-              keyTimes="0;0.08;0.42;0.90;0.96;1"
-              dur="4.8s" repeatCount="indefinite" begin="0.15s" />
-          </circle>
-
-          {/* Comet Tail Tracer — Route B */}
-          <circle r="1.8" fill="#FFA366" fillOpacity="0">
-            <animateMotion dur="4.8s" repeatCount="indefinite" begin="2.55s">
-              <mpath href="#v24-pb" />
-            </animateMotion>
-            <animate attributeName="fill-opacity"
-              values="0;0.50;0.50;0.50;0.50;0"
-              keyTimes="0;0.08;0.42;0.90;0.96;1"
-              dur="4.8s" repeatCount="indefinite" begin="2.55s" />
+            <animate attributeName="fill-opacity" values="0;1;1;1;1;0" keyTimes="0;0.06;0.45;0.88;0.96;1" dur="3.6s" repeatCount="indefinite" begin="1.8s" />
           </circle>
         </>)}
       </svg>
-
-      {/* ── Interactive Node Details & Live Gaming/Trading Telemetry ── */}
-      <div className="mt-2 w-full pt-2 border-t border-[#E7E3DA] flex flex-col gap-1.5">
-        <div className="flex items-center justify-between text-[10px] text-slate-500 font-medium">
-          <span className="flex items-center gap-1 text-emerald-600 font-bold">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-            LIVE TELEMETRY STREAM:
-          </span>
-          <span className="font-semibold text-slate-600">Sub-80ms Routing</span>
-        </div>
-
-        <div className="bg-slate-50 border border-slate-200/80 rounded-xl px-3 py-1.5 flex items-center justify-between text-[11px] overflow-hidden min-h-[34px]">
-          {hoveredNode ? (
-            <div className="font-medium text-slate-700 transition-all animate-in fade-in">
-              <span className="text-[#FF5500] font-bold">NODE: </span>
-              {NODES.find(n => n.id === hoveredNode)?.detail}
-            </div>
-          ) : (
-            <div key={txIndex} className="flex items-center justify-between w-full font-semibold text-slate-700 transition-all duration-300 animate-in fade-in slide-in-from-bottom-1">
-              <span className="flex items-center gap-1.5 text-[#0B192C]">
-                <span>{currentTx.label}</span>
-                <span className="text-[#FF5500] font-bold">{currentTx.amount}</span>
-              </span>
-              <div className="flex items-center gap-1.5">
-                <span className="text-[9.5px] text-slate-500 hidden sm:inline">{currentTx.rail}</span>
-                <span className="text-[10px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-mono font-bold">
-                  {currentTx.speed}
-                </span>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
 
     </div>
   );
@@ -508,10 +437,10 @@ const HERO_SLIDES = [
     id: 'gaming',
     imageDesktop: banner01Desktop,
     imageMobile: banner01Mobile,
-    tag: '🎮 Gaming & Esports Payment Gateway',
-    title: 'Gaming & Esports Payment Gateway — Dedicated High-Risk MIDs',
-    shortLabel: 'Gaming & Esports',
-    ctaText: 'Get Gaming MIDs',
+    tag: '🎰 Casino & iGaming Payment Gateway',
+    title: 'Casino & iGaming Payment Gateway — Dedicated High-Risk MIDs',
+    shortLabel: 'Casino & Gaming',
+    ctaText: 'Get Casino MIDs',
     accentColor: '#FF5500',
     borderGlow: 'border-orange-500/40 shadow-orange-500/10 ring-1 ring-orange-500/20',
   },
@@ -780,7 +709,7 @@ export default function HeroSection({ onOpenApplication }) {
                 marginBottom: 'clamp(14px, 1.6vh, 18px)',
               }}
             >
-              Dedicated Tier-1 merchant accounts for <strong>iGaming, Esports, Forex &amp; Crypto Trading</strong> platforms. Process instant high-volume player deposits &amp; trader payouts with sub-80ms authorization, zero aggregator freezes, and automated dispute defense.
+              Dedicated Tier-1 merchant accounts for <strong>Online Casino, iGaming, Forex &amp; Crypto Trading</strong> platforms. Process instant high-volume player deposits &amp; winning payouts with instant real-time authorization, zero aggregator freezes, and automated dispute defense.
             </p>
 
             {/* Quick Industry Feature Badges */}
@@ -789,7 +718,7 @@ export default function HeroSection({ onOpenApplication }) {
                 <span className="w-5 h-5 rounded-lg bg-orange-50 border border-orange-200/80 flex items-center justify-center text-[#FF5500] shrink-0">
                   <Gamepad2 className="w-3.5 h-3.5" />
                 </span>
-                <span>iGaming &amp; Esports MIDs</span>
+                <span>Casino &amp; iGaming MIDs</span>
               </div>
 
               <div className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white border border-[#E7E3DA] text-[11px] sm:text-xs font-semibold text-[#0B192C] shadow-2xs">
@@ -803,7 +732,7 @@ export default function HeroSection({ onOpenApplication }) {
                 <span className="w-5 h-5 rounded-lg bg-emerald-100/90 border border-emerald-300/80 flex items-center justify-center text-[#10B981] shrink-0">
                   <Zap className="w-3.5 h-3.5" />
                 </span>
-                <span>Sub-80ms Live Deposits</span>
+                <span>Instant Live Deposits</span>
               </div>
             </div>
 

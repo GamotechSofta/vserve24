@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Logo from './Logo';
 import { 
   ChevronDown, Phone, ArrowRight, Menu, X, 
-  CreditCard, Building2, Cpu, Network, TrendingUp, ShieldAlert,
-  ShieldCheck, Globe, HelpCircle, Layers, CheckCircle2, Zap
+  Building2, Cpu, Network, TrendingUp, ShieldAlert,
+  ShieldCheck, Globe, HelpCircle, Layers, CheckCircle2, Zap, QrCode
 } from 'lucide-react';
 
 export default function Navbar({ onOpenApplication, onOpenPortal }) {
@@ -25,20 +25,10 @@ export default function Navbar({ onOpenApplication, onOpenPortal }) {
       href: '#services',
       hasDropdown: true,
       items: [
-        { name: 'Credit Card Processing', desc: 'Accept cards online, phone & POS', href: '#services', icon: CreditCard },
-        { name: 'ACH & eCheck Clearing', desc: 'Direct bank-to-bank debit rails', href: '#services', icon: Building2 },
-        { name: 'AI Fraud Detection', desc: 'Sub-80ms real-time risk filter', href: '#services', icon: Cpu },
+        { name: 'Instant UPI & Pay-In', desc: 'Dynamic UPI, QR & NetBanking rails', href: '#services', icon: Zap },
+        { name: 'Instant Payout Rails', desc: '24/7 real-time IMPS disbursements', href: '#services', icon: Building2 },
+        { name: 'AI Risk & Fraud Filter', desc: 'Real-time AI risk filter', href: '#services', icon: Cpu },
         { name: 'Approval Optimization', desc: 'Salvage soft bank rejections', href: '#services', icon: TrendingUp },
-      ]
-    },
-    {
-      label: 'Tools',
-      href: '#calculator',
-      hasDropdown: true,
-      items: [
-        { name: 'Fee & ROI Calculator', desc: 'Estimate recovered revenue & rates', href: '#calculator', icon: TrendingUp },
-        { name: 'MOTO Virtual Terminal', desc: 'Test telephone & invoice payments', href: '#virtual-terminal', icon: CreditCard },
-        { name: 'Developer REST API', desc: 'Sandbox & interactive webhook tester', href: '#api', icon: Network },
       ]
     },
     {
@@ -46,20 +36,20 @@ export default function Navbar({ onOpenApplication, onOpenPortal }) {
       href: '#industries',
       hasDropdown: true,
       items: [
-        { name: 'iGaming & Esports', desc: 'Instant player deposits & payouts', href: '#industries', icon: Zap },
+        { name: 'Online Casino & iGaming', desc: 'Instant player deposits & winning payouts', href: '#industries', icon: Zap },
         { name: 'Forex & Crypto Trading', desc: 'High-velocity trader funding rails', href: '#industries', icon: TrendingUp },
         { name: 'CBD & Nutraceuticals', desc: 'Compliant health & wellness MIDs', href: '#industries', icon: ShieldCheck },
         { name: 'E-Commerce & Digital Media', desc: 'High-volume discrete fulfillment', href: '#industries', icon: Globe },
       ]
     },
     {
-      label: 'Developers',
-      href: '#api',
+      label: 'Infrastructure',
+      href: '#intelligence',
       hasDropdown: true,
       items: [
-        { name: 'REST API Sandbox', desc: 'Interactive developer live testing', href: '#api', icon: Cpu },
-        { name: 'Direct Acquirer Routing', desc: 'Shopify, WooCommerce connectors', href: '#capabilities', icon: Network },
-        { name: 'Cascading Failover', desc: 'Zero-downtime multi-MID routing', href: '#capabilities', icon: TrendingUp },
+        { name: 'Multi-Bank Direct Routing', desc: 'Smart sponsor bank rails', href: '#intelligence', icon: Network },
+        { name: 'Cascading Failover', desc: 'Zero-downtime multi-MID routing', href: '#intelligence', icon: TrendingUp },
+        { name: 'T+0 Settlement Engine', desc: 'Automated daily net merchant funding', href: '#intelligence', icon: CheckCircle2 },
       ]
     },
     {
@@ -68,7 +58,7 @@ export default function Navbar({ onOpenApplication, onOpenPortal }) {
       hasDropdown: true,
       items: [
         { name: 'Direct Underwriting Desk', desc: '24h risk review & live MIDs', href: '#services', icon: Phone },
-        { name: 'Global Processing Pipeline', desc: 'Direct sponsor acquiring rails', href: '#intelligence', icon: CheckCircle2 },
+        { name: 'Processing Pipeline', desc: 'Direct sponsor acquiring rails', href: '#intelligence', icon: CheckCircle2 },
       ]
     }
   ];

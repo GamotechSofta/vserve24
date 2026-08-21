@@ -17,7 +17,7 @@ export default function ApiPlayground({ onOpenApplication }) {
       method: 'POST',
       path: '/v1/gaming-trading/direct-charge',
       title: '🎮 Gaming & Trading Direct Auth',
-      desc: 'Sub-80ms player/trader direct auth with frictionless 3DS 2.2'
+      desc: 'Instant real-time player/trader direct auth'
     },
     {
       id: 'failover',
@@ -241,7 +241,7 @@ if ($event->type === 'dispute.pre_alert') {
             </h2>
 
             <p className="text-[#475569] text-base lg:text-lg leading-relaxed">
-              Accept tokenized charges, orchestrate automated multi-MID cascading, and handle pre-dispute webhooks with sub-80ms response times.
+              Accept tokenized charges, orchestrate automated multi-MID cascading, and handle pre-dispute webhooks with instant real-time response times.
             </p>
           </div>
 
@@ -371,7 +371,7 @@ if ($event->type === 'dispute.pre_alert') {
                 <div className="p-3 rounded-xl bg-white border border-[#E7E3DA] space-y-0.5">
                   <span className="text-[10.5px] text-[#707887] font-semibold block">Decision Latency</span>
                   <span className="text-base font-bold text-[#10B981] flex items-center gap-1">
-                    <Zap className="w-3.5 h-3.5" /> 68ms (Sub-80ms)
+                    <Zap className="w-3.5 h-3.5" /> Instant (Real-Time)
                   </span>
                 </div>
 

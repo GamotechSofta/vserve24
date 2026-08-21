@@ -129,7 +129,7 @@ export default function DeclineCodeLookup({ onOpenApplication }) {
       severity: 'Low',
       issuerReason: 'European or UK issuing bank mandates Strong Customer Authentication (SCA) under PSD2 regulations.',
       recoveryRate: '88%',
-      salvageStrategy: 'Vserve24 Dynamic 3DS 2.2 engine serves biometric or banking app verification modal in sub-80ms with zero checkout abandonment.',
+      salvageStrategy: 'Vserve24 Dynamic authentication engine serves biometric or banking app verification modal in real time with zero checkout abandonment.',
       customerFix: 'Customer completes 1-second FaceID or SMS approval on banking app.'
     }
   ];

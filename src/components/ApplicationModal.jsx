@@ -16,7 +16,7 @@ export default function ApplicationModal({ isOpen, onClose, initialParams }) {
     phone: '',
     website: '',
     monthlyVolume: '₹25 Lakhs – ₹1 Crore / mo',
-    industry: 'iGaming & Esports',
+    industry: 'Online Casino & iGaming',
     needDisputeDefense: true,
     needRecurring: false
   });
@@ -229,7 +229,7 @@ export default function ApplicationModal({ isOpen, onClose, initialParams }) {
             {/* Bottom Security Guarantee */}
             <div className="flex items-center justify-center gap-2 text-[11px] text-[#707887]">
               <Lock className="w-3.5 h-3.5 text-[#FF5500]" />
-              <span>TLS 1.3 256-Bit Encrypted Form Submission • No Impact on Credit</span>
+              <span>TLS 1.3 256-Bit Encrypted Submission • Confidential Risk Review</span>
             </div>
 
           </form>

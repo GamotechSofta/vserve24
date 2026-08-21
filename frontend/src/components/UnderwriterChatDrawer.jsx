@@ -76,11 +76,11 @@ export default function UnderwriterChatDrawer({ onOpenApplication }) {
     },
     {
       keywords: ['nutra', 'nutraceutical', 'supplement', 'dietary', 'skincare', 'trial', 'continuity', 'subscription', 'rebill'],
-      response: 'Nutraceutical and dietary supplement continuity is our core specialty. We provide multi-MID load balanced rails built for high-volume subscriber rebilling, automated card updater (Visa VAU / Mastercard ABU), and 84% soft decline recovery.',
+      response: 'Nutraceutical and dietary supplement continuity is our core specialty. We provide multi-MID load balanced rails built for high-volume subscriber rebilling, automated recurring retry engines, and 84% soft decline recovery.',
       card: {
         title: 'Nutraceutical Continuity Gateway',
         badge: 'Multi-MID Auto-Load Balance',
-        highlights: ['84% Soft Decline Recovery Engine', 'Automated Card Updater (VAU/ABU)', 'Ethoca/Verifi RDR Pre-Dispute Interception'],
+        highlights: ['84% Soft Decline Recovery Engine', 'Automated Recurring Retry Engine', 'Direct Pre-Dispute Interception'],
         actionText: 'Apply for Nutra MID',
         actionPayload: { industry: 'Nutraceutical' }
       }
@@ -112,7 +112,7 @@ export default function UnderwriterChatDrawer({ onOpenApplication }) {
       response: `Integrating Vserve24 into your MERN Stack project takes 3 simple steps:
 
 1. React Frontend (Client):
-Collect payment details with Vserve24 client-side tokenization (or iframe Hosted Fields) to securely convert the card number into a single-use token ('tok_live_...').
+Collect payment details with Vserve24 client-side tokenization to securely convert transaction details into a single-use token ('tok_live_...').
 
 2. Express.js Backend (Server API Route):
 Send a POST request to 'https://api.vserve24.com/v1/charges' using axios or fetch with your Secret API Key:
@@ -135,29 +135,29 @@ Listen to POST /api/webhooks/vserve24 for instant automated 'charge.refunded', '
       card: {
         title: 'MERN Stack Quickstart Guide',
         badge: 'Node.js & React Ready',
-        highlights: ['Client-side tokenization (Zero PCI scope)', 'Express.js backend SDK / REST API', 'MongoDB order schema & Webhook events'],
-        actionText: 'View Developer API Sandbox',
+        highlights: ['Client-side tokenization (Zero security scope)', 'Express.js backend SDK / REST API', 'MongoDB order schema & Webhook events'],
+        actionText: 'Apply for Developer Credentials',
         actionPayload: {}
       }
     },
     {
       keywords: ['integrate', 'integration', 'shopify', 'woocommerce', 'api', 'magento', 'nmi', 'authorizenet', 'plugin', 'wordpress'],
-      response: 'Vserve24 integrates seamlessly across all major platforms and custom stacks:\n\n• MERN & Next.js: Direct REST API with sub-80ms decision latency and Node.js backend SDKs.\n• Shopify & Shopify Plus: Native custom app gateway connector.\n• WooCommerce: Official 1-click WordPress plugin.\n• Direct REST API: Full JSON API with cURL, Node.js, Python, PHP, and Go libraries.\n• NMI & Authorize.Net: Gateway emulation mode for instant plug-and-play without changing existing code.',
+      response: 'Vserve24 integrates seamlessly across all major platforms and custom stacks:\n\n• MERN & Next.js: Direct REST API with instant real-time decision latency and Node.js backend SDKs.\n• Shopify & Shopify Plus: Native custom app gateway connector.\n• WooCommerce: Official 1-click WordPress plugin.\n• Direct REST API: Full JSON API with cURL, Node.js, Python, PHP, and Go libraries.\n• NMI & Authorize.Net: Gateway emulation mode for instant plug-and-play without changing existing code.',
       card: {
         title: 'Developer REST API & Plugins',
         badge: '1-Click Checkout Connectors',
-        highlights: ['Shopify & WooCommerce Connectors', 'Direct REST API (< 80ms decision)', 'NMI & Auth.Net Emulation Ready'],
-        actionText: 'Explore API Sandbox',
+        highlights: ['Shopify & WooCommerce Connectors', 'Direct REST API (Real-Time Decision)', 'NMI & Auth.Net Emulation Ready'],
+        actionText: 'Apply for Integration Keys',
         actionPayload: {}
       }
     },
     {
       keywords: ['rdr', 'ethoca', 'verifi', 'chargeback', 'dispute', 'deflect', 'vfmp', 'ecp', 'ratio'],
-      response: 'Ethoca and Verifi Rapid Dispute Resolution (RDR) are native pre-dispute deflection networks integrated directly into Vserve24. When a cardholder contacts their issuing bank to dispute a transaction, the network intercepts the inquiry before it becomes a formal chargeback. Vserve24 automatically refunds the order within 2 seconds. The bank never registers a dispute, keeping your chargeback ratio safely below the 0.90% card association threshold and preventing penalties.',
+      response: 'Ethoca and Verifi Rapid Dispute Resolution (RDR) are native pre-dispute deflection networks integrated directly into Vserve24. When a customer contacts their bank to dispute a transaction, the network intercepts the inquiry before it becomes an escalated dispute. Vserve24 automatically refunds the order within 2 seconds. The bank never registers a dispute, keeping your dispute ratio safely below threshold and preventing penalties.',
       card: {
-        title: 'Ethoca & Verifi RDR Chargeback Shield',
+        title: 'Pre-Dispute Chargeback Shield',
         badge: 'Zero Dispute Registration',
-        highlights: ['Intercepts up to 90% of cardholder inquiries', 'Eliminates ₹4,000/dispute scheme fines', 'Safeguards MID longevity'],
+        highlights: ['Intercepts up to 90% of customer inquiries', 'Eliminates dispute scheme fines', 'Safeguards MID longevity'],
         actionText: 'Activate Chargeback Shield',
         actionPayload: {}
       }

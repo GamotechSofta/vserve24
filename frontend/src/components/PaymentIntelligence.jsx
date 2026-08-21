@@ -5,34 +5,34 @@ export default function PaymentIntelligence({ onOpenApplication }) {
   const nodes = [
     {
       step: '01',
-      title: 'Merchant Gateway',
-      sub: 'Tokenized Ingestion',
-      detail: 'Encrypted checkout payload generated and validated with zero cardholder data exposure.'
+      title: 'Merchant / Client',
+      sub: 'API & Webhook Ingestion',
+      detail: 'Gaming, Forex, Trading & Enterprise platforms integrate securely via unified REST APIs and SDKs.'
     },
     {
       step: '02',
-      title: 'Vserve24 Core',
-      sub: 'Intelligent Router',
-      detail: 'Multi-MID load balancer evaluates currency, ticket size, and velocity rules.'
+      title: 'End User / Payer',
+      sub: 'Seamless Checkout',
+      detail: 'Frictionless customer deposit & withdrawal request initialization with instant clearance.'
     },
     {
       step: '03',
-      title: 'Risk Intelligence',
-      sub: 'Fraud & Shield Check',
-      detail: 'Machine learning scores behavioral patterns, device fingerprinting, and proxy flags.',
+      title: 'Vserve24 Core Engine',
+      sub: 'Risk & Intelligent Routing',
+      detail: 'Machine learning scores fraud risk, validates payer authenticity, and dynamically routes to optimal sponsor rails.',
       highlight: true
     },
     {
       step: '04',
-      title: 'Acquiring Rail',
-      sub: 'Card & ACH Clearing',
-      detail: 'Direct transmission to Tier-1 sponsor banks with automated cascading decline salvage.'
+      title: 'Pay-In & Pay-Out Rails',
+      sub: 'Instant Multi-Channel Clearing',
+      detail: 'Instant UPI & Dynamic QR collections paired with 24/7 instant IMPS player disbursements.'
     },
     {
       step: '05',
       title: 'Settlement Engine',
-      sub: 'Merchant Payout',
-      detail: 'Automated daily batch funding deposited directly to business accounts.'
+      sub: 'T+0 Automated Net Funding',
+      detail: 'Automated daily batch settlement and liquidity deposited directly to merchant business bank accounts.'
     }
   ];
 
