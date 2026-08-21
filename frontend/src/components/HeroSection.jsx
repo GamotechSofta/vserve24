@@ -523,15 +523,8 @@ export default function HeroSection({ onOpenApplication }) {
 
   return (
     <section
-      style={{
-        background: '#FCFBF8',
-        position: 'relative',
-        overflow: 'hidden',
-        minHeight: 'calc(100vh - 80px)',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-      }}
+      id="hero"
+      className="relative bg-[#FCFBF8] border-b border-[#E7E3DA] overflow-hidden flex flex-col justify-center py-3 pb-8 sm:py-6 lg:min-h-[calc(100vh-80px)]"
     >
       {/* Subtle Engineering Dot Grid Texture */}
       <div 
@@ -564,7 +557,7 @@ export default function HeroSection({ onOpenApplication }) {
         <div 
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="w-full pt-3 sm:pt-4 pb-2 relative z-20"
+          className="w-full pt-2 sm:pt-4 pb-2 relative z-20"
         >
           {/* Banner Outer Card */}
           <div className={`relative group overflow-hidden rounded-2xl sm:rounded-3xl border ${currentSlide.borderGlow || 'border-orange-500/40'} bg-white shadow-xl transition-all duration-500 select-none`}>
@@ -601,46 +594,44 @@ export default function HeroSection({ onOpenApplication }) {
                     className="hidden sm:block w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.012] pointer-events-none"
                     loading={idx === 0 ? 'eager' : 'lazy'}
                   />
+
+                  {/* Slide Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent sm:hidden pointer-events-none" />
+
+                  {/* Slide Content Overlay (Mobile Only Bottom Tag) */}
+                  <div className="absolute bottom-2.5 left-3 right-3 sm:hidden z-10 flex items-center justify-between pointer-events-none">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-black/65 backdrop-blur-md border border-white/20 text-white font-bold text-[10.5px] shadow-sm">
+                      <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: slide.accentColor }} />
+                      <span className="truncate max-w-[210px]">{slide.shortLabel}</span>
+                    </span>
+                    <span className="text-[10px] font-bold text-white/90 bg-[#FF5500] px-2 py-0.5 rounded-md flex items-center gap-1">
+                      Apply <ArrowRight className="w-2.5 h-2.5" />
+                    </span>
+                  </div>
                 </div>
               ))}
-
-              {/* Subtle Gradient Bottom Vignette (Desktop only) */}
-              <div className="hidden sm:block absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/45 via-black/15 to-transparent pointer-events-none z-15" />
             </div>
 
-            {/* Bottom Floating Selector Pills (Desktop only - Hidden on Mobile) */}
-            <div className="hidden sm:flex absolute bottom-2 sm:bottom-3.5 left-1/2 -translate-x-1/2 z-20 items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-black/55 backdrop-blur-md border border-white/15 shadow-md">
-              {HERO_SLIDES.map((slide, idx) => (
+            {/* Slider Dots */}
+            <div className="absolute bottom-2.5 right-3.5 hidden sm:flex items-center gap-1.5 z-20 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+              {HERO_SLIDES.map((_, idx) => (
                 <button
-                  key={slide.id}
-                  type="button"
+                  key={idx}
                   onClick={(e) => {
                     e.stopPropagation();
                     setActiveSlide(idx);
                   }}
-                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold transition-all duration-200 cursor-pointer ${
-                    activeSlide === idx
-                      ? 'bg-white text-[#0B192C] shadow-sm'
-                      : 'text-white/75 hover:text-white hover:bg-white/15'
+                  className={`transition-all duration-300 rounded-full cursor-pointer ${
+                    activeSlide === idx ? 'w-5 h-1.5 bg-[#FF5500]' : 'w-1.5 h-1.5 bg-white/40 hover:bg-white/70'
                   }`}
-                  aria-label={`Go to slide ${idx + 1}: ${slide.shortLabel}`}
-                >
-                  <span className={`w-1.5 h-1.5 rounded-full transition-colors ${activeSlide === idx ? 'bg-[#FF5500]' : 'bg-white/40'}`} />
-                  <span className="hidden xs:inline">{slide.shortLabel}</span>
-                  <span className="xs:hidden">{idx + 1}</span>
-                </button>
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
               ))}
-            </div>
-
-            {/* Top-Right Badge: Live Carousel Tracker (Desktop only) */}
-            <div className="absolute top-2.5 right-3 z-20 hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/15 text-[10px] text-white/90 font-medium tracking-wide">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>{activeSlide + 1} / {HERO_SLIDES.length}</span>
             </div>
           </div>
         </div>
 
-        {/* ════ HERO MAIN GRID ═══════════════════════════════════ */}
+        {/* ════ TWO-COLUMN HERO LOWER CONTENT ══════════════════════ */}
         <div
           className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.95fr)] items-center flex-1 py-3 sm:py-5 lg:py-6"
           style={{
@@ -657,11 +648,11 @@ export default function HeroSection({ onOpenApplication }) {
               justifyContent: 'center',
             }}
           >
-            {/* Eyebrow with refined pill (Hidden on Mobile View) */}
+            {/* Eyebrow with refined pill (Now visible & clear on Mobile too) */}
             <div
-              className="hidden sm:inline-flex items-center gap-1.5 sm:gap-2 bg-orange-50/90 border border-orange-200/80 px-3 py-1 rounded-full shadow-xs backdrop-blur-sm mb-3 sm:mb-4"
+              className="inline-flex items-center gap-1.5 sm:gap-2 bg-orange-50/90 border border-orange-200/80 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full shadow-xs backdrop-blur-sm mb-2.5 sm:mb-4"
             >
-              <span className="w-2 h-2 rounded-full bg-[#FF5500] shrink-0 animate-pulse" />
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#FF5500] shrink-0 animate-pulse" />
               <span className="text-[10px] sm:text-[10.5px] font-bold tracking-wider uppercase text-slate-800">
                 🎰 Casino, Real Money Gaming &amp; 📈 Trading Gateway <span className="text-orange-300 font-light mx-1">•</span> 24h MIDs
               </span>

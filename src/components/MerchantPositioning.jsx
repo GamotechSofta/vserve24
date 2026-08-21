@@ -64,7 +64,7 @@ export default function MerchantPositioning({ onOpenApplication }) {
   return (
     <section 
       id="positioning"
-      className="relative bg-[#FCFBF8] py-16 sm:py-20 lg:py-28 border-b border-[#E7E3DA] overflow-hidden"
+      className="relative bg-[#F9F8F3] py-10 sm:py-16 lg:py-20 border-b border-[#E7E3DA] overflow-hidden"
     >
       {/* Background blueprint dot texture */}
       <div 
@@ -79,13 +79,13 @@ export default function MerchantPositioning({ onOpenApplication }) {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Top Header */}
-        <div className="max-w-3xl mb-7 sm:mb-10 space-y-2 sm:space-y-2.5">
-          <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[10.5px] tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
+        <div className="max-w-3xl mb-5 sm:mb-8 space-y-1.5 sm:space-y-2">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[10px] sm:text-[10.5px] tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500] animate-pulse" />
-            <span>02 • Merchant Positioning</span>
+            <span>02 • Specialized High-Risk Pillars</span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-bold text-[#0B192C] tracking-tight leading-[1.14]">
+          <h2 className="text-2xl sm:text-3xl lg:text-[36px] font-bold text-[#0B192C] tracking-tight leading-[1.14]">
             Built for merchants traditional processors <span className="text-[#FF5500]">reject.</span>
           </h2>
 
@@ -95,14 +95,14 @@ export default function MerchantPositioning({ onOpenApplication }) {
         </div>
 
         {/* MOBILE: Clean Segmented Pill Tabs (< md) */}
-        <div className="flex md:hidden items-center gap-1.5 bg-[#FFFFFF] border border-[#E7E3DA] p-1.5 rounded-2xl mb-6 shadow-xs overflow-x-auto scrollbar-none">
+        <div className="flex md:hidden items-center gap-1.5 bg-[#FFFFFF] border border-[#E7E3DA] p-1.5 rounded-2xl mb-4 shadow-xs overflow-x-auto scrollbar-none">
           {pillars.map((pillar, idx) => {
             const isActive = activeTab === idx;
             return (
               <button
                 key={pillar.id}
                 onClick={() => setActiveTab(idx)}
-                className={`flex-1 py-2 px-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all text-center cursor-pointer ${
+                className={`flex-1 py-2 px-2 rounded-xl text-[11px] font-bold whitespace-nowrap transition-all text-center cursor-pointer ${
                   isActive
                     ? 'bg-[#FF5500] text-white shadow-sm'
                     : 'text-[#475569] hover:text-[#0B192C]'

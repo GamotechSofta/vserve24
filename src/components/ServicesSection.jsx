@@ -168,11 +168,11 @@ export default function ServicesSection({ onOpenApplication }) {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Section Top Header - Compact single frame */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 sm:gap-4 mb-5 sm:mb-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
           <div className="max-w-2xl space-y-1.5 sm:space-y-2">
-            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-orange-50 border border-orange-200/80 text-[10.5px] tracking-widest text-[#FF5500] uppercase font-bold shadow-xs">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[10px] sm:text-[10.5px] tracking-widest text-[#FF5500] uppercase font-bold shadow-xs mb-1">
               <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500] animate-pulse" />
-              <span>05 • Core Payment Services</span>
+              <span>03 • Core Payment Services</span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-bold text-[#0B192C] tracking-tight leading-[1.14]">
